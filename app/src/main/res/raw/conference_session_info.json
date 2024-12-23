@@ -1,0 +1,858 @@
+[
+  {
+    "start_time":"07/26/2020 12:00 PM",
+    "end_time":"07/26/2020 05:00 PM",
+    "session_name":"Community Service Event: Red30Cares",
+    "session_track":"Community Service",
+    "industry":"General",
+    "room_name":"Event Center"
+  },
+  {
+    "start_time":"07/27/2020 02:00 PM",
+    "end_time":"07/27/2020 03:30 PM",
+    "session_name":"3D Printing for the Non-Tech Minded",
+    "session_track":"3D Printing and Design",
+    "industry":"Technology",
+    "room_name":"Room 101"
+  },
+  {
+    "start_time":"07/27/2020 02:00 PM",
+    "end_time":"07/27/2020 03:00 PM",
+    "session_name":"3D Printing with Clay",
+    "session_track":"3D Printing and Design",
+    "industry":"Education",
+    "room_name":"Room 201"
+  },
+  {
+    "start_time":"07/27/2020 02:00 PM",
+    "end_time":"07/27/2020 03:00 PM",
+    "session_name":"Are Makerspaces Passé?",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"General",
+    "room_name":"Room 100"
+  },
+  {
+    "start_time":"07/27/2020 02:00 PM",
+    "end_time":"07/27/2020 03:30 PM",
+    "session_name":"Art in the Age of Automation",
+    "session_track":"Ethics and Environment",
+    "industry":"Technology",
+    "room_name":"Room 103"
+  },
+  {
+    "start_time":"07/27/2020 02:00 PM",
+    "end_time":"07/27/2020 03:30 PM",
+    "session_name":"Augmented Real(ity) Estate",
+    "session_track":"Virtual and Augmented Reality",
+    "industry":"Technology",
+    "room_name":"Room 104"
+  },
+  {
+    "start_time":"07/27/2020 02:00 PM",
+    "end_time":"07/27/2020 03:00 PM",
+    "session_name":"Hands-On Hacks",
+    "session_track":"Education and Training",
+    "industry":"Education",
+    "room_name":"Grand View Hall"
+  },
+  {
+    "start_time":"07/27/2020 02:00 PM",
+    "end_time":"07/27/2020 03:30 PM",
+    "session_name":"Managing Virtual Teams",
+    "session_track":"Ethics and Environment",
+    "industry":"Technology",
+    "room_name":"Room 102"
+  },
+  {
+    "start_time":"07/27/2020 02:00 PM",
+    "end_time":"07/27/2020 03:30 PM",
+    "session_name":"Must-Dos vs. Trends",
+    "session_track":"Ai and Robotics",
+    "industry":"Technology",
+    "room_name":"Room 204"
+  },
+  {
+    "start_time":"07/27/2020 02:00 PM",
+    "end_time":"07/27/2020 03:00 PM",
+    "session_name":"The Art of Cheese",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"General",
+    "room_name":"Room 202"
+  },
+  {
+    "start_time":"07/27/2020 02:00 PM",
+    "end_time":"07/27/2020 03:30 PM",
+    "session_name":"The Art of Sound",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"Entertainment",
+    "room_name":"Central Ballroom"
+  },
+  {
+    "start_time":"07/27/2020 02:00 PM",
+    "end_time":"07/27/2020 03:30 PM",
+    "session_name":"This Is your Brain on VR",
+    "session_track":"Virtual and Augmented Reality",
+    "industry":"Technology",
+    "room_name":"Room 200"
+  },
+  {
+    "start_time":"07/27/2020 02:00 PM",
+    "end_time":"07/27/2020 03:30 PM",
+    "session_name":"Virtual Reality for Remote Learning",
+    "session_track":"Education and Training",
+    "industry":"Education",
+    "room_name":"Room 105"
+  },
+  {
+    "start_time":"07/27/2020 02:00 PM",
+    "end_time":"07/27/2020 03:00 PM",
+    "session_name":"Yarnathon for Justice",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"General",
+    "room_name":"West Ballroom"
+  },
+  {
+    "start_time":"07/27/2020 03:00 PM",
+    "end_time":"07/27/2020 04:00 PM",
+    "session_name":"3D Printing with Metal",
+    "session_track":"3D Printing and Design",
+    "industry":"Education",
+    "room_name":"Room 201"
+  },
+  {
+    "start_time":"07/27/2020 04:00 PM",
+    "end_time":"07/27/2020 05:00 PM",
+    "session_name":"Animals and AI",
+    "session_track":"AI and Robotics",
+    "industry":"Technology",
+    "room_name":"Room 100"
+  },
+  {
+    "start_time":"07/27/2020 04:00 PM",
+    "end_time":"07/27/2020 05:00 PM",
+    "session_name":"Hands-On Hacks",
+    "session_track":"Education and Training",
+    "industry":"Education",
+    "room_name":"Grand View Hall"
+  },
+  {
+    "start_time":"07/27/2020 04:00 PM",
+    "end_time":"07/27/2020 05:30 PM",
+    "session_name":"Helping Make Homes Worldwide",
+    "session_track":"Ethics and Environment",
+    "industry":"Technology",
+    "room_name":"Room 203"
+  },
+  {
+    "start_time":"07/27/2020 04:00 PM",
+    "end_time":"07/27/2020 05:00 PM",
+    "session_name":"Housebuilding and 3D Printing",
+    "session_track":"3D Printing and Design",
+    "industry":"Technology",
+    "room_name":"Room 200"
+  },
+  {
+    "start_time":"07/27/2020 04:00 PM",
+    "end_time":"07/27/2020 05:00 PM",
+    "session_name":"Human Resources and Robots",
+    "session_track":"Ethics and Environment",
+    "industry":"Technology",
+    "room_name":"Room 103"
+  },
+  {
+    "start_time":"07/27/2020 04:00 PM",
+    "end_time":"07/27/2020 05:00 PM",
+    "session_name":"Let them Eat Cake—or Don't",
+    "session_track":"Education and Training",
+    "industry":"General",
+    "room_name":"Room 102"
+  },
+  {
+    "start_time":"07/27/2020 04:00 PM",
+    "end_time":"07/27/2020 05:30 PM",
+    "session_name":"VR in Town and City Planning",
+    "session_track":"Virtual and Augmented Reality",
+    "industry":"Technology",
+    "room_name":"Room 202"
+  },
+  {
+    "start_time":"07/27/2020 04:00 PM",
+    "end_time":"07/27/2020 04:00 PM",
+    "session_name":"Yarnathon for Justice",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"General",
+    "room_name":"West Ballroom"
+  },
+  {
+    "start_time":"07/27/2020 04:30 PM",
+    "end_time":"07/27/2020 04:30 PM",
+    "session_name":"Arts and Crafts Makerspaces",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"General",
+    "room_name":"Room 201"
+  },
+  {
+    "start_time":"07/27/2020 05:00 PM",
+    "end_time":"07/27/2020 06:00 PM",
+    "session_name":"Making Things from Other Things",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"Education",
+    "room_name":"Room 103"
+  },
+  {
+    "start_time":"07/27/2020 05:00 PM",
+    "end_time":"07/27/2020 06:30 PM",
+    "session_name":"Robots on the Farm",
+    "session_track":"AI and Robotics",
+    "industry":"Technology",
+    "room_name":"Room 100"
+  },
+  {
+    "start_time":"07/27/2020 05:00 PM",
+    "end_time":"07/27/2020 06:30 PM",
+    "session_name":"Using Drones for Disaster Relief",
+    "session_track":"AI and Robotics",
+    "industry":"Technology",
+    "room_name":"Room 200"
+  },
+  {
+    "start_time":"07/27/2020 05:30 PM",
+    "end_time":"07/27/2020 06:30 PM",
+    "session_name":"The Solar Bowler",
+    "session_track":"Ethics and Environment",
+    "industry":"General",
+    "room_name":"Room 202"
+  },
+  {
+    "start_time":"07/27/2020 05:30 PM",
+    "end_time":"07/27/2020 06:30 PM",
+    "session_name":"Yarnathon for Justice",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"General",
+    "room_name":"West Ballroom"
+  },
+  {
+    "start_time":"07/27/2020 08:30 AM",
+    "end_time":"07/27/2020 10:00 AM",
+    "session_name":"Welcome ceremony and Keynote - - We are All Makers",
+    "session_track":"Keynote",
+    "industry":"Entertainment",
+    "room_name":"Event Center"
+  },
+  {
+    "start_time":"07/27/2020 10:30 AM",
+    "end_time":"07/28/2020 12:00 AM",
+    "session_name":"3D Makers and PPE during a Pandemic",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"General",
+    "room_name":"Room 100"
+  },
+  {
+    "start_time":"07/27/2020 10:30 AM",
+    "end_time":"07/27/2020 12:00 PM",
+    "session_name":"AI and Education—Developing a Data Strategy",
+    "session_track":"Education and Training",
+    "industry":"Education",
+    "room_name":"Room 102"
+  },
+  {
+    "start_time":"07/27/2020 10:30 AM",
+    "end_time":"07/27/2020 12:00 PM",
+    "session_name":"Automating User Testing",
+    "session_track":"AI and Robotics",
+    "industry":"Technology",
+    "room_name":"Room 101"
+  },
+  {
+    "start_time":"07/27/2020 10:30 AM",
+    "end_time":"07/27/2020 12:00 PM",
+    "session_name":"Data and Human Needs",
+    "session_track":"Ethics and Environment",
+    "industry":"Marketing",
+    "room_name":"Room 202"
+  },
+  {
+    "start_time":"07/27/2020 10:30 AM",
+    "end_time":"07/27/2020 12:00 AM",
+    "session_name":"Diversity in the Maker Community",
+    "session_track":"Ethics and Environment",
+    "industry":"General",
+    "room_name":"Room 200"
+  },
+  {
+    "start_time":"07/27/2020 10:30 AM",
+    "end_time":"07/27/2020 11:30 AM",
+    "session_name":"Hands-On Hacks",
+    "session_track":"Education and Training",
+    "industry":"Education",
+    "room_name":"Room 105"
+  },
+  {
+    "start_time":"07/27/2020 10:30 AM",
+    "end_time":"07/27/2020 12:00 PM",
+    "session_name":"LEX: Always Remember that the End Product is Human",
+    "session_track":"Education and Training",
+    "industry":"Education",
+    "room_name":"Room 202"
+  },
+  {
+    "start_time":"07/27/2020 10:30 AM",
+    "end_time":"07/27/2020 12:00 PM",
+    "session_name":"Makers Making Money",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"Marketing",
+    "room_name":"Room 204"
+  },
+  {
+    "start_time":"07/27/2020 10:30 AM",
+    "end_time":"07/27/2020 12:00 PM",
+    "session_name":"Security in the Age of AI",
+    "session_track":"AI and Robotics",
+    "industry":"Technology",
+    "room_name":"Room 103"
+  },
+  {
+    "start_time":"07/27/2020 10:30 AM",
+    "end_time":"07/27/2020 12:00 PM",
+    "session_name":"Virtual Reality for Remote Learning",
+    "session_track":"Education and Training",
+    "industry":"Education",
+    "room_name":"Room 104"
+  },
+  {
+    "start_time":"07/27/2020 10:30 AM",
+    "end_time":"07/27/2020 11:30 AM",
+    "session_name":"Yarnathon for Justice",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"General",
+    "room_name":"West Ballroom"
+  },
+  {
+    "start_time":"07/27/2020 11:00 AM",
+    "end_time":"07/27/2020 12:00 PM",
+    "session_name":"Housebuilding and 3D Printing",
+    "session_track":"3D Printing and Design",
+    "industry":"Technology",
+    "room_name":"Room 201"
+  },
+  {
+    "start_time":"07/28/2020 02:00 PM",
+    "end_time":"07/28/2020 03:00 PM",
+    "session_name":"3D Printing with Metal",
+    "session_track":"3D Printing and Design",
+    "industry":"Education",
+    "room_name":"Room 201"
+  },
+  {
+    "start_time":"07/28/2020 02:00 PM",
+    "end_time":"07/28/2020 03:00 PM",
+    "session_name":"Animals and AI",
+    "session_track":"AI and Robotics",
+    "industry":"Technology",
+    "room_name":"Room 100"
+  },
+  {
+    "start_time":"07/28/2020 02:00 PM",
+    "end_time":"07/27/2020 03:30 PM",
+    "session_name":"Automating User Testing",
+    "session_track":"AI and Robotics",
+    "industry":"Technology",
+    "room_name":"Room 101"
+  },
+  {
+    "start_time":"07/28/2020 02:00 PM",
+    "end_time":"07/28/2020 03:30 PM",
+    "session_name":"Data and Human Needs",
+    "session_track":"Ethics and Environment",
+    "industry":"Marketing",
+    "room_name":"Room 203"
+  },
+  {
+    "start_time":"07/28/2020 02:00 PM",
+    "end_time":"07/28/2020 03:30 PM",
+    "session_name":"Diversity in the Maker Community",
+    "session_track":"Ethics and Environment",
+    "industry":"General",
+    "room_name":"Room 200"
+  },
+  {
+    "start_time":"07/28/2020 02:00 PM",
+    "end_time":"07/28/2020 03:00 PM",
+    "session_name":"Hands-On Hacks",
+    "session_track":"Education and Training",
+    "industry":"Education",
+    "room_name":"Grand View Hall"
+  },
+  {
+    "start_time":"07/28/2020 02:00 PM",
+    "end_time":"07/28/2020 03:00 PM",
+    "session_name":"Human Resources and Robots",
+    "session_track":"Ethics and Environment",
+    "industry":"Technology",
+    "room_name":"Room 105"
+  },
+  {
+    "start_time":"07/28/2020 02:00 PM",
+    "end_time":"07/28/2020 03:30 PM",
+    "session_name":"Let them Eat Cake—or Don't",
+    "session_track":"Education and Training",
+    "industry":"General",
+    "room_name":"Room 102"
+  },
+  {
+    "start_time":"07/28/2020 02:00 PM",
+    "end_time":"07/28/2020 03:30 PM",
+    "session_name":"Makers Making Money",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"Marketing",
+    "room_name":"Room 204"
+  },
+  {
+    "start_time":"07/28/2020 02:00 PM",
+    "end_time":"07/28/2020 03:00 PM",
+    "session_name":"The Solar Bowler",
+    "session_track":"Ethics and Environment",
+    "industry":"General",
+    "room_name":"Room 202"
+  },
+  {
+    "start_time":"07/28/2020 02:00 PM",
+    "end_time":"07/28/2020 03:30 PM",
+    "session_name":"Virtual Reality for Remote Learning",
+    "session_track":"Education and Training",
+    "industry":"Education",
+    "room_name":"Room 104"
+  },
+  {
+    "start_time":"07/28/2020 02:00 PM",
+    "end_time":"07/28/2020 03:00 PM",
+    "session_name":"Yarnathon for Justice",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"General",
+    "room_name":"West Ballroom"
+  },
+  {
+    "start_time":"07/28/2020 03:00 PM",
+    "end_time":"07/28/2020 04:00 PM",
+    "session_name":"3D Printing with Clay",
+    "session_track":"3D Printing and Design",
+    "industry":"Education",
+    "room_name":"Room 201"
+  },
+  {
+    "start_time":"07/28/2020 04:00 PM",
+    "end_time":"07/28/2020 05:30 PM",
+    "session_name":"3D Printing for the Non-Tech Minded",
+    "session_track":"3D Printing and Design",
+    "industry":"Technology",
+    "room_name":"Room 101"
+  },
+  {
+    "start_time":"07/28/2020 04:00 PM",
+    "end_time":"07/28/2020 05:00 PM",
+    "session_name":"AI and Education—Developing a Data Strategy",
+    "session_track":"Education and Training",
+    "industry":"Education",
+    "room_name":"Room 102"
+  },
+  {
+    "start_time":"07/28/2020 04:00 PM",
+    "end_time":"07/28/2020 05:30 PM",
+    "session_name":"Art in the Age of Automation",
+    "session_track":"Ethics and Environment",
+    "industry":"Technology",
+    "room_name":"Room 103"
+  },
+  {
+    "start_time":"07/28/2020 04:00 PM",
+    "end_time":"07/28/2020 05:30 AM",
+    "session_name":"Augmented Real(ity) Estate",
+    "session_track":"Virtual and Augmented Reality",
+    "industry":"Technology",
+    "room_name":"Room 104"
+  },
+  {
+    "start_time":"07/28/2020 04:00 PM",
+    "end_time":"07/28/2020 05:00 PM",
+    "session_name":"Hands-On Hacks",
+    "session_track":"Education and Training",
+    "industry":"Education",
+    "room_name":"Grand View Hall"
+  },
+  {
+    "start_time":"07/28/2020 04:00 PM",
+    "end_time":"07/28/2020 05:30 PM",
+    "session_name":"LEX: Always Remember that the End Product is Human",
+    "session_track":"Education and Training",
+    "industry":"Education",
+    "room_name":"Room 202"
+  },
+  {
+    "start_time":"07/28/2020 04:00 PM",
+    "end_time":"07/28/2020 05:30 PM",
+    "session_name":"Robots on the Farm",
+    "session_track":"AI and Robotics",
+    "industry":"Technology",
+    "room_name":"Room 100"
+  },
+  {
+    "start_time":"07/28/2020 04:00 PM",
+    "end_time":"07/28/2020 05:30 PM",
+    "session_name":"The Art of Sound",
+    "session_track":"Ethics and Environment",
+    "industry":"Entertainment",
+    "room_name":"Central Ballroom"
+  },
+  {
+    "start_time":"07/28/2020 04:00 PM",
+    "end_time":"07/28/2020 05:30 PM",
+    "session_name":"This Is your Brain on VR",
+    "session_track":"Virtual and Augmented Reality",
+    "industry":"Technology",
+    "room_name":"Room 200"
+  },
+  {
+    "start_time":"07/28/2020 04:00 PM",
+    "end_time":"07/28/2020 05:00 PM",
+    "session_name":"Virtual Reality for Remote Learning",
+    "session_track":"Education and Training",
+    "industry":"Education",
+    "room_name":"Room 105"
+  },
+  {
+    "start_time":"07/28/2020 04:00 PM",
+    "end_time":"07/28/2020 05:30 PM",
+    "session_name":"VR in Town and City Planning",
+    "session_track":"Virtual and Augmented Reality",
+    "industry":"Technology",
+    "room_name":"Room 203"
+  },
+  {
+    "start_time":"07/28/2020 04:00 PM",
+    "end_time":"07/28/2020 04:00 PM",
+    "session_name":"Yarnathon for Justice",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"General",
+    "room_name":"West Ballroom"
+  },
+  {
+    "start_time":"07/28/2020 04:30 PM",
+    "end_time":"07/28/2020 05:30 PM",
+    "session_name":"Housebuilding and 3D Printing",
+    "session_track":"3D Printing and Design",
+    "industry":"Technology",
+    "room_name":"Room 201"
+  },
+  {
+    "start_time":"07/28/2020 06:30 PM",
+    "end_time":"07/28/2020 09:00 PM",
+    "session_name":"Experience Makers Festival",
+    "session_track":"Entertainment",
+    "industry":"Entertainment",
+    "room_name":"Event Center"
+  },
+  {
+    "start_time":"07/28/2020 08:30 AM",
+    "end_time":"07/28/2020 10:00 AM",
+    "session_name":"Keynote Speakers - Making a Maker Community",
+    "session_track":"Keynote",
+    "industry":"Entertainment",
+    "room_name":"Event Center"
+  },
+  {
+    "start_time":"07/28/2020 10:30 AM",
+    "end_time":"07/28/2020 11:30 AM",
+    "session_name":"Hands-On Hacks",
+    "session_track":"Education and Training",
+    "industry":"Education",
+    "room_name":"Grand View Hall"
+  },
+  {
+    "start_time":"07/28/2020 10:30 AM",
+    "end_time":"07/28/2020 12:00 PM",
+    "session_name":"Helping Make Homes Worldwide",
+    "session_track":"Ethics and Environment",
+    "industry":"Technology",
+    "room_name":"Room 203"
+  },
+  {
+    "start_time":"07/28/2020 10:30 AM",
+    "end_time":"07/28/2020 11:30 AM",
+    "session_name":"Making Things from Other Things",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"Education",
+    "room_name":"Room 103"
+  },
+  {
+    "start_time":"07/28/2020 10:30 AM",
+    "end_time":"07/28/2020 12:00 PM",
+    "session_name":"Managing Virtual Teams",
+    "session_track":"Ethics and Environment",
+    "industry":"Technology",
+    "room_name":"Room 102"
+  },
+  {
+    "start_time":"07/28/2020 10:30 AM",
+    "end_time":"07/28/2020 12:00 PM",
+    "session_name":"Must-Dos vs. Trends",
+    "session_track":"Ai and Robotics",
+    "industry":"Technology",
+    "room_name":"Room 204"
+  },
+  {
+    "start_time":"07/28/2020 10:30 AM",
+    "end_time":"07/28/2020 11:30 AM",
+    "session_name":"The Art of Cheese",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"General",
+    "room_name":"Room 202"
+  },
+  {
+    "start_time":"07/28/2020 10:30 AM",
+    "end_time":"07/28/2020 12:00 PM",
+    "session_name":"Using Drones for Disaster Relief",
+    "session_track":"AI and Robotics",
+    "industry":"Technology",
+    "room_name":"Room 200"
+  },
+  {
+    "start_time":"07/28/2020 10:30 AM",
+    "end_time":"07/28/2020 11:30 AM",
+    "session_name":"Yarnathon for Justice",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"General",
+    "room_name":"West Ballroom"
+  },
+  {
+    "start_time":"07/28/2020 10:30 PM",
+    "end_time":"07/28/2020 11:00 PM",
+    "session_name":"Arts and Crafts Makerspaces",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"General",
+    "room_name":"Room 201"
+  },
+  {
+    "start_time":"07/28/2020 11:00 AM",
+    "end_time":"07/28/2020 12:00 PM",
+    "session_name":"Are Makerspaces Passé?",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"General",
+    "room_name":"Room 100"
+  },
+  {
+    "start_time":"07/29/2020 02:00 PM",
+    "end_time":"07/29/2020 03:00 PM",
+    "session_name":"Closing Ceremony",
+    "session_track":"Keynote",
+    "industry":"General",
+    "room_name":"Event Center"
+  },
+  {
+    "start_time":"07/29/2020 08:30 AM",
+    "end_time":"07/29/2020 10:00 AM",
+    "session_name":"Automating User Testing",
+    "session_track":"AI and Robotics",
+    "industry":"Technology",
+    "room_name":"Room 101"
+  },
+  {
+    "start_time":"07/29/2020 08:30 AM",
+    "end_time":"07/29/2020 10:00 AM",
+    "session_name":"Data and Human Needs",
+    "session_track":"Ethics and Environment",
+    "industry":"Marketing",
+    "room_name":"Room 203"
+  },
+  {
+    "start_time": "07/29/2020 08:30 AM",
+    "end_time": "07/29/2020 10:00 AM",
+    "session_name": "Diversity in the Maker Community",
+    "session_track": "Ethics and Environment",
+    "industry": "General",
+    "room_name":"Room 200"
+  },
+  {
+    "start_time":"07/29/2020 08:30 AM",
+    "end_time":"07/29/2020 10:00 AM",
+    "session_name":"Ideas into Business",
+    "session_track":"Art_n Crafts, Fashion, and Fare",
+    "industry":"Marketing",
+    "room_name":"Room 105"
+  },
+  {
+    "start_time":"07/29/2020 08:30 AM",
+    "end_time":"07/29/2020 10:00 AM",
+    "session_name":"Makers Making Money",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"Marketing",
+    "room_name":"Room 204"
+  },
+  {
+    "start_time":"07/29/2020 08:30 AM",
+    "end_time":"07/29/2020 10:00 AM",
+    "session_name":"Managing Virtual Teams",
+    "session_track":"Ethics and Environment",
+    "industry":"Technology",
+    "room_name":"Room 102"
+  },
+  {
+    "start_time":"07/29/2020 08:30 AM",
+    "end_time":"07/29/2020 10:00 AM",
+    "session_name":"Security in the Age of AI",
+    "session_track":"AI and Robotics",
+    "industry":"Technology",
+    "room_name":"Room 100"
+  },
+  {
+    "start_time":"07/29/2020 08:30 AM",
+    "end_time":"07/29/2020 09:30 AM",
+    "session_name":"The Solar Bowler",
+    "session_track":"Ethics and Environment",
+    "industry":"General",
+    "room_name":"Room 202"
+  },
+  {
+    "start_time":"07/29/2020 08:30 AM",
+    "end_time":"07/28/2020 10:00 AM",
+    "session_name":"Virtual Reality for Remote Learning",
+    "session_track":"Education and Training",
+    "industry":"Education",
+    "room_name":"Room 104"
+  },
+  {
+    "start_time":"07/29/2020 08:30 AM",
+    "end_time":"07/29/2020 09:30 AM",
+    "session_name":"Yarnathon for Justice",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"General",
+    "room_name":"West Ballroom"
+  },
+  {
+    "start_time":"07/29/2020 09:00 AM",
+    "end_time":"07/29/2020 10:00 AM",
+    "session_name":"Housebuilding and 3D Printing",
+    "session_track":"3D Printing and Design",
+    "industry":"Technology",
+    "room_name":"Room 201"
+  },
+  {
+    "start_time":"07/29/2020 09:00 AM",
+    "end_time":"07/29/2020 10:00 AM",
+    "session_name":"Human Resources and Robots",
+    "session_track":"Ethics and Environment",
+    "industry":"Technology",
+    "room_name":"Room 103"
+  },
+  {
+    "start_time":"07/29/2020 10:30 AM",
+    "end_time":"07/29/2020 12:00 PM",
+    "session_name":"3D Makers and PPE during a Pandemic",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"General",
+    "room_name":"Room 100"
+  },
+  {
+    "start_time":"07/29/2020 10:30 AM",
+    "end_time":"07/29/2020 12:00 PM",
+    "session_name":"3D Printing for the Non-Tech Minded",
+    "session_track":"3D Printing and Design",
+    "industry":"Technology",
+    "room_name":"Room 101"
+  },
+  {
+    "start_time":"07/29/2020 10:30 AM",
+    "end_time":"07/29/2020 11:30 AM",
+    "session_name":"3D Printing with Clay",
+    "session_track":"3D Printing and Design",
+    "industry":"Education",
+    "room_name":"Room 201"
+  },
+  {
+    "start_time":"07/29/2020 10:30 AM",
+    "end_time":"07/29/2020 12:00 PM",
+    "session_name":"AI and Education—Developing a Data Strategy",
+    "session_track":"Education and Training",
+    "industry":"Education",
+    "room_name":"Room 102"
+  },
+  {
+    "start_time":"07/29/2020 10:30 AM",
+    "end_time":"07/29/2020 12:00 AM",
+    "session_name":"Art in the Age of Automation",
+    "session_track":"Ethics and Environment",
+    "industry":"Technology",
+    "room_name":"Room 103"
+  },
+  {
+    "start_time":"07/29/2020 10:30 AM",
+    "end_time":"07/29/2020 12:00 PM",
+    "session_name":"Augmented Real(ity) Estate",
+    "session_track":"Virtual and Augmented Reality",
+    "industry":"Technology",
+    "room_name":"Room 104"
+  },
+  {
+    "start_time":"07/29/2020 10:30 AM",
+    "end_time":"07/29/2020 11:30 AM",
+    "session_name":"Hands-On Hacks",
+    "session_track":"Education and Training",
+    "industry":"Education",
+    "room_name":"Grand View Hall"
+  },
+  {
+    "start_time":"07/29/2020 10:30 AM",
+    "end_time":"07/29/2020 12:00 PM",
+    "session_name":"Helping Make Homes Worldwide",
+    "session_track":"Ethics and Environment",
+    "industry":"Technology",
+    "room_name":"Room 203"
+  },
+  {
+    "start_time":"07/29/2020 10:30 AM",
+    "end_time":"07/29/2020 12:00 PM",
+    "session_name":"LEX: Always Remember that the End Product is Human",
+    "session_track":"Education and Training",
+    "industry":"Education",
+    "room_name":"Room 202"
+  },
+  {
+    "start_time":"07/29/2020 10:30 AM",
+    "end_time":"07/29/2020 12:00 PM",
+    "session_name":"Must-Dos vs. Trends",
+    "session_track":"Ai and Robotics",
+    "industry":"Technology",
+    "room_name":"Room 204"
+  },
+  {
+    "start_time":"07/29/2020 10:30 AM",
+    "end_time":"07/29/2020 12:00 PM",
+    "session_name":"The Art of Sound",
+    "session_track":"Ethics and Environment",
+    "industry":"Entertainment",
+    "room_name":"Central Ballroom"
+  },
+  {
+    "start_time":"07/29/2020 10:30 AM",
+    "end_time":"07/29/2020 12:00 PM",
+    "session_name":"This Is your Brain on VR",
+    "session_track":"Virtual and Augmented Reality",
+    "industry":"Technology",
+    "room_name":"Room 200"
+  },
+  {
+    "start_time":"07/29/2020 10:30 AM",
+    "end_time":"07/29/2020 12:00 PM",
+    "session_name":"Virtual Reality for Remote Learning",
+    "session_track":"Education and Training",
+    "industry":"Education",
+    "room_name":"Room 105"
+  },
+  {
+    "start_time":"07/29/2020 10:30 AM",
+    "end_time":"07/29/2020 11:30 AM",
+    "session_name":"Yarnathon for Justice",
+    "session_track":"Arts, Crafts, Fashion, and Fare",
+    "industry":"General",
+    "room_name":"West Ballroom"
+  }
+]
