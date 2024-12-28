@@ -20,6 +20,20 @@
       "organization": "Two Trees Olive Oil",
       "bio": "Anna Rossi's favorite part of her job is getting to invent things with people and companies from all over the world. She also heads up the annual customer maker contest, featuring people who make amazing things with Two Trees Olive Oil.",
       "id": 3
+    },
+    {
+      "name": "Aran Nguyen",
+      "title": "LEX Designer",
+      "organization": "Binaryville",
+      "bio": "Aran Nguyen is widely known as a champion of accessible education, receiving awards for ingenuity in online learning for students with special needs. ",
+      "id": 4
+    },
+    {
+      "name": "Ashley Hackett",
+      "title": "Chief Innovation Officer",
+      "organization": "The Landon Hotel",
+      "bio": "Ashley Hackett calls herself a \"permanently remote\" employee as part of the executive team that manages a worldwide accommodation business.",
+      "id": 5
     }
   ],
   "sessions": [
@@ -90,9 +104,11 @@
       "start_time": "07/27/2020 02:00 PM",
       "end_time": "07/27/2020 03:30 PM",
       "session_name": "Managing Virtual Teams",
+      "session_description": "How do you keep your team invested in projects if they are all or partly remote? What are your biggest challenges and the best tools to meet those challenges? Join these managers in a roundtable discussion as they share the tools and methodologies that work for them.",
       "session_track": "Ethics and Environment",
       "industry": "Technology",
       "room_name": "Room 102",
+      "speaker_id": 5,
       "id": 8
     },
     {
@@ -357,9 +373,11 @@
       "start_time": "07/27/2020 10:30 AM",
       "end_time": "07/27/2020 12:00 PM",
       "session_name": "LEX: Always Remember that the End Product is Human",
+      "session_description": "The aspects of the learning experience continually changes, and has been forced to take some giant leaps in this past year. Learn how to develop new technology and experiences while keeping in mind that the end \u201cproduct\u201d is a human that is counting on you to learn.",
       "session_track": "Education and Training",
       "industry": "Education",
       "room_name": "Room 202",
+      "speaker_id": 4,
       "id": 37
     },
     {
@@ -577,9 +595,11 @@
       "start_time": "07/28/2020 04:00 PM",
       "end_time": "07/28/2020 05:30 PM",
       "session_name": "LEX: Always Remember that the End Product is Human",
+      "session_description": "The aspects of the learning experience continually changes, and has been forced to take some giant leaps in this past year. Learn how to develop new technology and experiences while keeping in mind that the end \u201cproduct\u201d is a human that is counting on you to learn.",
       "session_track": "Education and Training",
       "industry": "Education",
       "room_name": "Room 202",
+      "speaker_id": 4,
       "id": 61
     },
     {
@@ -696,9 +716,11 @@
       "start_time": "07/28/2020 10:30 AM",
       "end_time": "07/28/2020 12:00 PM",
       "session_name": "Managing Virtual Teams",
+      "session_description": "How do you keep your team invested in projects if they are all or partly remote? What are your biggest challenges and the best tools to meet those challenges? Join these managers in a roundtable discussion as they share the tools and methodologies that work for them.",
       "session_track": "Ethics and Environment",
       "industry": "Technology",
       "room_name": "Room 102",
+      "speaker_id": 5,
       "id": 74
     },
     {

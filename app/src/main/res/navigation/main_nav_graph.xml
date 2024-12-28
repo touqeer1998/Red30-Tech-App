@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph.xml"
+    app:startDestination="@id/sessionsFragment">
+
+    <fragment
+        android:id="@+id/sessionsFragment"
+        android:name="com.example.red30.viewbased.SessionsFragment"
+        android:label="fragment_sessions"
+        tools:layout="@layout/fragment_sessions" />
+
+    <fragment
+        android:id="@+id/speakersFragment"
+        android:name="com.example.red30.viewbased.SpeakersFragment"
+        android:label="fragment_speakers"
+        tools:layout="@layout/fragment_speakers" />
+
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.red30.viewbased.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
+</navigation>
