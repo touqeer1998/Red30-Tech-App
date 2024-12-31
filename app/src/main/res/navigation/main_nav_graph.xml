@@ -8,18 +8,56 @@
     <fragment
         android:id="@+id/sessionsFragment"
         android:name="com.example.red30.viewbased.SessionsFragment"
-        android:label="fragment_sessions"
-        tools:layout="@layout/fragment_sessions" />
+        android:label="Sessions"
+        tools:layout="@layout/fragment_sessions" >
+        <action
+            android:id="@+id/action_sessionsFragment_to_sessionDetailFragment"
+            app:destination="@id/sessionDetailFragment" />
+        <argument
+            android:name="show_bottom_bar"
+            android:defaultValue="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/speakersFragment"
         android:name="com.example.red30.viewbased.SpeakersFragment"
-        android:label="fragment_speakers"
-        tools:layout="@layout/fragment_speakers" />
+        android:label="Speakers"
+        tools:layout="@layout/fragment_speakers" >
+        <action
+            android:id="@+id/action_speakersFragment_to_speakerDetailFragment"
+            app:destination="@id/speakerDetailFragment" />
+        <argument
+            android:name="show_bottom_bar"
+            android:defaultValue="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.example.red30.viewbased.FavoritesFragment"
-        android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        android:label="Favorites"
+        tools:layout="@layout/fragment_favorites">
+        <argument
+            android:name="show_bottom_bar"
+            android:defaultValue="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/speakerDetailFragment"
+        android:name="com.example.red30.viewbased.SpeakerDetailFragment"
+        android:label=""
+        tools:layout="@layout/fragment_speaker_detail">
+        <argument
+            android:name="show_bottom_bar"
+            android:defaultValue="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/sessionDetailFragment"
+        android:name="com.example.red30.viewbased.SessionDetailFragment"
+        android:label=""
+        tools:layout="@layout/fragment_session_detail">
+        <argument
+            android:name="show_bottom_bar"
+            android:defaultValue="false" />
+    </fragment>
 </navigation>

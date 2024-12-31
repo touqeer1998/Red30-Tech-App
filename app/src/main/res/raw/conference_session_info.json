@@ -34,6 +34,27 @@
       "organization": "The Landon Hotel",
       "bio": "Ashley Hackett calls herself a \"permanently remote\" employee as part of the executive team that manages a worldwide accommodation business.",
       "id": 5
+    },
+    {
+      "name": "Beverley Armstrong",
+      "title": "Broadcast Engineer",
+      "organization": "Red30 Design",
+      "bio": "While Beverley Armstrong is known as a tech head, she also has a secret musical side playing Viennese oboe and other woodwinds. ",
+      "id": 6
+    },
+    {
+      "name": "Daniel Rohan",
+      "title": "Cyber Security Specialist",
+      "organization": "Hansel & Petal",
+      "bio": "Daniel Rohan has been with Hansel & Petal for six years. His leadership in AI security is well-documented in his many articles for top security publications.",
+      "id": 7
+    },
+    {
+      "name": "Daron Seeley",
+      "title": "Sr. Solutions Architect",
+      "organization": "Two Trees Olive Oil",
+      "bio": "Daron Seeley loves solving problems, which makes the job of Solutions Architect a paradisiacal dream come true\u2014especially when he gets to play with robots. ",
+      "id": 8
     }
   ],
   "sessions": [
@@ -133,9 +154,11 @@
       "start_time": "07/27/2020 02:00 PM",
       "end_time": "07/27/2020 03:30 PM",
       "session_name": "The Art of Sound",
+      "session_description": "While composed music has long been considered an art, sound is still considered more of a technical skill than an art. As a broadcast engineer, Beverley has been an advocate for sound to be treated as an art, with the BE conducting the blend of voice, music, background noise, and sound effects to create content that greatly enhances the visual aspects of a broadcast.",
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "Entertainment",
       "room_name": "Central Ballroom",
+      "speaker_id": 6,
       "id": 11
     },
     {
@@ -270,9 +293,11 @@
       "start_time": "07/27/2020 05:00 PM",
       "end_time": "07/27/2020 06:30 PM",
       "session_name": "Robots on the Farm",
+      "session_description": "From testing soil to gently picking fruits and vegetables to avoid damage, robotics are becoming a critical faction in the role of agriculture in the future. Learn how current and future technologies will be implemented in this huge, critically important industry.",
       "session_track": "AI and Robotics",
       "industry": "Technology",
       "room_name": "Room 100",
+      "speaker_id": 8,
       "id": 26
     },
     {
@@ -393,9 +418,11 @@
       "start_time": "07/27/2020 10:30 AM",
       "end_time": "07/27/2020 12:00 PM",
       "session_name": "Security in the Age of AI",
+      "session_description": "With security crises gaining in prevalence, it\u2019s more important than ever for us to make sure that our AI can't be hacked. How can we avoid all the data noise out there?",
       "session_track": "AI and Robotics",
       "industry": "Technology",
       "room_name": "Room 103",
+      "speaker_id": 7,
       "id": 39
     },
     {
@@ -606,18 +633,22 @@
       "start_time": "07/28/2020 04:00 PM",
       "end_time": "07/28/2020 05:30 PM",
       "session_name": "Robots on the Farm",
+      "session_description": "From testing soil to gently picking fruits and vegetables to avoid damage, robotics are becoming a critical faction in the role of agriculture in the future. Learn how current and future technologies will be implemented in this huge, critically important industry.",
       "session_track": "AI and Robotics",
       "industry": "Technology",
       "room_name": "Room 100",
+      "speaker_id": 8,
       "id": 62
     },
     {
       "start_time": "07/28/2020 04:00 PM",
       "end_time": "07/28/2020 05:30 PM",
       "session_name": "The Art of Sound",
+      "session_description": "While composed music has long been considered an art, sound is still considered more of a technical skill than an art. As a broadcast engineer, Beverley has been an advocate for sound to be treated as an art, with the BE conducting the blend of voice, music, background noise, and sound effects to create content that greatly enhances the visual aspects of a broadcast.",
       "session_track": "Ethics and Environment",
       "industry": "Entertainment",
       "room_name": "Central Ballroom",
+      "speaker_id": 6,
       "id": 63
     },
     {

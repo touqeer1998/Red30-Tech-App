@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.red30.databinding.FragmentFavoritesBinding
+import com.example.red30.databinding.FragmentSpeakerDetailBinding
 
-class FavoritesFragment : Fragment() {
+class SpeakerDetailFragment : Fragment() {
 
-    private var _binding: FragmentFavoritesBinding? = null
+    private var _binding: FragmentSpeakerDetailBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -17,13 +17,14 @@ class FavoritesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
+        _binding = FragmentSpeakerDetailBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
     }
 
     override fun onDestroyView() {

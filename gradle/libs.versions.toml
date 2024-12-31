@@ -16,6 +16,7 @@ lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
 composeBom = "2024.12.01"
 ksp = "2.0.10-1.0.24"
+safeargs = "2.8.5"
 
 kotlinSerialization = "2.1.0"
 kotlinxSerialization = "1.7.1"
@@ -57,3 +58,4 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+safeargs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "safeargs" }
