@@ -1,6 +1,8 @@
 package com.example.red30.data
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonNames
 
 @Serializable
 data class SessionInfo(
@@ -14,6 +16,8 @@ data class Speaker(
     val name: String,
     val title: String,
     val organization: String,
+    @SerialName("image_url")
+    val imageUrl: String? = null,
     val bio: String,
 )
 
