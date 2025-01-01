@@ -32,7 +32,7 @@ fun Red30TechAppExtended(modifier: Modifier = Modifier) {
                 Column(
                     modifier = Modifier
                         .padding(innerPadding)
-                        .then(Modifier.fillMaxSize()),
+                        .fillMaxSize(),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
