@@ -18,7 +18,7 @@ fun Red30TechNavHost(
     viewModel: MainViewModel,
     modifier: Modifier = Modifier
 ) {
-    val sessions by viewModel.sessions.collectAsStateWithLifecycle()
+    val sessions by viewModel.sessionInfos.collectAsStateWithLifecycle()
     val speakers by viewModel.speakers.collectAsStateWithLifecycle()
 
     NavHost(

@@ -27,15 +27,6 @@
     "id": 15
   },
   {
-    "name": "Grant Jacobson",
-    "title": "Owner",
-    "organization": "Grant Creative Solutions",
-    "bio": "Grant Jacobson has been creating virtual walkthroughs for real estate clients for years, so it only makes sense for him to become an augmented reality go-to creative. About 40 percent of his clients use Grant's proprietary augmented reality services.",
-    "session_name": "Augmented Real(ity) Estate",
-    "session_description": "Imagine if your company is moving you to a state too far away to spend time looking for a new place to live. Wouldn't it be nice to be able to meet an agent, walk through a house, open doors, go up steps, and check out the neighborhood from the comfort of your couch? Check out the latest innovations in augmented reality in the real estate market, and discuss its economic benefits.",
-    "id": 16
-  },
-  {
     "name": "Griffin Snow",
     "title": "Urban Planner",
     "organization": "KinetEco Inc.",
@@ -43,15 +34,6 @@
     "session_name": "Homebuilding and 3D Printing",
     "session_description": "A new house in 24 hours\u2014can this be our practical solution for making affordable housing for all? See what has been done in this very vertical industry, and discuss how it will grow and be truly affordable\u2014both for those living in the homes, and for the builders that create them.",
     "id": 17
-  },
-  {
-    "name": "Gwen Fabler",
-    "title": "President",
-    "organization": "Fabler Innovations",
-    "bio": "Gwen Fabler is a maker hack geek, or so she says, and loves collecting and distributing crowdsourced maker information.  ",
-    "session_name": "Hands-On Hacks",
-    "session_description": "Join your fellow makers in learning their favorite hacks in popular maker categories. ",
-    "id": 18
   },
   {
     "name": "Heather Farrell",
@@ -79,15 +61,6 @@
     "session_name": "Animals and AI",
     "session_description": "We've known for years that robot dogs can never take the place of real dogs. But can robot people take the place of dog owners? We'll compare the pluses and minuses of the emerging field of Artificial Dog Sitters.",
     "id": 21
-  },
-  {
-    "name": "Jamill Waters",
-    "title": "Research Scientist",
-    "organization": "SAMOCA",
-    "bio": "Jamill Waters has been both a real artist and a fake one. Both make him happy.",
-    "session_name": "Art in the Age of Automation",
-    "session_description": "There are some people who don't believe that art can be \u201cart\u201d if it is made by a machine. The most intriguing and sometimes surprising beautiful art is made by non-sentient robots, based on data and interpretations of that data. So what are artists afraid of?",
-    "id": 22
   },
   {
     "name": "Jarrod Anderson",
@@ -151,15 +124,6 @@
     "session_name": "Ideas into Business",
     "session_description": "From 3D printed jewelry to hand embroidery, epoxy river tables to boat making, many makers find that there is a market for what they create, and embark on a business. Meet successful makers who have turned their maker energy into enterprise.",
     "id": 31
-  },
-  {
-    "name": "Julie Parker",
-    "title": "Director, Outreach & Engagement",
-    "organization": "Orange Valley University",
-    "bio": "\u201cClay\u201d is Julie Parker\u2019s middle name. Having minored in sculpture at Roux Academy, she\u2019s now studying how 3D clay printers can bring to life projects that might not otherwise be creatable by hand. ",
-    "session_name": "3D Printing with Clay",
-    "session_description": "Clay has historically been a hands-on medium for over 20,000 years, both to create practical items for day-to-day living, and art for day-to-day beauty. Now with the advent of commercially available 3D clay printers, artists and engineers alike are creating inspirational pieces that were previously unimaginable.",
-    "id": 32
   },
   {
     "name": "Justin Olsen",

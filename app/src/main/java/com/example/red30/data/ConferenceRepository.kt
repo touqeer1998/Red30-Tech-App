@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.example.red30.R
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
@@ -13,23 +14,43 @@ private const val TAG = "ConferenceRepository"
 
 class ConferenceRepository(private val context: Context) {
 
-    private var sessionInfo: SessionInfo? = null
-
-    val sessions: Flow<List<Session>>
-        get() = flow { emit(sessionInfo?.sessions.orEmpty()) }
+    private var conferenceData: ConferenceData? = null
 
     val speakers: Flow<List<Speaker>>
-        get() = flow { emit(sessionInfo?.speakers.orEmpty()) }
+        get() = flow {
+            while(conferenceData?.speakers.isNullOrEmpty()) {
+                delay(150)
+            }
+            emit(conferenceData!!.speakers)
+        }
+
+    fun getSessionInfosByDay(day: Day = Day.Day1): Flow<List<SessionInfo>> = flow {
+        // filter to Day
+        val speakers = conferenceData?.speakers.orEmpty()
+        while(conferenceData?.speakers.isNullOrEmpty()) {
+            delay(250)
+        }
+
+        val sessionInfos = conferenceData?.sessions.orEmpty().map { session ->
+            SessionInfo(
+                session = session,
+                speaker = speakers.first { session.speakerId == it.id },
+                day = day
+            )
+        }
+        Log.d(TAG, sessionInfos.toString())
+        emit(sessionInfos)
+    }
 
     suspend fun loadConferenceInfo() = withContext(Dispatchers.IO) {
         val json = Json { ignoreUnknownKeys = true }
-        sessionInfo = try {
+        conferenceData = try {
             context.resources.openRawResource(R.raw.conference_session_info)
                 .bufferedReader()
-                .use { json.decodeFromString<SessionInfo>(it.readText()) }
+                .use { json.decodeFromString<ConferenceData>(it.readText()) }
         } catch (e: Exception) {
             Log.e(TAG, e.toString())
-            SessionInfo(
+            ConferenceData(
                 speakers = emptyList(),
                 sessions = emptyList()
             )

@@ -4,11 +4,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,7 +27,9 @@ fun Red30TechApp(modifier: Modifier = Modifier) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination
         val context = LocalContext.current
-        val currentScreen: Screen = Screen.valueOf(currentDestination?.route ?: Screen.Sessions.route)
+        val currentScreen: Screen = Screen.valueOf(
+            currentDestination?.route ?: Screen.Sessions.route
+        )
 
         val viewModel: MainViewModel = viewModel(
             factory = MainViewModelFactory(

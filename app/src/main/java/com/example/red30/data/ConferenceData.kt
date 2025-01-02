@@ -2,10 +2,9 @@ package com.example.red30.data
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonNames
 
 @Serializable
-data class SessionInfo(
+data class ConferenceData(
     val speakers: List<Speaker>,
     val sessions: List<Session>,
 )
@@ -37,3 +36,14 @@ data class Session(
     @SerialName("room_name")
     val roomName: String,
 )
+
+data class SessionInfo(
+    val session: Session,
+    val speaker: Speaker,
+    val day: Day
+)
+
+enum class Day {
+    Day1,
+    Day2
+}
