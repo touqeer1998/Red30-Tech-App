@@ -16,10 +16,9 @@ fun Red30TechBottomBar(
     modifier: Modifier = Modifier,
     navController: NavHostController,
     currentDestination: NavDestination?,
-    onNavigationItemClick: (String) -> Unit
 ) {
     NavigationBar(modifier = modifier) {
-        screens.forEach { screen ->
+        topLevelScreens.forEach { screen ->
             val label = stringResource(id = screen.labelResourceId)
             NavigationBarItem(
                 icon = {
@@ -39,7 +38,6 @@ fun Red30TechBottomBar(
                         popUpTo(navController.graph.startDestinationId)
                         launchSingleTop = true
                     }
-                    onNavigationItemClick(label)
                 }
             )
         }

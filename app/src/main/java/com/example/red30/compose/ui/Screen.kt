@@ -20,6 +20,17 @@ sealed class Screen(
     // this is a nested screen
     data object SessionDetail: Screen("sessionDetail", 0, Icons.Filled.DateRange)
     data object SpeakerDetail: Screen("speakerDetail", 0, Icons.Filled.Person)
+
+    companion object {
+        fun valueOf(route: String): Screen = when(route) {
+            "sessions" -> Sessions
+            "speakers" -> Speakers
+            "favorites" -> Favorites
+            "sessionDetail" -> SessionDetail
+            "speakerDetail" -> SpeakerDetail
+            else -> Sessions
+        }
+    }
 }
 
-val screens = listOf(Screen.Sessions, Screen.Speakers, Screen.Favorites)
+val topLevelScreens = listOf(Screen.Sessions, Screen.Speakers, Screen.Favorites)

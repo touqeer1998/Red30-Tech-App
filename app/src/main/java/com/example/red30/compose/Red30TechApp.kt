@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,6 +20,7 @@ import com.example.red30.MainViewModelFactory
 import com.example.red30.compose.ui.Red30TechAppBar
 import com.example.red30.compose.ui.Red30TechBottomBar
 import com.example.red30.compose.ui.Red30TechNavHost
+import com.example.red30.compose.ui.Screen
 import com.example.red30.data.ConferenceRepository
 import com.example.red30.ui.theme.Red30TechTheme
 
@@ -29,29 +31,29 @@ fun Red30TechApp(modifier: Modifier = Modifier) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination
         val context = LocalContext.current
+        val currentScreen: Screen = Screen.valueOf(currentDestination?.route ?: Screen.Sessions.route)
 
         val viewModel: MainViewModel = viewModel(
             factory = MainViewModelFactory(
                 ConferenceRepository(context = context)
             )
         )
-        var screenTitle: String? by remember { mutableStateOf(null) }
 
         Scaffold(
             modifier = modifier.fillMaxSize(),
             topBar = {
                 Red30TechAppBar(
-                    screenTitle = screenTitle,
+                    currentScreen = currentScreen,
+                    onNavigationIconClick = {
+                        navController.navigateUp()
+                    },
                     onFavoriteSessionClick = { }
                 )
             },
             bottomBar = {
                 Red30TechBottomBar(
                     navController = navController,
-                    currentDestination = currentDestination,
-                    onNavigationItemClick = {
-                        screenTitle = it
-                    }
+                    currentDestination = currentDestination
                 )
             }
         ) { innerPadding ->

@@ -3,8 +3,10 @@ package com.example.red30.data
 import android.content.Context
 import android.util.Log
 import com.example.red30.R
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 
 private const val TAG = "ConferenceRepository"
@@ -19,7 +21,7 @@ class ConferenceRepository(private val context: Context) {
     val speakers: Flow<List<Speaker>>
         get() = flow { emit(sessionInfo?.speakers.orEmpty()) }
 
-    fun loadConferenceInfo() {
+    suspend fun loadConferenceInfo() = withContext(Dispatchers.IO) {
         val json = Json { ignoreUnknownKeys = true }
         sessionInfo = try {
             context.resources.openRawResource(R.raw.conference_session_info)
