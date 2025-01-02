@@ -1,49 +1,65 @@
 package com.example.red30.compose
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.red30.R
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.example.red30.MainViewModel
+import com.example.red30.MainViewModelFactory
+import com.example.red30.compose.ui.Red30TechAppBar
+import com.example.red30.compose.ui.Red30TechBottomBar
+import com.example.red30.compose.ui.Red30TechNavHost
+import com.example.red30.data.ConferenceRepository
 import com.example.red30.ui.theme.Red30TechTheme
 
 @Composable
 fun Red30TechApp(modifier: Modifier = Modifier) {
     Red30TechTheme {
-        Scaffold(
-            modifier = modifier.fillMaxSize()
-        ) { innerPadding ->
-            Column(
-                modifier = Modifier.padding(innerPadding).fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Image(
-                    painter = painterResource(R.drawable.alternate_stacked_logo_color),
-                    contentDescription = "logo"
-                )
+        val navController = rememberNavController()
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentDestination = navBackStackEntry?.destination
+        val context = LocalContext.current
 
-                ElevatedButton(
-                    onClick = { }
-                ) {
-                    Text(
-                        modifier = Modifier.fillMaxWidth(0.5f),
-                        text = "Let's go!",
-                        textAlign = TextAlign.Center
-                    )
-                }
+        val viewModel: MainViewModel = viewModel(
+            factory = MainViewModelFactory(
+                ConferenceRepository(context = context)
+            )
+        )
+        var screenTitle: String? by remember { mutableStateOf(null) }
+
+        Scaffold(
+            modifier = modifier.fillMaxSize(),
+            topBar = {
+                Red30TechAppBar(
+                    screenTitle = screenTitle,
+                    onFavoriteSessionClick = { }
+                )
+            },
+            bottomBar = {
+                Red30TechBottomBar(
+                    navController = navController,
+                    currentDestination = currentDestination,
+                    onNavigationItemClick = {
+                        screenTitle = it
+                    }
+                )
             }
+        ) { innerPadding ->
+            Red30TechNavHost(
+                navController = navController,
+                viewModel = viewModel,
+                modifier = Modifier.padding(innerPadding)
+            )
         }
     }
 }

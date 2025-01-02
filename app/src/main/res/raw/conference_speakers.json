@@ -1,41 +1,5 @@
 [
   {
-    "name": "David Powlowski",
-    "title": "Machine Learning Engineer",
-    "organization": "Binaryville",
-    "bio": "David Powlowski had an AHA! moment while listening to his daughter Ebin memorizing scenarios to reach the desired answers on her final chemistry exam. Since then, he considers all machines his children.",
-    "session_name": "Machines are People, Too",
-    "session_description": "Machine Learning is more like human learning than most people believe. Like a machine, we set up our students to give answers rather than to come up with solutions, basically setting variables to get a desired output. What can we learn from this?",
-    "id": 9
-  },
-  {
-    "name": "Devon Harris",
-    "title": "Director, Sales & Marketing",
-    "organization": "Red30 Tech",
-    "bio": "Devon Harris has worked virtually and managed people remotely, and thrives in both situations. With a worldwide sales and marketing team to manage, that\u2019s definitely a boon for his work/life balance.",
-    "session_name": "Managing Virtual Teams",
-    "session_description": "How do you keep your team invested in projects if they are all or partly remote? What are your biggest challenges and the best tools to meet those challenges? Join these managers in a roundtable discussion as they share the tools and methodologies that work for them.",
-    "id": 10
-  },
-  {
-    "name": "Dixie Russel",
-    "title": "Art Director",
-    "organization": "Red30 Design",
-    "bio": "Dixie Russel has run a successful side business selling her paintings for the last seven years, and founded the local arts-makerspace in her neighborhood. We have no idea how she finds time to work for us, we're just glad she does.",
-    "session_name": "Ideas into Business",
-    "session_description": "From 3D printed jewelry to hand embroidery, epoxy river tables to boat making, many makers find that there is a market for what they create, and embark on a business. Meet successful makers who have turned their maker energy into successful enterprises.",
-    "id": 11
-  },
-  {
-    "name": "Emma Jones",
-    "title": "Fashion Designer",
-    "organization": "H+ Sport",
-    "bio": "When fashion designer Emma Jones found out her sister\u2014a registered nurse\u2014had to ration her PPE to protect herself from getting Covid, she immediately advocated H+ Sport to switch production to accommodate frontline-healthcare needs. Since, they have donated 26,000 masks to area hospitals.",
-    "session_name": "3D Makers and PPE during a Pandemic",
-    "session_description": "Never has there been more outpouring of maker energy than during the Covid pandemic of 2020. From students to makerspaces to industry, individuals and organizations took it upon themselves to create much needed PPE for this worldwide emergency. See some of the most inventive solutions created nationwide.",
-    "id": 12
-  },
-  {
     "name": "Erin Frami",
     "title": "Chief Creative Officer",
     "organization": "The Lakehouse Restaurant",
@@ -144,15 +108,6 @@
     "id": 24
   },
   {
-    "name": "Jeffery Lowe",
-    "title": "Social Media Manager",
-    "organization": "The Lakehouse Restaurant",
-    "bio": "What's the most common questions Jeffery Lowe gets at work? If you guess \"How in the world does this 3D printer work?\" and \"What do you do with it?,\" you're right. ",
-    "session_name": "3D Printing for the Non-Tech Minded",
-    "session_description": "This is 3D Printing 101 for those in the makerspace that don't consider themselves technically astute. Bring on the questions!",
-    "id": 25
-  },
-  {
     "name": "Jennifer Miller",
     "title": "CTE Engineer",
     "organization": "Red30 Tech",
@@ -187,15 +142,6 @@
     "session_name": "Must-Dos vs. Trends",
     "session_description": "Are AI and robotics necessary to make your business succeed? Or are you only considering them because your competitors thought they were cool? Learn how to determine if bringing artificial intelligence into your business is intelligent for real.",
     "id": 29
-  },
-  {
-    "name": "Johnathan Kim",
-    "title": "Innovation Coach",
-    "organization": "Two Trees Olive Oil",
-    "bio": "Johnathan Kim believes in the adage that eating is a necessity, but cooking is an art. In that vein, he also believes that we should all eat more art.",
-    "session_name": "Data and Human Needs",
-    "session_description": "Innovation coaching is one of the many human resources services that companies provide their staff. Historically, it\u2019s done only with one-on-one discussions\u2014but more recently, artificial intelligence is being used to pinpoint issues and challenges. How does this affect the human-human relationship?",
-    "id": 30
   },
   {
     "name": "Josh Taylor",

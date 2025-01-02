@@ -63,25 +63,39 @@
       "image_url": "https://i.pravatar.cc/150?img=11",
       "bio": "Daron Seeley loves solving problems, which makes the job of Solutions Architect a paradisiacal dream come true\u2014especially when he gets to play with robots. ",
       "id": 8
+    },
+    {
+      "name": "Johnathan Kim",
+      "title": "Innovation Coach",
+      "organization": "Two Trees Olive Oil",
+      "bio": "Johnathan Kim believes in the adage that eating is a necessity, but cooking is an art. In that vein, he also believes that we should all eat more art.",
+      "id": 30
+    },
+    {
+      "name": "Emma Jones",
+      "title": "Fashion Designer",
+      "organization": "H+ Sport",
+      "bio": "When fashion designer Emma Jones found out her sister\u2014a registered nurse\u2014had to ration her PPE to protect herself from getting Covid, she immediately advocated H+ Sport to switch production to accommodate frontline-healthcare needs. Since, they have donated 26,000 masks to area hospitals.",
+      "id": 12
+    },
+    {
+      "name": "Jeffery Lowe",
+      "title": "Social Media Manager",
+      "organization": "The Lakehouse Restaurant",
+      "bio": "What's the most common questions Jeffery Lowe gets at work? If you guess \"How in the world does this 3D printer work?\" and \"What do you do with it?,\" you're right. ",
+      "id": 25
     }
   ],
   "sessions": [
     {
-      "start_time": "07/26/2020 12:00 PM",
-      "end_time": "07/26/2020 05:00 PM",
-      "session_name": "Community Service Event: Red30Cares",
-      "session_track": "Community Service",
-      "industry": "General",
-      "room_name": "Event Center",
-      "id": 1
-    },
-    {
       "start_time": "07/27/2020 02:00 PM",
       "end_time": "07/27/2020 03:30 PM",
       "session_name": "3D Printing for the Non-Tech Minded",
+      "session_description": "This is 3D Printing 101 for those in the makerspace that don't consider themselves technically astute. Bring on the questions!",
       "session_track": "3D Printing and Design",
       "industry": "Technology",
       "room_name": "Room 101",
+      "speaker_id": 25,
       "id": 2
     },
     {
@@ -91,6 +105,7 @@
       "session_track": "3D Printing and Design",
       "industry": "Education",
       "room_name": "Room 201",
+      "speaker_id": 5,
       "id": 3
     },
     {
@@ -100,6 +115,7 @@
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "Room 100",
+      "speaker_id": 5,
       "id": 4
     },
     {
@@ -109,6 +125,7 @@
       "session_track": "Ethics and Environment",
       "industry": "Technology",
       "room_name": "Room 103",
+      "speaker_id": 5,
       "id": 5
     },
     {
@@ -118,6 +135,7 @@
       "session_track": "Virtual and Augmented Reality",
       "industry": "Technology",
       "room_name": "Room 104",
+      "speaker_id": 5,
       "id": 6
     },
     {
@@ -127,6 +145,7 @@
       "session_track": "Education and Training",
       "industry": "Education",
       "room_name": "Grand View Hall",
+      "speaker_id": 5,
       "id": 7
     },
     {
@@ -147,6 +166,7 @@
       "session_track": "Ai and Robotics",
       "industry": "Technology",
       "room_name": "Room 204",
+      "speaker_id": 5,
       "id": 9
     },
     {
@@ -156,6 +176,7 @@
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "Room 202",
+      "speaker_id": 5,
       "id": 10
     },
     {
@@ -176,6 +197,7 @@
       "session_track": "Virtual and Augmented Reality",
       "industry": "Technology",
       "room_name": "Room 200",
+      "speaker_id": 5,
       "id": 12
     },
     {
@@ -185,6 +207,7 @@
       "session_track": "Education and Training",
       "industry": "Education",
       "room_name": "Room 105",
+      "speaker_id": 5,
       "id": 13
     },
     {
@@ -194,6 +217,7 @@
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "West Ballroom",
+      "speaker_id": 5,
       "id": 14
     },
     {
@@ -203,6 +227,7 @@
       "session_track": "3D Printing and Design",
       "industry": "Education",
       "room_name": "Room 201",
+      "speaker_id": 5,
       "id": 15
     },
     {
@@ -212,6 +237,7 @@
       "session_track": "AI and Robotics",
       "industry": "Technology",
       "room_name": "Room 100",
+      "speaker_id": 5,
       "id": 16
     },
     {
@@ -221,6 +247,7 @@
       "session_track": "Education and Training",
       "industry": "Education",
       "room_name": "Grand View Hall",
+      "speaker_id": 5,
       "id": 17
     },
     {
@@ -230,6 +257,7 @@
       "session_track": "Ethics and Environment",
       "industry": "Technology",
       "room_name": "Room 203",
+      "speaker_id": 5,
       "id": 18
     },
     {
@@ -239,6 +267,7 @@
       "session_track": "3D Printing and Design",
       "industry": "Technology",
       "room_name": "Room 200",
+      "speaker_id": 5,
       "id": 19
     },
     {
@@ -248,6 +277,7 @@
       "session_track": "Ethics and Environment",
       "industry": "Technology",
       "room_name": "Room 103",
+      "speaker_id": 5,
       "id": 20
     },
     {
@@ -257,6 +287,7 @@
       "session_track": "Education and Training",
       "industry": "General",
       "room_name": "Room 102",
+      "speaker_id": 5,
       "id": 21
     },
     {
@@ -266,6 +297,7 @@
       "session_track": "Virtual and Augmented Reality",
       "industry": "Technology",
       "room_name": "Room 202",
+      "speaker_id": 5,
       "id": 22
     },
     {
@@ -275,6 +307,7 @@
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "West Ballroom",
+      "speaker_id": 5,
       "id": 23
     },
     {
@@ -284,6 +317,7 @@
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "Room 201",
+      "speaker_id": 5,
       "id": 24
     },
     {
@@ -315,6 +349,7 @@
       "session_track": "AI and Robotics",
       "industry": "Technology",
       "room_name": "Room 200",
+      "speaker_id": 5,
       "id": 27
     },
     {
@@ -335,6 +370,7 @@
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "West Ballroom",
+      "speaker_id": 5,
       "id": 29
     },
     {
@@ -344,15 +380,18 @@
       "session_track": "Keynote",
       "industry": "Entertainment",
       "room_name": "Event Center",
+      "speaker_id": 5,
       "id": 30
     },
     {
       "start_time": "07/27/2020 10:30 AM",
       "end_time": "07/28/2020 12:00 AM",
       "session_name": "3D Makers and PPE during a Pandemic",
+      "session_description": "Never has there been more outpouring of maker energy than during the Covid pandemic of 2020. From students to makerspaces to industry, individuals and organizations took it upon themselves to create much needed PPE for this worldwide emergency. See some of the most inventive solutions created nationwide.",
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "Room 100",
+      "speaker_id": 12,
       "id": 31
     },
     {
@@ -362,6 +401,7 @@
       "session_track": "Education and Training",
       "industry": "Education",
       "room_name": "Room 102",
+      "speaker_id": 5,
       "id": 32
     },
     {
@@ -379,9 +419,11 @@
       "start_time": "07/27/2020 10:30 AM",
       "end_time": "07/27/2020 12:00 PM",
       "session_name": "Data and Human Needs",
+      "session_description": "Innovation coaching is one of the many human resources services that companies provide their staff. Historically, it\u2019s done only with one-on-one discussions\u2014but more recently, artificial intelligence is being used to pinpoint issues and challenges. How does this affect the human-human relationship?",
       "session_track": "Ethics and Environment",
       "industry": "Marketing",
       "room_name": "Room 202",
+      "speaker_id": 30,
       "id": 34
     },
     {
@@ -391,6 +433,7 @@
       "session_track": "Ethics and Environment",
       "industry": "General",
       "room_name": "Room 200",
+      "speaker_id": 5,
       "id": 35
     },
     {
@@ -400,6 +443,7 @@
       "session_track": "Education and Training",
       "industry": "Education",
       "room_name": "Room 105",
+      "speaker_id": 5,
       "id": 36
     },
     {
@@ -420,6 +464,7 @@
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "Marketing",
       "room_name": "Room 204",
+      "speaker_id": 5,
       "id": 38
     },
     {
@@ -440,6 +485,7 @@
       "session_track": "Education and Training",
       "industry": "Education",
       "room_name": "Room 104",
+      "speaker_id": 5,
       "id": 40
     },
     {
@@ -449,6 +495,7 @@
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "West Ballroom",
+      "speaker_id": 5,
       "id": 41
     },
     {
@@ -458,6 +505,7 @@
       "session_track": "3D Printing and Design",
       "industry": "Technology",
       "room_name": "Room 201",
+      "speaker_id": 5,
       "id": 42
     },
     {
@@ -467,6 +515,7 @@
       "session_track": "3D Printing and Design",
       "industry": "Education",
       "room_name": "Room 201",
+      "speaker_id": 5,
       "id": 43
     },
     {
@@ -476,6 +525,7 @@
       "session_track": "AI and Robotics",
       "industry": "Technology",
       "room_name": "Room 100",
+      "speaker_id": 5,
       "id": 44
     },
     {
@@ -493,9 +543,11 @@
       "start_time": "07/28/2020 02:00 PM",
       "end_time": "07/28/2020 03:30 PM",
       "session_name": "Data and Human Needs",
+      "session_description": "Innovation coaching is one of the many human resources services that companies provide their staff. Historically, it\u2019s done only with one-on-one discussions\u2014but more recently, artificial intelligence is being used to pinpoint issues and challenges. How does this affect the human-human relationship?",
       "session_track": "Ethics and Environment",
       "industry": "Marketing",
       "room_name": "Room 203",
+      "speaker_id": 30,
       "id": 46
     },
     {
@@ -505,6 +557,7 @@
       "session_track": "Ethics and Environment",
       "industry": "General",
       "room_name": "Room 200",
+      "speaker_id": 5,
       "id": 47
     },
     {
@@ -514,6 +567,7 @@
       "session_track": "Education and Training",
       "industry": "Education",
       "room_name": "Grand View Hall",
+      "speaker_id": 5,
       "id": 48
     },
     {
@@ -523,6 +577,7 @@
       "session_track": "Ethics and Environment",
       "industry": "Technology",
       "room_name": "Room 105",
+      "speaker_id": 5,
       "id": 49
     },
     {
@@ -532,6 +587,7 @@
       "session_track": "Education and Training",
       "industry": "General",
       "room_name": "Room 102",
+      "speaker_id": 5,
       "id": 50
     },
     {
@@ -541,6 +597,7 @@
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "Marketing",
       "room_name": "Room 204",
+      "speaker_id": 5,
       "id": 51
     },
     {
@@ -561,6 +618,7 @@
       "session_track": "Education and Training",
       "industry": "Education",
       "room_name": "Room 104",
+      "speaker_id": 5,
       "id": 53
     },
     {
@@ -570,6 +628,7 @@
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "West Ballroom",
+      "speaker_id": 5,
       "id": 54
     },
     {
@@ -579,15 +638,18 @@
       "session_track": "3D Printing and Design",
       "industry": "Education",
       "room_name": "Room 201",
+      "speaker_id": 5,
       "id": 55
     },
     {
       "start_time": "07/28/2020 04:00 PM",
       "end_time": "07/28/2020 05:30 PM",
       "session_name": "3D Printing for the Non-Tech Minded",
+      "session_description": "This is 3D Printing 101 for those in the makerspace that don't consider themselves technically astute. Bring on the questions!",
       "session_track": "3D Printing and Design",
       "industry": "Technology",
       "room_name": "Room 101",
+      "speaker_id": 25,
       "id": 56
     },
     {
@@ -597,6 +659,7 @@
       "session_track": "Education and Training",
       "industry": "Education",
       "room_name": "Room 102",
+      "speaker_id": 5,
       "id": 57
     },
     {
@@ -606,6 +669,7 @@
       "session_track": "Ethics and Environment",
       "industry": "Technology",
       "room_name": "Room 103",
+      "speaker_id": 5,
       "id": 58
     },
     {
@@ -615,6 +679,7 @@
       "session_track": "Virtual and Augmented Reality",
       "industry": "Technology",
       "room_name": "Room 104",
+      "speaker_id": 5,
       "id": 59
     },
     {
@@ -624,6 +689,7 @@
       "session_track": "Education and Training",
       "industry": "Education",
       "room_name": "Grand View Hall",
+      "speaker_id": 5,
       "id": 60
     },
     {
@@ -666,6 +732,7 @@
       "session_track": "Virtual and Augmented Reality",
       "industry": "Technology",
       "room_name": "Room 200",
+      "speaker_id": 5,
       "id": 64
     },
     {
@@ -675,6 +742,7 @@
       "session_track": "Education and Training",
       "industry": "Education",
       "room_name": "Room 105",
+      "speaker_id": 5,
       "id": 65
     },
     {
@@ -684,6 +752,7 @@
       "session_track": "Virtual and Augmented Reality",
       "industry": "Technology",
       "room_name": "Room 203",
+      "speaker_id": 5,
       "id": 66
     },
     {
@@ -693,6 +762,7 @@
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "West Ballroom",
+      "speaker_id": 5,
       "id": 67
     },
     {
@@ -702,6 +772,7 @@
       "session_track": "3D Printing and Design",
       "industry": "Technology",
       "room_name": "Room 201",
+      "speaker_id": 5,
       "id": 68
     },
     {
@@ -711,6 +782,7 @@
       "session_track": "Entertainment",
       "industry": "Entertainment",
       "room_name": "Event Center",
+      "speaker_id": 5,
       "id": 69
     },
     {
@@ -720,6 +792,7 @@
       "session_track": "Keynote",
       "industry": "Entertainment",
       "room_name": "Event Center",
+      "speaker_id": 5,
       "id": 70
     },
     {
@@ -729,6 +802,7 @@
       "session_track": "Education and Training",
       "industry": "Education",
       "room_name": "Grand View Hall",
+      "speaker_id": 5,
       "id": 71
     },
     {
@@ -738,6 +812,7 @@
       "session_track": "Ethics and Environment",
       "industry": "Technology",
       "room_name": "Room 203",
+      "speaker_id": 5,
       "id": 72
     },
     {
@@ -769,6 +844,7 @@
       "session_track": "Ai and Robotics",
       "industry": "Technology",
       "room_name": "Room 204",
+      "speaker_id": 5,
       "id": 75
     },
     {
@@ -778,6 +854,7 @@
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "Room 202",
+      "speaker_id": 5,
       "id": 76
     },
     {
@@ -787,6 +864,7 @@
       "session_track": "AI and Robotics",
       "industry": "Technology",
       "room_name": "Room 200",
+      "speaker_id": 5,
       "id": 77
     },
     {
@@ -796,6 +874,7 @@
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "West Ballroom",
+      "speaker_id": 5,
       "id": 78
     },
     {
@@ -805,6 +884,7 @@
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "Room 201",
+      "speaker_id": 5,
       "id": 79
     },
     {
@@ -814,6 +894,7 @@
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "Room 100",
+      "speaker_id": 5,
       "id": 80
     }
   ]
