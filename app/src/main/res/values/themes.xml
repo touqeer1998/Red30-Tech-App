@@ -49,5 +49,17 @@
         <item name="colorSurfaceContainer">@color/md_theme_surfaceContainer</item>
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
+
+        <item name="textAppearanceBodySmall">@style/TextAppearance.Red30.BodySmall</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.Red30.BodyMedium</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.Red30.BodyLarge</item>
+
+        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.Red30.HeadlineSmall</item>
+        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.Red30.HeadlineMedium</item>
+        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.Red30.HeadlineLarge</item>
+
+        <item name="textAppearanceTitleSmall">@style/TextAppearance.Red30.TitleSmall</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.Red30.TitleMedium</item>
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.Red30.TitleLarge</item>
     </style>
 </resources>

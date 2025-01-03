@@ -28,6 +28,7 @@
 
         <TextView
             android:id="@+id/track"
+            style="?attr/textAppearanceBodySmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="4dp"
@@ -37,6 +38,7 @@
 
         <TextView
             android:id="@+id/roomName"
+            style="?attr/textAppearanceBodySmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="4dp"
@@ -64,7 +66,7 @@
 
         <TextView
             android:id="@+id/name"
-            style="@style/TextAppearance.Material3.TitleLarge"
+            style="?attr/textAppearanceTitleLarge"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -75,6 +77,7 @@
 
         <TextView
             android:id="@+id/speakerName"
+            style="?attr/textAppearanceBodyLarge"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

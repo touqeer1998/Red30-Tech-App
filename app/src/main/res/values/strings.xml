@@ -10,4 +10,13 @@
     <string name="favorite_icon">favorite icon</string>
     <string name="day_1_label">Day 1</string>
     <string name="day_2_label">Day 2</string>
+    <string name="tagline">Simple. Scalable. Sustainable</string>
+    <string name="about_header_label">Leader in technology and business solutions</string>
+    <string name="about_content">Red30 Tech is the leading source of secure, fully customizable technology and business solutions.
+        We cater to those who need scalable results that are sustainable for their company and the planet. With the ever-evolving
+        technology landscape, we want to be your go-to source for business technology.\n\nCurrently, we serve over three billion
+        people yearly through products and solutions like business applications, point-of-service contact, and data storage.
+        Our 5,000 devoted employees in 22 countries work hard to make sure you always have the support you need. Whether you’re
+        shopping for fruit at your local market or merging databases on two different continents, we have you covered.</string>
+    <string name="logo">logo</string>
 </resources>
