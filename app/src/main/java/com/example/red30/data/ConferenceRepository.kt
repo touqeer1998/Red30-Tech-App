@@ -25,20 +25,20 @@ class ConferenceRepository(private val context: Context) {
         }
 
     fun getSessionInfosByDay(day: Day = Day.Day1): Flow<List<SessionInfo>> = flow {
-        // filter to Day
-        val speakers = conferenceData?.speakers.orEmpty()
-        while(conferenceData?.speakers.isNullOrEmpty()) {
-            delay(250)
+        while(conferenceData?.sessions.isNullOrEmpty() || conferenceData?.speakers.isNullOrEmpty()) {
+            delay(150)
         }
 
-        val sessionInfos = conferenceData?.sessions.orEmpty().map { session ->
+        // filter to Day
+        val sessionInfos = conferenceData!!.sessions.map { session ->
+            Log.d(TAG, session.toString())
             SessionInfo(
                 session = session,
-                speaker = speakers.first { session.speakerId == it.id },
+                speaker = conferenceData!!.speakers.first { session.speakerId == it.id },
                 day = day
             )
         }
-        Log.d(TAG, sessionInfos.toString())
+        Log.d(TAG, sessionInfos.size.toString())
         emit(sessionInfos)
     }
 

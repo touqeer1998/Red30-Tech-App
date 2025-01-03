@@ -116,6 +116,13 @@
       "image_url": "https://i.pravatar.cc/150?img=10",
       "bio": "Gwen Fabler is a maker hack geek, or so she says, and loves collecting and distributing crowdsourced maker information.  ",
       "id": 18
+    },
+    {
+      "name": "Joey Fisher",
+      "title": "Business Intelligence Engineer",
+      "organization": "H+ Sport",
+      "bio": "Joey Fisher\u2019s best friend is a robot named H that he designed to collect data about his coworkers\u2019 coffee-drinking habits and how they relate to productivity. Using this data, H travels the office serving coffee (and pep talks) at continually optimized times for each individual.",
+      "id": 29
     }
   ],
   "sessions": [
@@ -189,10 +196,11 @@
       "start_time": "07/27/2020 02:00 PM",
       "end_time": "07/27/2020 03:30 PM",
       "session_name": "Must-Dos vs. Trends",
+      "session_description": "Are AI and robotics necessary to make your business succeed? Or are you only considering them because your competitors thought they were cool? Learn how to determine if bringing artificial intelligence into your business is intelligent for real.",
       "session_track": "Ai and Robotics",
       "industry": "Technology",
       "room_name": "Room 204",
-      "speaker_id": 5,
+      "speaker_id": 29,
       "id": 9
     },
     {
@@ -579,17 +587,6 @@
     {
       "start_time": "07/28/2020 02:00 PM",
       "end_time": "07/28/2020 03:00 PM",
-      "session_name": "Hands-On Hacks",
-      "session_description": "Join your fellow makers in learning their favorite hacks in popular maker categories.",
-      "session_track": "Education and Training",
-      "industry": "Education",
-      "room_name": "Grand View Hall",
-      "speaker_id": 10,
-      "id": 48
-    },
-    {
-      "start_time": "07/28/2020 02:00 PM",
-      "end_time": "07/28/2020 03:00 PM",
       "session_name": "Human Resources and Robots",
       "session_track": "Ethics and Environment",
       "industry": "Technology",
@@ -860,10 +857,11 @@
       "start_time": "07/28/2020 10:30 AM",
       "end_time": "07/28/2020 12:00 PM",
       "session_name": "Must-Dos vs. Trends",
+      "session_description": "Are AI and robotics necessary to make your business succeed? Or are you only considering them because your competitors thought they were cool? Learn how to determine if bringing artificial intelligence into your business is intelligent for real.",
       "session_track": "Ai and Robotics",
       "industry": "Technology",
       "room_name": "Room 204",
-      "speaker_id": 5,
+      "speaker_id": 29,
       "id": 75
     },
     {

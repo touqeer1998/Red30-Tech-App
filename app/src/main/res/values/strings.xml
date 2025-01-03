@@ -7,4 +7,5 @@
     <string name="speakers_label">Speakers</string>
     <string name="favorites_label">Favorites</string>
     <string name="speaker_image_label">speaker image</string>
+    <string name="favorite_icon">favorite icon</string>
 </resources>

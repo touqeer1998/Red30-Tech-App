@@ -27,7 +27,7 @@ class MainViewModel(
     val speakers: StateFlow<List<Speaker>> = conferenceRepository.speakers
         .stateIn(
             scope = viewModelScope,
-            started = SharingStarted.Lazily,
+            started = SharingStarted.WhileSubscribed(5_000),
             initialValue = emptyList()
         )
 

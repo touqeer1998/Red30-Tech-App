@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -20,8 +20,8 @@ private const val TAG = "SpeakersFragment"
 
 class SpeakersFragment : Fragment() {
 
-    private val viewModel: MainViewModel by viewModels {
-        MainViewModelFactory(conferenceRepository = ConferenceRepository(requireContext()))
+    private val viewModel: MainViewModel by activityViewModels<MainViewModel>() {
+        MainViewModelFactory(conferenceRepository = ConferenceRepository(requireActivity()))
     }
 
     private var _binding: FragmentSpeakersBinding? = null
