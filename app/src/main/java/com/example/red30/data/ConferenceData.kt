@@ -41,7 +41,8 @@ data class Session(
 data class SessionInfo(
     val session: Session,
     val speaker: Speaker,
-    val day: Day
+    val day: Day,
+    val isFavorite: Boolean = false
 )
 
 @Serializable

@@ -10,8 +10,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.red30.MainViewModel
 
-private const val TAG = "Red30TechNavHost"
-
 @Composable
 fun Red30TechNavHost(
     navController: NavHostController,
@@ -20,6 +18,7 @@ fun Red30TechNavHost(
 ) {
     val sessions by viewModel.sessionInfos.collectAsStateWithLifecycle()
     val speakers by viewModel.speakers.collectAsStateWithLifecycle()
+    val favorites by viewModel.favorites.collectAsStateWithLifecycle()
 
     NavHost(
         navController = navController,
@@ -44,7 +43,12 @@ fun Red30TechNavHost(
             )
         }
         composable(route = Screen.Favorites.route) {
-            Text("Favorites screen")
+            FavoritesScreen(
+                sessions = favorites,
+                onSessionClick = {
+                    navController.navigate(Screen.SessionDetail.route)
+                },
+            )
         }
         composable(route = Screen.SessionDetail.route) {
             Text("Session detail screen")

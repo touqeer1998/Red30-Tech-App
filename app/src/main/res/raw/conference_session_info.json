@@ -52,7 +52,6 @@
       "name": "Daniel Rohan",
       "title": "Cyber Security Specialist",
       "organization": "Hansel & Petal",
-      "image_url": "https://i.pravatar.cc/150?img=59",
       "bio": "Daniel Rohan has been with Hansel & Petal for six years. His leadership in AI security is well-documented in his many articles for top security publications.",
       "id": 7
     },
@@ -131,6 +130,21 @@
       "image_url": "https://i.pravatar.cc/150?img=8",
       "bio": "Geoff Leffler has metal in his veins. Starting out in traditional steel and aluminum fabrication, he's become obsessed with new technologies that can create finished metal parts quickly and affordably.",
       "id": 15
+    },
+    {
+      "name": "Erin Frami",
+      "title": "Chief Creative Officer",
+      "organization": "The Lakehouse Restaurant",
+      "bio": "Erin Frami comes from a long line of cheese lovers and makers. She grew up helping her parents operate their goat cheese farm, and introduced her family's line of cheeses to The Lakehouse Restaurant's chefs. She has since been their favorite coworker.",
+      "id": 13
+    },
+    {
+      "name": "Justin Olsen",
+      "title": "Principle Engineer Architect",
+      "organization": "Globe Bank International",
+      "image_url": "https://i.pravatar.cc/150?img=59",
+      "bio": "Justin Olson is cofounder of Globe Bank International's \"Helping Make Homes\" initiative along with Liz Carter, Senior Program Manager. ",
+      "id": 33
     }
   ],
   "sessions": [
@@ -223,10 +237,11 @@
       "end_time": "03:00 PM",
       "day": "day1",
       "session_name": "The Art of Cheese",
+      "session_description": "What better three-dimensional art could there be other than cheese? The number of artisan and specialty cheese makers has been growing around the U.S., and for good reason\u2014they are making some amazing cheeses, and people love them. Learn about some of the most influential cheese artists and how they grew their hobby into a hospitality must-have. ",
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "Room 202",
-      "speaker_id": 5,
+      "speaker_id": 13,
       "id": 10
     },
     {
@@ -313,10 +328,11 @@
       "end_time": "05:30 PM",
       "day": "day1",
       "session_name": "Helping Make Homes Worldwide",
+      "session_description": "See how Helping Make Homes utilizes maker resources and innovations to grow its impact around the world. From using virtual reality for training in building trades, to 3D printing with concrete, metal, and plastic, to using AI to assess data that will best serve each community, Helping Make Homes is making irrefutable headway into efficient and affordable home building around the world.",
       "session_track": "Ethics and Environment",
       "industry": "Technology",
       "room_name": "Room 203",
-      "speaker_id": 5,
+      "speaker_id": 33,
       "id": 18
     },
     {
@@ -903,10 +919,11 @@
       "end_time": "12:00 PM",
       "day": "day2",
       "session_name": "Helping Make Homes Worldwide",
+      "session_description": "See how Helping Make Homes utilizes maker resources and innovations to grow its impact around the world. From using virtual reality for training in building trades, to 3D printing with concrete, metal, and plastic, to using AI to assess data that will best serve each community, Helping Make Homes is making irrefutable headway into efficient and affordable home building around the world.",
       "session_track": "Ethics and Environment",
       "industry": "Technology",
       "room_name": "Room 203",
-      "speaker_id": 5,
+      "speaker_id": 33,
       "id": 72
     },
     {
@@ -950,10 +967,11 @@
       "end_time": "11:30 AM",
       "day": "day2",
       "session_name": "The Art of Cheese",
+      "session_description": "What better three-dimensional art could there be other than cheese? The number of artisan and specialty cheese makers has been growing around the U.S., and for good reason\u2014they are making some amazing cheeses, and people love them. Learn about some of the most influential cheese artists and how they grew their hobby into a hospitality must-have. ",
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "Room 202",
-      "speaker_id": 5,
+      "speaker_id": 13,
       "id": 76
     },
     {

@@ -46,23 +46,16 @@
             tools:ignore="MissingConstraints"
             tools:text="Room 201" />
 
-        <FrameLayout
+        <ImageButton
             android:id="@+id/favorite"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:clickable="true"
-            android:focusable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/favorite_button_selector"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/favorite_icon"
-                android:layout_gravity="top|center_horizontal"
-                android:src="@drawable/ic_favorite_border"
-                app:tint="@color/md_theme_secondary" />
-        </FrameLayout>
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/favorite_icon"
+            app:tint="@color/md_theme_secondary" />
 
         <TextView
             android:id="@+id/name"

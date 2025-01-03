@@ -1,6 +1,5 @@
 package com.example.red30
 
-import android.util.Log
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -14,7 +13,6 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
 
 private const val TAG = "MainViewModel"
 
@@ -41,12 +39,12 @@ class MainViewModel(
             initialValue = emptyList()
         )
 
-    init {
-        viewModelScope.launch {
-            Log.d(TAG, "loading the conference info")
-            conferenceRepository.loadConferenceInfo()
-        }
-    }
+    val favorites: StateFlow<List<SessionInfo>> = conferenceRepository.favoriteSessions
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = emptyList()
+        )
 
     fun setDay(day: Day) {
         savedStateHandle["day"] = day

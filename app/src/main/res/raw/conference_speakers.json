@@ -1,14 +1,5 @@
 [
   {
-    "name": "Erin Frami",
-    "title": "Chief Creative Officer",
-    "organization": "The Lakehouse Restaurant",
-    "bio": "Erin Frami comes from a long line of cheese lovers and makers. She grew up helping her parents operate their goat cheese farm, and introduced her family's line of cheeses to The Lakehouse Restaurant's chefs. She has since been their favorite coworker.",
-    "session_name": "The Art of Cheese",
-    "session_description": "What better three-dimensional art could there be other than cheese? The number of artisan and specialty cheese makers has been growing around the U.S., and for good reason\u2014they are making some amazing cheeses, and people love them. Learn about some of the most influential cheese artists and how they grew their hobby into a hospitality must-have. ",
-    "id": 13
-  },
-  {
     "name": "Eve Berge",
     "title": "Director of Diversity",
     "organization": "Explore California",
@@ -108,15 +99,6 @@
     "id": 31
   },
   {
-    "name": "Justin Olsen",
-    "title": "Principle Engineer Architect",
-    "organization": "Globe Bank International",
-    "bio": "Justin Olson is cofounder of Globe Bank International's \"Helping Make Homes\" initiative along with Liz Carter, Senior Program Manager. ",
-    "session_name": "Helping Make Homes Worldwide",
-    "session_description": "See how Helping Make Homes utilizes maker resources and innovations to grow its impact around the world. From using virtual reality for training in building trades, to 3D printing with concrete, metal, and plastic, to using AI to assess data that will best serve each community, Helping Make Homes is making irrefutable headway into efficient and affordable home building around the world.",
-    "id": 33
-  },
-  {
     "name": "Justine Evans",
     "title": "Computer Coding Instructor",
     "organization": "Orange Valley University",
@@ -133,15 +115,6 @@
     "session_name": "Let them Eat Cake\u2014or Don't",
     "session_description": "How do we determine what and how much our children should learn? Do we encourage them to experiment with new technologies, or to spend more time on traditional handicrafts? Join in on the discussion\u2014and bring your questions.",
     "id": 35
-  },
-  {
-    "name": "Liz Carter",
-    "title": "Senior Program Manager",
-    "organization": "Globe Bank International",
-    "bio": "Liz Carter is cofounder of Globe Bank International's \"Helping Make Homes\" initiative along with Justin Olson, Principle Engineer Architect.",
-    "session_name": "Helping Make Homes Worldwide",
-    "session_description": "See how Helping Make Homes utilizes maker resources and innovations to grow its impact around the world. From using virtual reality for training in building trades, to 3D printing with concrete, metal, and plastic, to using AI to assess data that will best serve each community, Helping Make Homes is making irrefutable headway into efficient and affordable home building around the world.",
-    "id": 36
   },
   {
     "name": "Marysa Balma",

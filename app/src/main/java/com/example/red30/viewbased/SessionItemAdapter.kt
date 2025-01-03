@@ -21,6 +21,7 @@ class SessionItemAdapter(
                 track.text = sessionInfo.session.track
                 roomName.text = sessionInfo.session.roomName
                 speakerName.text = sessionInfo.speaker.name
+                favorite.isSelected = sessionInfo.isFavorite
 
                 root.setOnClickListener {
                     itemClickListener(sessionInfo)

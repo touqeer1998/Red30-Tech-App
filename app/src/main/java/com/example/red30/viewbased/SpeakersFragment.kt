@@ -20,7 +20,7 @@ private const val TAG = "SpeakersFragment"
 
 class SpeakersFragment : Fragment() {
 
-    private val viewModel: MainViewModel by activityViewModels<MainViewModel>() {
+    private val viewModel: MainViewModel by activityViewModels<MainViewModel> {
         MainViewModelFactory(conferenceRepository = ConferenceRepository(requireActivity()))
     }
 

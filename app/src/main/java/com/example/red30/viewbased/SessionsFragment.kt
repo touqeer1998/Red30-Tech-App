@@ -22,7 +22,7 @@ private const val TAG = "SessionsFragment"
 
 class SessionsFragment : Fragment() {
 
-    private val viewModel: MainViewModel by activityViewModels<MainViewModel>() {
+    private val viewModel: MainViewModel by activityViewModels<MainViewModel> {
         MainViewModelFactory(conferenceRepository = ConferenceRepository(requireActivity()))
     }
 
