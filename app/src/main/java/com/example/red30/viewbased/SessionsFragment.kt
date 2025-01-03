@@ -13,7 +13,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.red30.MainViewModel
 import com.example.red30.MainViewModelFactory
 import com.example.red30.data.ConferenceRepository
+import com.example.red30.data.Day
 import com.example.red30.databinding.FragmentSessionsBinding
+import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.launch
 
 private const val TAG = "SessionsFragment"
@@ -46,6 +48,21 @@ class SessionsFragment : Fragment() {
             )
         }
         binding.recyclerview.adapter = adapter
+
+        binding.tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                viewModel.setDay(if (tab?.position == 0) Day.Day1 else Day.Day2)
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                // do nothing
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                // do nothing
+            }
+
+        })
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.sessionInfos

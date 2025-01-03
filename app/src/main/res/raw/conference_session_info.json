@@ -123,6 +123,14 @@
       "organization": "H+ Sport",
       "bio": "Joey Fisher\u2019s best friend is a robot named H that he designed to collect data about his coworkers\u2019 coffee-drinking habits and how they relate to productivity. Using this data, H travels the office serving coffee (and pep talks) at continually optimized times for each individual.",
       "id": 29
+    },
+    {
+      "name": "Geoff Leffler",
+      "title": "Fabrication Specialist",
+      "organization": "KinetEco Inc.",
+      "image_url": "https://i.pravatar.cc/150?img=8",
+      "bio": "Geoff Leffler has metal in his veins. Starting out in traditional steel and aluminum fabrication, he's become obsessed with new technologies that can create finished metal parts quickly and affordably.",
+      "id": 15
     }
   ],
   "sessions": [
@@ -271,10 +279,11 @@
       "end_time": "04:00 PM",
       "day": "day1",
       "session_name": "3D Printing with Metal",
+      "session_description": "See the latest in metal 3D printing technologies, from desktop machines (you need a really big desk!) to those designed for machine shops creating high-end and high-volume pieces.",
       "session_track": "3D Printing and Design",
       "industry": "Education",
       "room_name": "Room 201",
-      "speaker_id": 5,
+      "speaker_id": 15,
       "id": 15
     },
     {
@@ -576,10 +585,11 @@
       "end_time": "03:00 PM",
       "day": "day2",
       "session_name": "3D Printing with Metal",
+      "session_description": "See the latest in metal 3D printing technologies, from desktop machines (you need a really big desk!) to those designed for machine shops creating high-end and high-volume pieces.",
       "session_track": "3D Printing and Design",
       "industry": "Education",
       "room_name": "Room 201",
-      "speaker_id": 5,
+      "speaker_id": 15,
       "id": 43
     },
     {

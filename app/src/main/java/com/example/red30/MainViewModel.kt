@@ -1,28 +1,38 @@
 package com.example.red30
 
 import android.util.Log
+import androidx.lifecycle.AbstractSavedStateViewModelFactory
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.red30.data.ConferenceRepository
+import com.example.red30.data.Day
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.Speaker
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 private const val TAG = "MainViewModel"
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class MainViewModel(
+    private val savedStateHandle: SavedStateHandle,
     private val conferenceRepository: ConferenceRepository
 ) : ViewModel() {
-    val sessionInfos: StateFlow<List<SessionInfo>> = conferenceRepository.getSessionInfosByDay()
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = emptyList()
-        )
+    val sessionInfos: StateFlow<List<SessionInfo>> =
+        savedStateHandle.getStateFlow<Day>("day", initialValue = Day.Day1)
+            .flatMapLatest { day ->
+                conferenceRepository.getSessionInfosByDay(day)
+            }
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000),
+                initialValue = emptyList()
+            )
 
     val speakers: StateFlow<List<Speaker>> = conferenceRepository.speakers
         .stateIn(
@@ -37,15 +47,23 @@ class MainViewModel(
             conferenceRepository.loadConferenceInfo()
         }
     }
+
+    fun setDay(day: Day) {
+        savedStateHandle["day"] = day
+    }
 }
 
 class MainViewModelFactory(
     private val conferenceRepository: ConferenceRepository
-) : ViewModelProvider.Factory {
+) : AbstractSavedStateViewModelFactory() {
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(
+        key: String,
+        modelClass: Class<T>,
+        handle: SavedStateHandle
+    ): T {
         if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-            return MainViewModel(conferenceRepository) as T
+            return MainViewModel(handle, conferenceRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

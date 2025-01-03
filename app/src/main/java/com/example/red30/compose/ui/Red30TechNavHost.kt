@@ -31,7 +31,8 @@ fun Red30TechNavHost(
                 sessions = sessions,
                 onSessionClick = {
                     navController.navigate(Screen.SessionDetail.route)
-                }
+                },
+                onDayClick = viewModel::setDay
             )
         }
         composable(route = Screen.Speakers.route) {

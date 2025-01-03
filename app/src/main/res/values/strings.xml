@@ -8,4 +8,6 @@
     <string name="favorites_label">Favorites</string>
     <string name="speaker_image_label">speaker image</string>
     <string name="favorite_icon">favorite icon</string>
+    <string name="day_1_label">Day 1</string>
+    <string name="day_2_label">Day 2</string>
 </resources>
