@@ -35,6 +35,7 @@ data class Session(
     val track: String,
     @SerialName("room_name")
     val roomName: String,
+    val day: Day = Day.Day1
 )
 
 data class SessionInfo(
@@ -43,7 +44,8 @@ data class SessionInfo(
     val day: Day
 )
 
+@Serializable
 enum class Day {
-    Day1,
-    Day2
+    @SerialName("day1") Day1,
+    @SerialName("day2") Day2
 }

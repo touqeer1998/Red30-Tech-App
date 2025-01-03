@@ -29,15 +29,15 @@ class ConferenceRepository(private val context: Context) {
             delay(150)
         }
 
-        // filter to Day
-        val sessionInfos = conferenceData!!.sessions.map { session ->
-            Log.d(TAG, session.toString())
-            SessionInfo(
-                session = session,
-                speaker = conferenceData!!.speakers.first { session.speakerId == it.id },
-                day = day
-            )
-        }
+        val sessionInfos = conferenceData!!.sessions
+            .filter { it.day == day }
+            .map { session ->
+                SessionInfo(
+                    session = session,
+                    speaker = conferenceData!!.speakers.first { session.speakerId == it.id },
+                    day = day
+                )
+            }
         Log.d(TAG, sessionInfos.size.toString())
         emit(sessionInfos)
     }
