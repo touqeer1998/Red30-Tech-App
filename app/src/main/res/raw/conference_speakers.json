@@ -27,15 +27,6 @@
     "id": 19
   },
   {
-    "name": "Hilary Brooks",
-    "title": "Instructional Designer",
-    "organization": "Hansel & Petal",
-    "bio": "Hilary Brooks launched Hansel & Petal's online learning program in 2013. Through the company's portal, thousands of people have learned how to garden, floral arrangement, and home decor. She's currently working on developing a VR program for the company.",
-    "session_name": "Virtual Reality for Remote Learning",
-    "session_description": "The potential for VR in education has great potential to expand beyond limits of typical online learning. See what developers are creating to enhance the learning experience of students from kindergarteners to emergency medical training.",
-    "id": 20
-  },
-  {
     "name": "Hui Bashirian",
     "title": "Software Engineer",
     "organization": "Wisdom Pet Medicine",
@@ -126,15 +117,6 @@
     "id": 37
   },
   {
-    "name": "Mike Jacobson",
-    "title": "Associate Operations Manager",
-    "organization": "The Lakehouse Restaurant",
-    "bio": "Mike Jacobson helps to runs operations at all of The Lakehouse Restaurants, including determining human resource and technical needs. ",
-    "session_name": "Human Resources and Robots",
-    "session_description": "Researchers have claimed that nearly 50 percent of all jobs could be done by robots within the next two decades. What is the effect of automation on managing the workforce? Will \u2018human resources\u2019 become obsolete?",
-    "id": 38
-  },
-  {
     "name": "Milia Wu",
     "title": "Director of Special Projects",
     "organization": "City of Orange Valley",
@@ -214,15 +196,6 @@
     "session_name": "VR in Town and City Planning",
     "session_description": "The City of Orange Valley is one of the first in the state to embrace the use of VR in its town planning. Panelists share examples of zoning request mockups, a proposed development, and other infrastructure proposals and plans that help both citizens and developers envision and edit prior to implementation.",
     "id": 47
-  },
-  {
-    "name": "Teena Judkins",
-    "title": "Senior Game Designer",
-    "organization": "Red30 Tech",
-    "bio": "Teena Judkins takes playing very seriously. In addition to her extensive background in 2D and 3D art, she is one of the foremost experts in augmented reality in gaming.",
-    "session_name": "This Is your Brain on VR",
-    "session_description": "Medical uses for VR are on the rise. Using virtual reality, medical professionals are helping stroke victims regain mobility, and treating people with PTSD, schizophrenia, and sleep disorders. We discuss the neurophysics of manipulating reality to help with various health issues, and why it works. Plus how the entertainment industry is helping the medical industry in its studies.",
-    "id": 48
   },
   {
     "name": "Victor Gonzalez",

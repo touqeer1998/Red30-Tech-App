@@ -52,6 +52,7 @@ class SessionsFragment : Fragment() {
         binding.tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 viewModel.setDay(if (tab?.position == 0) Day.Day1 else Day.Day2)
+                binding.recyclerview.smoothScrollToPosition(0)
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -61,7 +62,6 @@ class SessionsFragment : Fragment() {
             override fun onTabReselected(tab: TabLayout.Tab?) {
                 // do nothing
             }
-
         })
 
         viewLifecycleOwner.lifecycleScope.launch {

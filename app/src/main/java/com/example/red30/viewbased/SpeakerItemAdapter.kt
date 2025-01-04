@@ -9,6 +9,7 @@ import coil3.request.crossfade
 import coil3.request.transformations
 import coil3.transform.CircleCropTransformation
 import com.example.red30.data.Speaker
+import com.example.red30.data.initial
 import com.example.red30.databinding.ViewSpeakerItemBinding
 
 class SpeakerItemAdapter(
@@ -26,9 +27,17 @@ class SpeakerItemAdapter(
                 organization.text = speaker.organization
                 bio.text = speaker.bio
 
-                imageView.load(speaker.imageUrl) {
-                    crossfade(true)
-                    transformations(CircleCropTransformation())
+                if (speaker.imageUrl.isNullOrEmpty()) {
+                    speakerInitial.letter = speaker.initial
+                    speakerInitial.visible()
+                    speakerImage.invisible()
+                } else {
+                    speakerImage.load(speaker.imageUrl) {
+                        crossfade(true)
+                        transformations(CircleCropTransformation())
+                    }
+                    speakerInitial.invisible()
+                    speakerImage.visible()
                 }
 
                 root.setOnClickListener {

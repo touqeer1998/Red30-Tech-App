@@ -17,7 +17,7 @@ class ConferenceRepository(private val context: Context) {
 
     val speakers: Flow<List<Speaker>>
         get() = flow {
-            emit(loadConferenceInfo().map { it.speaker })
+            emit(loadConferenceInfo().map { it.speaker }.distinctBy { it.id })
         }
 
     val favoriteSessions: Flow<List<SessionInfo>>

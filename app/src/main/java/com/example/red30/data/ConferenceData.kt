@@ -20,6 +20,9 @@ data class Speaker(
     val bio: String,
 )
 
+val Speaker.initial
+    get() = name.first().uppercase()
+
 @Serializable
 data class Session(
     val id: Int,

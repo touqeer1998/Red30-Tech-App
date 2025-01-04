@@ -24,8 +24,10 @@ import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.example.red30.data.Speaker
+import com.example.red30.data.initial
 import com.example.red30.ui.theme.AvatarColors
 import com.example.red30.ui.theme.Red30TechTheme
+import kotlin.random.Random.Default.nextInt
 
 private const val TEXT_TO_PARENT_SIZE_RATIO = 0.6
 
@@ -36,8 +38,8 @@ fun SpeakerImage(
     speaker: Speaker
 ) {
     if (speaker.imageUrl.isNullOrBlank()) {
-        val backgroundColor = remember { pickBackgroundColorForName(speaker.name) }
-        val initial = speaker.name.first().uppercase()
+        val backgroundColor = remember { pickBackgroundColorForName() }
+        val initial = speaker.initial
         Box(
             modifier = modifier
                 .padding(16.dp)
@@ -77,8 +79,7 @@ fun SpeakerImage(
     }
 }
 
-fun pickBackgroundColorForName(name: String?) =
-    AvatarColors[name.hashCode().mod(AvatarColors.size - 1)]
+private fun pickBackgroundColorForName() = AvatarColors[nextInt(AvatarColors.size - 1)]
 
 @PreviewLightDark
 @Composable
