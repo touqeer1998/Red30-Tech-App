@@ -7,7 +7,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -15,6 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.red30.MainViewModel
+import com.example.red30.data.ConferenceDataUiState
 
 private const val SESSION_ID = "sessionId"
 
@@ -24,10 +24,7 @@ fun Red30TechNavHost(
     viewModel: MainViewModel,
     modifier: Modifier = Modifier
 ) {
-    val sessions by viewModel.sessionInfos.collectAsStateWithLifecycle()
-    val speakers by viewModel.speakers.collectAsStateWithLifecycle()
-    val favorites by viewModel.favorites.collectAsStateWithLifecycle()
-    val selectedSession by viewModel.selectedSession.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     NavHost(
         navController = navController,
@@ -36,18 +33,18 @@ fun Red30TechNavHost(
     ) {
         composable(route = Screen.Sessions.route) {
             SessionsScreen(
-                sessions = sessions,
+                uiState = uiState,
                 onSessionClick = { sessionId -> navController.onSessionClick(sessionId) },
                 onDayClick = viewModel::setDay,
                 onFavoriteClick = viewModel::toggleFavorite
             )
         }
         composable(route = Screen.Speakers.route) {
-            SpeakersScreen(speakers = speakers)
+            SpeakersScreen(uiState = uiState)
         }
         composable(route = Screen.Favorites.route) {
             FavoritesScreen(
-                sessions = favorites,
+                uiState = uiState,
                 onSessionClick = { sessionId -> navController.onSessionClick(sessionId) },
                 onFavoriteClick = viewModel::toggleFavorite
             )
@@ -59,10 +56,13 @@ fun Red30TechNavHost(
             val sessionId = navBackStackEntry.arguments?.getInt(SESSION_ID)
             sessionId?.let {
                 viewModel.getSessionInfoById(it)
-                Text(
-                    modifier = Modifier.padding(24.dp),
-                    text = "Session detail screen: ${selectedSession.toString()}"
-                )
+
+                (uiState as? ConferenceDataUiState.Loaded)?.let {
+                    Text(
+                        modifier = Modifier.padding(24.dp),
+                        text = "Session detail screen: ${it.selectedSession.toString()}"
+                    )
+                }
             }
         }
     }

@@ -1,11 +1,14 @@
 package com.example.red30.compose.ui
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.PrimaryTabRow
 import androidx.compose.material3.Tab
@@ -16,15 +19,18 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.red30.R
+import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.Day
 import com.example.red30.data.Session
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.Speaker
+import com.example.red30.data.sessionInfosByDay
 import com.example.red30.ui.theme.Red30TechTheme
 import kotlinx.coroutines.launch
 
@@ -32,12 +38,14 @@ import kotlinx.coroutines.launch
 @Composable
 fun SessionsScreen(
     modifier: Modifier = Modifier,
-    sessions: List<SessionInfo>,
+    uiState: ConferenceDataUiState,
     onSessionClick: (Int) -> Unit = {},
     onDayClick: (Day) -> Unit  = {},
     onFavoriteClick: (Int) -> Unit = {}
 ) {
-    Column {
+    Column(
+        modifier = modifier.fillMaxSize(),
+    ) {
         var selectedTabIndex by remember { mutableIntStateOf(0) }
         val listState = rememberLazyListState()
         val coroutineScope = rememberCoroutineScope()
@@ -64,16 +72,28 @@ fun SessionsScreen(
             }
         }
 
-        LazyColumn(
-            modifier = modifier.fillMaxSize(),
-            state = listState
-        ) {
-            items(sessions) { sessionInfo ->
-                val sessionId = sessionInfo.session.id
-                SessionItem(
-                    sessionInfo = sessionInfo,
-                    onSessionClick = { onSessionClick(sessionId) },
-                    onFavoriteClick = { onFavoriteClick(sessionId) }
+        if (uiState is ConferenceDataUiState.Loaded) {
+            LazyColumn(
+                modifier = modifier.fillMaxSize(),
+                state = listState
+            ) {
+                items(uiState.sessionInfosByDay) { sessionInfo ->
+                    val sessionId = sessionInfo.session.id
+                    SessionItem(
+                        sessionInfo = sessionInfo,
+                        onSessionClick = { onSessionClick(sessionId) },
+                        onFavoriteClick = { onFavoriteClick(sessionId) }
+                    )
+                }
+            }
+        } else {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                CircularProgressIndicator(
+                    modifier = Modifier.size(64.dp)
                 )
             }
         }
@@ -92,27 +112,39 @@ val dayTabItems = listOf(
 
 @Preview(showBackground = true)
 @Composable
+private fun SessionScreenLoadingPreview() {
+    Red30TechTheme {
+        SessionsScreen(
+            uiState = ConferenceDataUiState.Loading
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
 private fun SessionScreenPreview() {
     Red30TechTheme {
         SessionsScreen(
-            sessions = listOf(
-                SessionInfo(
-                    session = Session(
-                        id = 1,
-                        speakerId = 1,
-                        name = "AI for Beginners",
-                        description = "Lorem Imps um",
-                        track = "Artificial Intelligence",
-                        roomName = "Room 201"
-                    ),
-                    speaker = Speaker(
-                        id = 1,
-                        name = "Alycia Jones",
-                        title = "VP of Engineering",
-                        bio = "She's a superstar!",
-                        organization = "Binaryville"
-                    ),
-                    day = Day.Day1
+            uiState = ConferenceDataUiState.Loaded(
+                sessionInfos = listOf(
+                    SessionInfo(
+                        session = Session(
+                            id = 1,
+                            speakerId = 1,
+                            name = "AI for Beginners",
+                            description = "Lorem Imps um",
+                            track = "Artificial Intelligence",
+                            roomName = "Room 201"
+                        ),
+                        speaker = Speaker(
+                            id = 1,
+                            name = "Alycia Jones",
+                            title = "VP of Engineering",
+                            bio = "She's a superstar!",
+                            organization = "Binaryville"
+                        ),
+                        day = Day.Day1
+                    )
                 )
             )
         )

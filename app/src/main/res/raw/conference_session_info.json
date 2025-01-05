@@ -195,6 +195,13 @@
       "organization": "Explore California",
       "bio": "Eve Berge has been a professional and volunteer diversity advocate for as long as she can remember. Her goal is to educate as many people as possible about options to combat discrimination and other social justice issues. ",
       "id": 14
+    },
+    {
+      "name": "Rose Ortiz",
+      "title": "Videographer",
+      "organization": "Red30 Design",
+      "bio": "Rose Ortiz is one of the country's foremost drone videographers, and assists public service organizations with using drones for service and safety.",
+      "id": 44
     }
   ],
   "sessions": [
@@ -454,10 +461,11 @@
       "end_time": "06:30 PM",
       "day": "day1",
       "session_name": "Using Drones for Disaster Relief",
+      "session_description": "Drones are becoming immeasurably important in disaster relief. Using drones to fight wildfires has huge potential to save lives and avoid the risks that firefighters face. Carrying supplies to people otherwise unreachable, and surveying damage are just two more ways drones can help us. See what\u2019s being used and developed.",
       "session_track": "AI and Robotics",
       "industry": "Technology",
       "room_name": "Room 200",
-      "speaker_id": 5,
+      "speaker_id": 44,
       "id": 27
     },
     {
@@ -991,10 +999,11 @@
       "end_time": "12:00 PM",
       "day": "day2",
       "session_name": "Using Drones for Disaster Relief",
+      "session_description": "Drones are becoming immeasurably important in disaster relief. Using drones to fight wildfires has huge potential to save lives and avoid the risks that firefighters face. Carrying supplies to people otherwise unreachable, and surveying damage are just two more ways drones can help us. See what\u2019s being used and developed.",
       "session_track": "AI and Robotics",
       "industry": "Technology",
       "room_name": "Room 200",
-      "speaker_id": 5,
+      "speaker_id": 44,
       "id": 77
     },
     {

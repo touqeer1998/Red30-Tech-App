@@ -17,19 +17,23 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.Speaker
+import com.example.red30.data.speakers
 import com.example.red30.ui.theme.Red30TechTheme
 
 @Composable
 fun SpeakersScreen(
     modifier: Modifier = Modifier,
-    speakers: List<Speaker>,
+    uiState: ConferenceDataUiState,
 ) {
-    LazyColumn(
-        modifier = modifier.fillMaxSize(),
-    ) {
-        items(speakers) {
-            SpeakerItem(speaker = it)
+    if (uiState is ConferenceDataUiState.Loaded) {
+        LazyColumn(
+            modifier = modifier.fillMaxSize(),
+        ) {
+            items(uiState.speakers) {
+                SpeakerItem(speaker = it)
+            }
         }
     }
 }

@@ -9,6 +9,8 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.red30.MainViewModel
+import com.example.red30.data.ConferenceDataUiState
+import com.example.red30.data.favorites
 import com.example.red30.databinding.FragmentFavoritesBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
@@ -41,10 +43,12 @@ class FavoritesFragment : Fragment() {
         binding.recyclerview.adapter = adapter
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.favorites
+            viewModel.uiState
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle)
-                .collect { sessionInfos ->
-                    adapter.setItems(sessionInfos)
+                .collect { uiState ->
+                    if (uiState is ConferenceDataUiState.Loaded) {
+                        adapter.setItems(uiState.favorites)
+                    }
                 }
         }
     }

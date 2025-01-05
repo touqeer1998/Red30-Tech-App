@@ -1,7 +1,6 @@
 package com.example.red30.viewbased
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.red30.MainNavGraphDirections
 import com.example.red30.MainViewModel
+import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.Day
 import com.example.red30.databinding.FragmentSessionsBinding
 import com.google.android.material.tabs.TabLayout
@@ -62,11 +62,12 @@ class SessionsFragment : Fragment() {
         })
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.sessionInfos
+            viewModel.uiState
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle)
-                .collect { sessionInfos ->
-                    Log.d(TAG, sessionInfos.size.toString())
-                    adapter.setItems(sessionInfos)
+                .collect { uiState ->
+                    if (uiState is ConferenceDataUiState.Loaded) {
+                        adapter.setItems(uiState.sessionInfos)
+                    }
                 }
         }
     }
