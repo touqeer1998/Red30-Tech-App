@@ -1,4 +1,4 @@
-package com.example.red30.viewbased
+package com.example.red30.viewbased.views
 
 import android.content.Context
 import android.graphics.Canvas
@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
+import com.example.red30.viewbased.pickBackgroundColorForName
 import kotlin.math.min
 
 class CircleLetterView @JvmOverloads constructor(
@@ -14,7 +15,7 @@ class CircleLetterView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    internal var letter: String = ""
+    var letter: String = ""
         set(value) {
             field = value
             letterColor = pickBackgroundColorForName(context)
@@ -23,7 +24,7 @@ class CircleLetterView @JvmOverloads constructor(
             requestLayout()
         }
 
-    private var letterColor: Int = Color.BLACK
+    private var letterColor: Int = Color.CYAN
     private var paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     override fun onDraw(canvas: Canvas) {

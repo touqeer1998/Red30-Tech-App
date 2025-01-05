@@ -1,6 +1,5 @@
 package com.example.red30.compose.ui
 
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -18,8 +17,6 @@ fun Red30TechAppBar(
     modifier: Modifier = Modifier,
     currentScreen: Screen,
     onNavigationIconClick: () -> Unit,
-    actions: @Composable RowScope.() -> Unit = {},
-    onFavoriteSessionClick: () -> Unit = {}
 ) {
     TopAppBar(
         modifier = modifier,
@@ -37,7 +34,6 @@ fun Red30TechAppBar(
                     )
                 }
             }
-        },
-        actions = actions
+        }
     )
 }

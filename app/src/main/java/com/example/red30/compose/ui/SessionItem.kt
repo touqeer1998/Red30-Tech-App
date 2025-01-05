@@ -37,13 +37,14 @@ import com.example.red30.ui.theme.Red30TechTheme
 fun SessionItem(
     modifier: Modifier = Modifier,
     sessionInfo: SessionInfo,
-    onSessionClick: (SessionInfo) -> Unit = {}
+    onSessionClick: (Int) -> Unit = {},
+    onFavoriteClick: (Int) -> Unit = {}
 ) {
     ElevatedCard(
         modifier = modifier
             .padding(16.dp)
             .clickable {
-                onSessionClick(sessionInfo)
+                onSessionClick(sessionInfo.session.id)
             },
         shape = RoundedCornerShape(0.dp)
     ) {
@@ -92,7 +93,7 @@ fun SessionItem(
 
                 IconToggleButton(
                     checked = sessionInfo.isFavorite,
-                    onCheckedChange = {  }
+                    onCheckedChange = { onFavoriteClick(sessionInfo.session.id) }
                 ) {
                     if (sessionInfo.isFavorite) {
                         Icon(Icons.Filled.Favorite, contentDescription = "un-favorite session")

@@ -1,14 +1,22 @@
 package com.example.red30.compose.ui
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.example.red30.MainViewModel
+
+private const val SESSION_ID = "sessionId"
 
 @Composable
 fun Red30TechNavHost(
@@ -19,6 +27,7 @@ fun Red30TechNavHost(
     val sessions by viewModel.sessionInfos.collectAsStateWithLifecycle()
     val speakers by viewModel.speakers.collectAsStateWithLifecycle()
     val favorites by viewModel.favorites.collectAsStateWithLifecycle()
+    val selectedSession by viewModel.selectedSession.collectAsStateWithLifecycle()
 
     NavHost(
         navController = navController,
@@ -28,33 +37,39 @@ fun Red30TechNavHost(
         composable(route = Screen.Sessions.route) {
             SessionsScreen(
                 sessions = sessions,
-                onSessionClick = {
-                    navController.navigate(Screen.SessionDetail.route)
-                },
-                onDayClick = viewModel::setDay
+                onSessionClick = { sessionId -> navController.onSessionClick(sessionId) },
+                onDayClick = viewModel::setDay,
+                onFavoriteClick = viewModel::toggleFavorite
             )
         }
         composable(route = Screen.Speakers.route) {
-            SpeakersScreen(
-                speakers = speakers,
-                onSpeakerClick = {
-                    navController.navigate(Screen.SpeakerDetail.route)
-                }
-            )
+            SpeakersScreen(speakers = speakers)
         }
         composable(route = Screen.Favorites.route) {
             FavoritesScreen(
                 sessions = favorites,
-                onSessionClick = {
-                    navController.navigate(Screen.SessionDetail.route)
-                },
+                onSessionClick = { sessionId -> navController.onSessionClick(sessionId) },
+                onFavoriteClick = viewModel::toggleFavorite
             )
         }
-        composable(route = Screen.SessionDetail.route) {
-            Text("Session detail screen")
-        }
-        composable(route = Screen.SpeakerDetail.route) {
-            Text("Speaker detail screen")
+        composable(
+            route = Screen.SessionDetail.route,
+            arguments = listOf(navArgument(SESSION_ID) { type = NavType.IntType })
+        ) { navBackStackEntry ->
+            val sessionId = navBackStackEntry.arguments?.getInt(SESSION_ID)
+            sessionId?.let {
+                viewModel.getSessionInfoById(it)
+                Text(
+                    modifier = Modifier.padding(24.dp),
+                    text = "Session detail screen: ${selectedSession.toString()}"
+                )
+            }
         }
     }
+}
+
+fun NavController.onSessionClick(sessionId: Int) {
+    navigate(
+        Screen.SessionDetail.route.replace("{$SESSION_ID}", sessionId.toString())
+    )
 }

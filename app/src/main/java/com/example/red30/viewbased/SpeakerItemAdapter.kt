@@ -4,17 +4,11 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil3.load
-import coil3.request.crossfade
-import coil3.request.transformations
-import coil3.transform.CircleCropTransformation
 import com.example.red30.data.Speaker
 import com.example.red30.data.initial
 import com.example.red30.databinding.ViewSpeakerItemBinding
 
-class SpeakerItemAdapter(
-    val itemClickListener: (Speaker) -> Unit
-) : RecyclerView.Adapter<SpeakerItemAdapter.ViewHolder>() {
+class SpeakerItemAdapter() : RecyclerView.Adapter<SpeakerItemAdapter.ViewHolder>() {
 
     private val items: MutableList<Speaker> = mutableListOf()
 
@@ -26,23 +20,8 @@ class SpeakerItemAdapter(
                 title.text = speaker.title
                 organization.text = speaker.organization
                 bio.text = speaker.bio
-
-                if (speaker.imageUrl.isNullOrEmpty()) {
-                    speakerInitial.letter = speaker.initial
-                    speakerInitial.visible()
-                    speakerImage.invisible()
-                } else {
-                    speakerImage.load(speaker.imageUrl) {
-                        crossfade(true)
-                        transformations(CircleCropTransformation())
-                    }
-                    speakerInitial.invisible()
-                    speakerImage.visible()
-                }
-
-                root.setOnClickListener {
-                    itemClickListener(speaker)
-                }
+                speakerImage.letter = speaker.initial
+                speakerImage.imageUrl = speaker.imageUrl
             }
         }
     }

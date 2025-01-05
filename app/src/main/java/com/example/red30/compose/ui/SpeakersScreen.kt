@@ -1,6 +1,5 @@
 package com.example.red30.compose.ui
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,16 +24,12 @@ import com.example.red30.ui.theme.Red30TechTheme
 fun SpeakersScreen(
     modifier: Modifier = Modifier,
     speakers: List<Speaker>,
-    onSpeakerClick: (Speaker) -> Unit = {}
 ) {
     LazyColumn(
         modifier = modifier.fillMaxSize(),
     ) {
         items(speakers) {
-            SpeakerItem(
-                speaker = it,
-                onSpeakerClick = onSpeakerClick
-            )
+            SpeakerItem(speaker = it)
         }
     }
 }
@@ -43,14 +38,9 @@ fun SpeakersScreen(
 fun SpeakerItem(
     modifier: Modifier = Modifier,
     speaker: Speaker,
-    onSpeakerClick: (Speaker) -> Unit = {}
 ) {
     ElevatedCard(
-        modifier = modifier
-            .padding(16.dp)
-            .clickable {
-                onSpeakerClick(speaker)
-            },
+        modifier = modifier.padding(16.dp),
         shape = RoundedCornerShape(0.dp),
     ) {
         Column {

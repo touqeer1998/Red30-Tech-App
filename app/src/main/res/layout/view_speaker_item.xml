@@ -11,18 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <com.example.red30.viewbased.views.SpeakerImageView
             android:id="@+id/speakerImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:visibility="invisible"
-            android:contentDescription="@string/speaker_image_label"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <com.example.red30.viewbased.CircleLetterView
-            android:id="@+id/speakerInitial"
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -71,8 +61,5 @@
             app:layout_goneMarginTop="100dp"
             style="?attr/textAppearanceBodyLarge"
             tools:text="This is my bio." />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.cardview.widget.CardView>
-

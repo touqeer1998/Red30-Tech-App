@@ -28,8 +28,8 @@ data class Session(
     val id: Int,
     @SerialName("speaker_id")
     val speakerId: Int,
-//    "start_time": "07/27/2020 02:00 PM",
-//    "end_time": "07/27/2020 03:30 PM",
+//    "start_time": "02:00 PM",
+//    "end_time": "03:30 PM",
     @SerialName("session_name")
     val name: String,
     @SerialName("session_description")
@@ -41,11 +41,12 @@ data class Session(
     val day: Day = Day.Day1
 )
 
+@Serializable
 data class SessionInfo(
     val session: Session,
     val speaker: Speaker,
     val day: Day,
-    val isFavorite: Boolean = false
+    var isFavorite: Boolean = false
 )
 
 @Serializable

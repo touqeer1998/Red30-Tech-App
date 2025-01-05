@@ -19,16 +19,19 @@ import com.example.red30.ui.theme.Red30TechTheme
 fun FavoritesScreen(
     modifier: Modifier = Modifier,
     sessions: List<SessionInfo>,
-    onSessionClick: (SessionInfo) -> Unit = {},
+    onSessionClick: (Int) -> Unit = {},
+    onFavoriteClick: (Int) -> Unit = {}
 ) {
     Column {
         LazyColumn(
             modifier = modifier.fillMaxSize(),
         ) {
-            items(sessions) {
+            items(sessions) { sessionInfo ->
+                val sessionId = sessionInfo.session.id
                 SessionItem(
-                    sessionInfo = it,
-                    onSessionClick = onSessionClick
+                    sessionInfo = sessionInfo,
+                    onSessionClick = { onSessionClick(sessionId) },
+                    onFavoriteClick = { onFavoriteClick(sessionId) }
                 )
             }
         }

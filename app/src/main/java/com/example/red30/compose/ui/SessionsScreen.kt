@@ -33,8 +33,9 @@ import kotlinx.coroutines.launch
 fun SessionsScreen(
     modifier: Modifier = Modifier,
     sessions: List<SessionInfo>,
-    onSessionClick: (SessionInfo) -> Unit = {},
-    onDayClick: (Day) -> Unit  = {}
+    onSessionClick: (Int) -> Unit = {},
+    onDayClick: (Day) -> Unit  = {},
+    onFavoriteClick: (Int) -> Unit = {}
 ) {
     Column {
         var selectedTabIndex by remember { mutableIntStateOf(0) }
@@ -67,10 +68,12 @@ fun SessionsScreen(
             modifier = modifier.fillMaxSize(),
             state = listState
         ) {
-            items(sessions) {
+            items(sessions) { sessionInfo ->
+                val sessionId = sessionInfo.session.id
                 SessionItem(
-                    sessionInfo = it,
-                    onSessionClick = onSessionClick
+                    sessionInfo = sessionInfo,
+                    onSessionClick = { onSessionClick(sessionId) },
+                    onFavoriteClick = { onFavoriteClick(sessionId) }
                 )
             }
         }

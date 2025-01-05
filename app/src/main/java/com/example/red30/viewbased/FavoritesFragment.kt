@@ -5,21 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.red30.MainViewModel
-import com.example.red30.MainViewModelFactory
-import com.example.red30.data.ConferenceRepository
 import com.example.red30.databinding.FragmentFavoritesBinding
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class FavoritesFragment : Fragment() {
 
-    private val viewModel: MainViewModel by activityViewModels<MainViewModel> {
-        MainViewModelFactory(conferenceRepository = ConferenceRepository(requireActivity()))
-    }
+    private val viewModel: MainViewModel by activityViewModel()
 
     private var _binding: FragmentFavoritesBinding? = null
     private val binding get() = _binding!!
@@ -37,9 +33,9 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = SessionItemAdapter {
+        val adapter = SessionItemAdapter { sessionId ->
             findNavController().navigate(
-                FavoritesFragmentDirections.actionFavoritesFragmentToSessionDetailFragment()
+                FavoritesFragmentDirections.actionGlobalToSessionDetailFragment(sessionId)
             )
         }
         binding.recyclerview.adapter = adapter

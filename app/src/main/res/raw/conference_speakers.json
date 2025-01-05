@@ -1,14 +1,5 @@
 [
   {
-    "name": "Eve Berge",
-    "title": "Director of Diversity",
-    "organization": "Explore California",
-    "bio": "Eve Berge has been a professional and volunteer diversity advocate for as long as she can remember. Her goal is to educate as many people as possible about options to combat discrimination and other social justice issues. ",
-    "session_name": "Diversity in the Maker Community",
-    "session_description": "Is the maker community really the great open-source democracy that it set out to be? Studies show that women, people with disabilities, people from households that make less than $125,000, and people of color are still largely under-represented in the maker community. How do we truly open our doors to a broader population?",
-    "id": 14
-  },
-  {
     "name": "Griffin Snow",
     "title": "Urban Planner",
     "organization": "KinetEco Inc.",
@@ -25,15 +16,6 @@
     "session_name": "Arts and Crafts Makerspaces",
     "session_description": "Interest and participation in arts and crafts has grown exponentially over the last decade. In the United States alone, over 60 percent of households participate in creative activity annually, including paper crafts like scrapbooking, knitting, sewing, painting and drawing, and wood crafts. Makerspaces supporting crafts have opened up possibilities for those who can't otherwise have access to tools of the craft trade. Here\u2019s how to support (or start!) an arts and crafts makerspace.",
     "id": 19
-  },
-  {
-    "name": "Hui Bashirian",
-    "title": "Software Engineer",
-    "organization": "Wisdom Pet Medicine",
-    "bio": "Dog-parent to three rescue mutts, Hui Bashirian has dedicated his maker brain to keeping his dogs healthy, engaged, and entertained. ",
-    "session_name": "Animals and AI",
-    "session_description": "We've known for years that robot dogs can never take the place of real dogs. But can robot people take the place of dog owners? We'll compare the pluses and minuses of the emerging field of Artificial Dog Sitters.",
-    "id": 21
   },
   {
     "name": "Jarrod Anderson",
@@ -94,18 +76,9 @@
     "title": "Computer Coding Instructor",
     "organization": "Orange Valley University",
     "bio": "Justine Evans began coding when she was 11, and hasn't stopped since. She has developed an open-source online learning platform for all of the state's grade schools. ",
-    "session_name": "AI and Education\u2014Developing a Data Strategy",
+    "session_name": "AI and Education-Developing a Data Strategy",
     "session_description": "According to research, the majority of higher education educators agree that AI will be a key part of their educational toolbox moving forward. The same research shows that nearly all of these educators have absolutely no clue how to build AI into their programs. This session gives practical suggestions for getting started on an AI data strategy.",
     "id": 34
-  },
-  {
-    "name": "Kennedy Beckingham",
-    "title": "Youth Director",
-    "organization": "OVCAA",
-    "bio": "Kennedy Beckingham loves controversy when it comes to teaching kids. Not only does it spark intriguing discussions, it also results in some amazing educational programs and techniques.",
-    "session_name": "Let them Eat Cake\u2014or Don't",
-    "session_description": "How do we determine what and how much our children should learn? Do we encourage them to experiment with new technologies, or to spend more time on traditional handicrafts? Join in on the discussion\u2014and bring your questions.",
-    "id": 35
   },
   {
     "name": "Marysa Balma",
@@ -124,15 +97,6 @@
     "session_name": "Making a Maker Community",
     "session_description": "One of the things we hear most often is that the favorite part of a makerspace is being able to socialize with other people interested in the same things you are, and learning about areas of making that you want to learn about. How do we build and nurture this community?",
     "id": 39
-  },
-  {
-    "name": "Nate Deckow",
-    "title": "Application Engineer",
-    "organization": "Binaryville",
-    "bio": "Nate Decklow first started knitting to help with hand dexterity, and hasn't stopped. He is co-leader and founder of a local knitting charity organization.  ",
-    "session_name": "Yarnathon for Justice",
-    "session_description": "Bring your needles (knitting or crochet) and join other hand-knitters and crocheters in creating a one-of-a-kind quilt that will be auctioned off for charity. Last year\u2019s quilt raised $18,000! Moderator Nate Deckow will be coordinating the specs and completion of the quilt. ",
-    "id": 40
   },
   {
     "name": "Paula Muller",
@@ -157,7 +121,7 @@
     "title": "Strategic Services Director",
     "organization": "Roux Academy",
     "bio": "Peter Wang helps Roux Academy navigate its current use of technology, and researches what's critical and creative for students, professors, and staff. ",
-    "session_name": "AI and Education\u2014Developing a Data Strategy",
+    "session_name": "AI and Education-Developing a Data Strategy",
     "session_description": "According to research, the majority of higher education educators agree that AI will be a key part of their educational toolbox moving forward. The same research shows that nearly all of these educators have absolutely no clue how to build AI into their programs. This session gives practical suggestions for getting started on an AI data strategy.",
     "id": 43
   },

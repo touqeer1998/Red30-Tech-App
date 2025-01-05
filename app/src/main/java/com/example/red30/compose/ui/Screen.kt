@@ -18,16 +18,14 @@ sealed class Screen(
     data object Favorites: Screen("favorites", R.string.favorites_label, Icons.Outlined.FavoriteBorder)
 
     // this is a nested screen
-    data object SessionDetail: Screen("sessionDetail", 0, Icons.Filled.DateRange)
-    data object SpeakerDetail: Screen("speakerDetail", 0, Icons.Filled.Person)
+    data object SessionDetail: Screen("sessionDetail/{sessionId}", 0, Icons.Filled.DateRange)
 
     companion object {
         fun valueOf(route: String): Screen = when(route) {
             "sessions" -> Sessions
             "speakers" -> Speakers
             "favorites" -> Favorites
-            "sessionDetail" -> SessionDetail
-            "speakerDetail" -> SpeakerDetail
+            "sessionDetail/{sessionId}" -> SessionDetail
             else -> Sessions
         }
     }

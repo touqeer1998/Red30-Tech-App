@@ -6,25 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.red30.MainNavGraphDirections
 import com.example.red30.MainViewModel
-import com.example.red30.MainViewModelFactory
-import com.example.red30.data.ConferenceRepository
 import com.example.red30.data.Day
 import com.example.red30.databinding.FragmentSessionsBinding
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 private const val TAG = "SessionsFragment"
 
 class SessionsFragment : Fragment() {
 
-    private val viewModel: MainViewModel by activityViewModels<MainViewModel> {
-        MainViewModelFactory(conferenceRepository = ConferenceRepository(requireActivity()))
-    }
+    private val viewModel: MainViewModel by activityViewModel()
 
     private var _binding: FragmentSessionsBinding? = null
     private val binding get() = _binding!!
@@ -42,9 +39,9 @@ class SessionsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = SessionItemAdapter {
+        val adapter = SessionItemAdapter { sessionId ->
             findNavController().navigate(
-                SessionsFragmentDirections.actionSessionsFragmentToSessionDetailFragment()
+                MainNavGraphDirections.actionGlobalToSessionDetailFragment(sessionId)
             )
         }
         binding.recyclerview.adapter = adapter

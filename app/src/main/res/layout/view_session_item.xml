@@ -68,19 +68,8 @@
             app:layout_constraintTop_toBottomOf="@+id/sessionTags"
             tools:text="AI for Beginners" />
 
-        <ImageView
+        <com.example.red30.viewbased.views.SpeakerImageView
             android:id="@+id/speakerImage"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/speaker_image_label"
-            android:layout_marginTop="16dp"
-            android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <com.example.red30.viewbased.CircleLetterView
-            android:id="@+id/speakerInitial"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="16dp"
@@ -95,9 +84,9 @@
             android:layout_marginStart="4dp"
             android:textStyle="bold"
             android:gravity="center"
-            app:layout_constraintStart_toEndOf="@id/speakerInitial"
-            app:layout_constraintTop_toTopOf="@id/speakerInitial"
-            app:layout_constraintBottom_toBottomOf="@id/speakerInitial"
+            app:layout_constraintStart_toEndOf="@id/speakerImage"
+            app:layout_constraintTop_toTopOf="@id/speakerImage"
+            app:layout_constraintBottom_toBottomOf="@id/speakerImage"
             tools:text="Alycia Jones" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

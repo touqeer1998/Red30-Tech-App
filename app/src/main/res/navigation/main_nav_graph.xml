@@ -2,27 +2,21 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_nav_graph.xml"
+    android:id="@+id/main_nav_graph"
     app:startDestination="@id/sessionsFragment">
 
     <fragment
         android:id="@+id/sessionsFragment"
         android:name="com.example.red30.viewbased.SessionsFragment"
         android:label="Sessions"
-        tools:layout="@layout/fragment_sessions" >
-        <action
-            android:id="@+id/action_sessionsFragment_to_sessionDetailFragment"
-            app:destination="@id/sessionDetailFragment" />
+        tools:layout="@layout/fragment_sessions">
     </fragment>
 
     <fragment
         android:id="@+id/speakersFragment"
         android:name="com.example.red30.viewbased.SpeakersFragment"
         android:label="Speakers"
-        tools:layout="@layout/fragment_speakers" >
-        <action
-            android:id="@+id/action_speakersFragment_to_speakerDetailFragment"
-            app:destination="@id/speakerDetailFragment" />
+        tools:layout="@layout/fragment_speakers">
     </fragment>
 
     <fragment
@@ -30,22 +24,24 @@
         android:name="com.example.red30.viewbased.FavoritesFragment"
         android:label="Favorites"
         tools:layout="@layout/fragment_favorites">
-        <action
-            android:id="@+id/action_favoritesFragment_to_sessionDetailFragment"
-            app:destination="@id/sessionDetailFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/speakerDetailFragment"
-        android:name="com.example.red30.viewbased.SpeakerDetailFragment"
-        android:label=""
-        tools:layout="@layout/fragment_speaker_detail">
     </fragment>
 
     <fragment
         android:id="@+id/sessionDetailFragment"
         android:name="com.example.red30.viewbased.SessionDetailFragment"
         android:label=""
-        tools:layout="@layout/fragment_session_detail">
-    </fragment>
+        tools:layout="@layout/fragment_session_detail" />
+
+    <action android:id="@+id/action_global_to_sessionDetailFragment"
+        app:destination="@id/sessionDetailFragment">
+        <argument
+            android:name="sessionId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </action>
+
+    <argument
+        android:name="sessionId"
+        app:argType="integer"
+        android:defaultValue="-1" />
 </navigation>

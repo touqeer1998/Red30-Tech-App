@@ -166,6 +166,35 @@
       "image_url": "https://i.pravatar.cc/150?img=55",
       "bio": "Mike Jacobson helps to runs operations at all of The Lakehouse Restaurants, including determining human resource and technical needs. ",
       "id": 38
+    },
+    {
+      "name": "Hui Bashirian",
+      "title": "Software Engineer",
+      "organization": "Wisdom Pet Medicine",
+      "bio": "Dog-parent to three rescue mutts, Hui Bashirian has dedicated his maker brain to keeping his dogs healthy, engaged, and entertained. ",
+      "id": 21
+    },
+    {
+      "name": "Kennedy Beckingham",
+      "title": "Youth Director",
+      "organization": "OVCAA",
+      "bio": "Kennedy Beckingham loves controversy when it comes to teaching kids. Not only does it spark intriguing discussions, it also results in some amazing educational programs and techniques.",
+      "id": 35
+    },
+    {
+      "name": "Nate Deckow",
+      "title": "Application Engineer",
+      "organization": "Binaryville",
+      "image_url": "https://i.pravatar.cc/150?img=66",
+      "bio": "Nate Decklow first started knitting to help with hand dexterity, and hasn't stopped. He is co-leader and founder of a local knitting charity organization.  ",
+      "id": 40
+    },
+    {
+      "name": "Eve Berge",
+      "title": "Director of Diversity",
+      "organization": "Explore California",
+      "bio": "Eve Berge has been a professional and volunteer diversity advocate for as long as she can remember. Her goal is to educate as many people as possible about options to combat discrimination and other social justice issues. ",
+      "id": 14
     }
   ],
   "sessions": [
@@ -306,10 +335,11 @@
       "end_time": "03:00 PM",
       "day": "day1",
       "session_name": "Yarnathon for Justice",
+      "session_description": "Bring your needles (knitting or crochet) and join other hand-knitters and crocheters in creating a one-of-a-kind quilt that will be auctioned off for charity. Last year\u2019s quilt raised $18,000! Moderator Nate Deckow will be coordinating the specs and completion of the quilt. ",
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "West Ballroom",
-      "speaker_id": 5,
+      "speaker_id": 40,
       "id": 14
     },
     {
@@ -329,10 +359,11 @@
       "end_time": "05:00 PM",
       "day": "day1",
       "session_name": "Animals and AI",
+      "session_description": "We've known for years that robot dogs can never take the place of real dogs. But can robot people take the place of dog owners? We'll compare the pluses and minuses of the emerging field of Artificial Dog Sitters.",
       "session_track": "AI and Robotics",
       "industry": "Technology",
       "room_name": "Room 100",
-      "speaker_id": 5,
+      "speaker_id": 21,
       "id": 16
     },
     {
@@ -351,17 +382,6 @@
       "start_time": "04:00 PM",
       "end_time": "05:00 PM",
       "day": "day1",
-      "session_name": "Housebuilding and 3D Printing",
-      "session_track": "3D Printing and Design",
-      "industry": "Technology",
-      "room_name": "Room 200",
-      "speaker_id": 5,
-      "id": 19
-    },
-    {
-      "start_time": "04:00 PM",
-      "end_time": "05:00 PM",
-      "day": "day1",
       "session_name": "Human Resources and Robots",
       "session_description": "Researchers have claimed that nearly 50 percent of all jobs could be done by robots within the next two decades. What is the effect of automation on managing the workforce? Will \u2018human resources\u2019 become obsolete?",
       "session_track": "Ethics and Environment",
@@ -375,10 +395,11 @@
       "end_time": "05:00 PM",
       "day": "day1",
       "session_name": "Let them Eat Cake-or Don't",
+      "session_description": "How do we determine what and how much our children should learn? Do we encourage them to experiment with new technologies, or to spend more time on traditional handicrafts? Join in on the discussion\u2014and bring your questions.",
       "session_track": "Education and Training",
       "industry": "General",
       "room_name": "Room 102",
-      "speaker_id": 5,
+      "speaker_id": 35,
       "id": 21
     },
     {
@@ -397,22 +418,12 @@
       "end_time": "04:00 PM",
       "day": "day1",
       "session_name": "Yarnathon for Justice",
+      "session_description": "Bring your needles (knitting or crochet) and join other hand-knitters and crocheters in creating a one-of-a-kind quilt that will be auctioned off for charity. Last year\u2019s quilt raised $18,000! Moderator Nate Deckow will be coordinating the specs and completion of the quilt. ",
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "West Ballroom",
-      "speaker_id": 5,
+      "speaker_id": 40,
       "id": 23
-    },
-    {
-      "start_time": "04:30 PM",
-      "end_time": "04:30 PM",
-      "day": "day1",
-      "session_name": "Arts and Crafts Makerspaces",
-      "session_track": "Arts, Crafts, Fashion, and Fare",
-      "industry": "General",
-      "room_name": "Room 201",
-      "speaker_id": 5,
-      "id": 24
     },
     {
       "start_time": "05:00 PM",
@@ -466,10 +477,11 @@
       "end_time": "06:30 PM",
       "day": "day1",
       "session_name": "Yarnathon for Justice",
+      "session_description": "Bring your needles (knitting or crochet) and join other hand-knitters and crocheters in creating a one-of-a-kind quilt that will be auctioned off for charity. Last year\u2019s quilt raised $18,000! Moderator Nate Deckow will be coordinating the specs and completion of the quilt. ",
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "West Ballroom",
-      "speaker_id": 5,
+      "speaker_id": 40,
       "id": 29
     },
     {
@@ -518,17 +530,6 @@
       "room_name": "Room 202",
       "speaker_id": 30,
       "id": 34
-    },
-    {
-      "start_time": "10:30 AM",
-      "end_time": "12:00 AM",
-      "day": "day1",
-      "session_name": "Diversity in the Maker Community",
-      "session_track": "Ethics and Environment",
-      "industry": "General",
-      "room_name": "Room 200",
-      "speaker_id": 5,
-      "id": 35
     },
     {
       "start_time": "10:30 AM",
@@ -593,10 +594,11 @@
       "end_time": "11:30 AM",
       "day": "day1",
       "session_name": "Yarnathon for Justice",
+      "session_description": "Bring your needles (knitting or crochet) and join other hand-knitters and crocheters in creating a one-of-a-kind quilt that will be auctioned off for charity. Last year\u2019s quilt raised $18,000! Moderator Nate Deckow will be coordinating the specs and completion of the quilt. ",
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "West Ballroom",
-      "speaker_id": 5,
+      "speaker_id": 40,
       "id": 41
     },
     {
@@ -627,10 +629,11 @@
       "end_time": "03:00 PM",
       "day": "day2",
       "session_name": "Animals and AI",
+      "session_description": "We've known for years that robot dogs can never take the place of real dogs. But can robot people take the place of dog owners? We'll compare the pluses and minuses of the emerging field of Artificial Dog Sitters.",
       "session_track": "AI and Robotics",
       "industry": "Technology",
       "room_name": "Room 100",
-      "speaker_id": 5,
+      "speaker_id": 21,
       "id": 44
     },
     {
@@ -662,10 +665,11 @@
       "end_time": "03:30 PM",
       "day": "day2",
       "session_name": "Diversity in the Maker Community",
+      "session_description": "Is the maker community really the great open-source democracy that it set out to be? Studies show that women, people with disabilities, people from households that make less than $125,000, and people of color are still largely under-represented in the maker community. How do we truly open our doors to a broader population?",
       "session_track": "Ethics and Environment",
       "industry": "General",
       "room_name": "Room 200",
-      "speaker_id": 5,
+      "speaker_id": 14,
       "id": 47
     },
     {
@@ -685,10 +689,11 @@
       "end_time": "03:30 PM",
       "day": "day2",
       "session_name": "Let them Eat Cake-or Don't",
+      "session_description": "How do we determine what and how much our children should learn? Do we encourage them to experiment with new technologies, or to spend more time on traditional handicrafts? Join in on the discussion\u2014and bring your questions.",
       "session_track": "Education and Training",
       "industry": "General",
       "room_name": "Room 102",
-      "speaker_id": 5,
+      "speaker_id": 35,
       "id": 50
     },
     {
@@ -730,10 +735,11 @@
       "end_time": "03:00 PM",
       "day": "day2",
       "session_name": "Yarnathon for Justice",
+      "session_description": "Bring your needles (knitting or crochet) and join other hand-knitters and crocheters in creating a one-of-a-kind quilt that will be auctioned off for charity. Last year\u2019s quilt raised $18,000! Moderator Nate Deckow will be coordinating the specs and completion of the quilt. ",
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "West Ballroom",
-      "speaker_id": 5,
+      "speaker_id": 40,
       "id": 54
     },
     {
@@ -880,10 +886,11 @@
       "end_time": "04:00 PM",
       "day": "day2",
       "session_name": "Yarnathon for Justice",
+      "session_description": "Bring your needles (knitting or crochet) and join other hand-knitters and crocheters in creating a one-of-a-kind quilt that will be auctioned off for charity. Last year\u2019s quilt raised $18,000! Moderator Nate Deckow will be coordinating the specs and completion of the quilt. ",
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "West Ballroom",
-      "speaker_id": 5,
+      "speaker_id": 40,
       "id": 67
     },
     {
@@ -907,17 +914,6 @@
       "room_name": "Event Center",
       "speaker_id": 5,
       "id": 69
-    },
-    {
-      "start_time": "08:30 AM",
-      "end_time": "10:00 AM",
-      "day": "day2",
-      "session_name": "Keynote Speakers - Making a Maker Community",
-      "session_track": "Keynote",
-      "industry": "Entertainment",
-      "room_name": "Event Center",
-      "speaker_id": 5,
-      "id": 70
     },
     {
       "start_time": "10:30 AM",
@@ -1006,22 +1002,12 @@
       "end_time": "11:30 AM",
       "day": "day2",
       "session_name": "Yarnathon for Justice",
+      "session_description": "Bring your needles (knitting or crochet) and join other hand-knitters and crocheters in creating a one-of-a-kind quilt that will be auctioned off for charity. Last year\u2019s quilt raised $18,000! Moderator Nate Deckow will be coordinating the specs and completion of the quilt. ",
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "General",
       "room_name": "West Ballroom",
-      "speaker_id": 5,
+      "speaker_id": 40,
       "id": 78
-    },
-    {
-      "start_time": "10:30 PM",
-      "end_time": "11:00 PM",
-      "day": "day2",
-      "session_name": "Arts and Crafts Makerspaces",
-      "session_track": "Arts, Crafts, Fashion, and Fare",
-      "industry": "General",
-      "room_name": "Room 201",
-      "speaker_id": 5,
-      "id": 79
     }
   ]
 }

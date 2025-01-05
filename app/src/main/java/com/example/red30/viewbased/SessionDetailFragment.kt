@@ -12,10 +12,14 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.navArgs
+import com.example.red30.MainNavGraphArgs
 import com.example.red30.R
 import com.example.red30.databinding.FragmentSessionDetailBinding
 
 class SessionDetailFragment : Fragment(), MenuProvider {
+
+    val args: MainNavGraphArgs by navArgs()
 
     private var _binding: FragmentSessionDetailBinding? = null
     private val binding get() = _binding!!
@@ -48,6 +52,8 @@ class SessionDetailFragment : Fragment(), MenuProvider {
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menuInflater.inflate(R.menu.session_detail_menu, menu)
+
+        binding.sessionName.text = args.sessionId.toString()
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {

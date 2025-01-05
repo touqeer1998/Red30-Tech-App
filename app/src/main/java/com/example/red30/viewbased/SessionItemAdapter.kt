@@ -4,16 +4,12 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil3.load
-import coil3.request.crossfade
-import coil3.request.transformations
-import coil3.transform.CircleCropTransformation
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.initial
 import com.example.red30.databinding.ViewSessionItemBinding
 
 class SessionItemAdapter(
-    val itemClickListener: (SessionInfo) -> Unit
+    val itemClickListener: (Int) -> Unit
 ) : RecyclerView.Adapter<SessionItemAdapter.ViewHolder>() {
 
     private val items: MutableList<SessionInfo> = mutableListOf()
@@ -30,22 +26,11 @@ class SessionItemAdapter(
                 roomName.text = session.roomName
                 speakerName.text = speaker.name
                 favorite.isSelected = sessionInfo.isFavorite
-
-                if (speaker.imageUrl.isNullOrEmpty()) {
-                    speakerInitial.letter = speaker.initial
-                    speakerInitial.visible()
-                    speakerImage.invisible()
-                } else {
-                    speakerImage.load(speaker.imageUrl) {
-                        crossfade(true)
-                        transformations(CircleCropTransformation())
-                    }
-                    speakerInitial.invisible()
-                    speakerImage.visible()
-                }
+                speakerImage.letter = speaker.initial
+                speakerImage.imageUrl = speaker.imageUrl
 
                 root.setOnClickListener {
-                    itemClickListener(sessionInfo)
+                    itemClickListener(sessionInfo.session.id)
                 }
             }
         }
