@@ -81,7 +81,7 @@
             style="?attr/textAppearanceBodyLarge"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="16dp"
             android:textStyle="bold"
             android:gravity="center"
             app:layout_constraintStart_toEndOf="@id/speakerImage"

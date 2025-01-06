@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.red30.MainNavGraphDirections
 import com.example.red30.MainViewModel
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.favorites
@@ -35,11 +36,17 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = SessionItemAdapter { sessionId ->
-            findNavController().navigate(
-                FavoritesFragmentDirections.actionGlobalToSessionDetailFragment(sessionId)
-            )
-        }
+        val adapter = SessionItemAdapter(
+            onSessionItemClick = { sessionId ->
+                viewModel.getSessionInfoById(sessionId = sessionId)
+                findNavController().navigate(
+                    MainNavGraphDirections.actionGlobalToSessionDetailFragment()
+                )
+            },
+            onFavoriteClick = { sessionId ->
+                viewModel.toggleFavorite(sessionId = sessionId)
+            }
+        )
         binding.recyclerview.adapter = adapter
 
         viewLifecycleOwner.lifecycleScope.launch {

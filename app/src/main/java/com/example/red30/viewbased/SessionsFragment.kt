@@ -17,8 +17,6 @@ import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
-private const val TAG = "SessionsFragment"
-
 class SessionsFragment : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModel()
@@ -39,11 +37,17 @@ class SessionsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = SessionItemAdapter { sessionId ->
-            findNavController().navigate(
-                MainNavGraphDirections.actionGlobalToSessionDetailFragment(sessionId)
-            )
-        }
+        val adapter = SessionItemAdapter(
+            onSessionItemClick = { sessionId ->
+                viewModel.getSessionInfoById(sessionId = sessionId)
+                findNavController().navigate(
+                    MainNavGraphDirections.actionGlobalToSessionDetailFragment()
+                )
+            },
+            onFavoriteClick = { sessionId ->
+                viewModel.toggleFavorite(sessionId = sessionId)
+            }
+        )
         binding.recyclerview.adapter = adapter
 
         binding.tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {

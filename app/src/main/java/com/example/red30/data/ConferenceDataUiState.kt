@@ -7,7 +7,9 @@ sealed class ConferenceDataUiState {
         val day: Day = Day.Day1,
         val sessionInfos: List<SessionInfo> = emptyList(),
         val selectedSession: SessionInfo? = null
-    ): ConferenceDataUiState()
+    ): ConferenceDataUiState() {
+        companion object
+    }
 
     object Loading: ConferenceDataUiState()
 }
@@ -20,3 +22,11 @@ val Loaded.favorites: List<SessionInfo>
 
 val Loaded.sessionInfosByDay: List<SessionInfo>
     get() = sessionInfos.filter { it.day == day }
+
+fun Loaded.getSelectedSession(sessionId: Int): SessionInfo? {
+    return sessionInfos.find { it.session.id == sessionId }
+}
+
+fun Loaded.Companion.fakes() = Loaded(
+    sessionInfos = listOf(SessionInfo.fake(), SessionInfo.fake2()),
+)

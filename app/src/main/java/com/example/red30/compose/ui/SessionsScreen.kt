@@ -27,9 +27,8 @@ import androidx.compose.ui.unit.dp
 import com.example.red30.R
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.Day
-import com.example.red30.data.Session
 import com.example.red30.data.SessionInfo
-import com.example.red30.data.Speaker
+import com.example.red30.data.fake
 import com.example.red30.data.sessionInfosByDay
 import com.example.red30.ui.theme.Red30TechTheme
 import kotlinx.coroutines.launch
@@ -126,26 +125,7 @@ private fun SessionScreenPreview() {
     Red30TechTheme {
         SessionsScreen(
             uiState = ConferenceDataUiState.Loaded(
-                sessionInfos = listOf(
-                    SessionInfo(
-                        session = Session(
-                            id = 1,
-                            speakerId = 1,
-                            name = "AI for Beginners",
-                            description = "Lorem Imps um",
-                            track = "Artificial Intelligence",
-                            roomName = "Room 201"
-                        ),
-                        speaker = Speaker(
-                            id = 1,
-                            name = "Alycia Jones",
-                            title = "VP of Engineering",
-                            bio = "She's a superstar!",
-                            organization = "Binaryville"
-                        ),
-                        day = Day.Day1
-                    )
-                )
+                sessionInfos = List(3) { SessionInfo.fake() }
             )
         )
     }

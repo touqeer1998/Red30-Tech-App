@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.ConferenceRepository
 import com.example.red30.data.Day
+import com.example.red30.data.getSelectedSession
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -47,7 +48,7 @@ class MainViewModel(
         viewModelScope.launch {
             (_uiState.value as? ConferenceDataUiState.Loaded)?.let {
                 _uiState.value = it.copy(
-                    selectedSession = conferenceRepository.getSessionInfoById(sessionId)
+                    selectedSession = it.getSelectedSession(sessionId)
                 )
             }
         }

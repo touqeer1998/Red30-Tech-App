@@ -9,7 +9,8 @@ import com.example.red30.data.initial
 import com.example.red30.databinding.ViewSessionItemBinding
 
 class SessionItemAdapter(
-    val itemClickListener: (Int) -> Unit
+    val onSessionItemClick: (Int) -> Unit,
+    val onFavoriteClick: (Int) -> Unit,
 ) : RecyclerView.Adapter<SessionItemAdapter.ViewHolder>() {
 
     private val items: MutableList<SessionInfo> = mutableListOf()
@@ -29,8 +30,12 @@ class SessionItemAdapter(
                 speakerImage.letter = speaker.initial
                 speakerImage.imageUrl = speaker.imageUrl
 
+                favorite.setOnClickListener {
+                    onFavoriteClick(sessionInfo.session.id)
+                }
+
                 root.setOnClickListener {
-                    itemClickListener(sessionInfo.session.id)
+                    onSessionItemClick(sessionInfo.session.id)
                 }
             }
         }

@@ -18,7 +18,6 @@ private const val TAG = "ConferenceRepository"
 
 interface ConferenceRepository {
     suspend fun loadConferenceInfo(): List<SessionInfo>
-    suspend fun getSessionInfoById(sessionId: Int): SessionInfo?
     suspend fun toggleFavorite(sessionId: Int): List<Int>
 }
 
@@ -28,10 +27,6 @@ class InMemoryConferenceRepository(
     private val appContext: Context,
     private val dataStore: DataStore<Preferences>
 ): ConferenceRepository {
-
-    override suspend fun getSessionInfoById(sessionId: Int): SessionInfo? {
-        return loadConferenceInfo().find { it.session.id == sessionId }
-    }
 
     override suspend fun toggleFavorite(sessionId: Int): List<Int> {
         val updatedFavorites: MutableList<Int> = getFavoriteIds().first().toMutableList()
@@ -62,7 +57,6 @@ class InMemoryConferenceRepository(
 
         val json = Json { ignoreUnknownKeys = true }
         val favoriteIds: List<Int> = getFavoriteIds().first()
-        Log.d(TAG, "loaded the favorite ids: $favoriteIds")
 
         try {
             val conferenceData = appContext.resources.openRawResource(R.raw.conference_session_info)

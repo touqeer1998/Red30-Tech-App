@@ -9,14 +9,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.red30.MainViewModel
 import com.example.red30.compose.ui.Red30TechAppBar
 import com.example.red30.compose.ui.Red30TechBottomBar
 import com.example.red30.compose.ui.Red30TechNavHost
 import com.example.red30.compose.ui.Screen
 import com.example.red30.ui.theme.Red30TechTheme
 import org.koin.androidx.compose.KoinAndroidContext
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun Red30TechApp(modifier: Modifier = Modifier) {
@@ -28,8 +26,6 @@ fun Red30TechApp(modifier: Modifier = Modifier) {
             val currentScreen: Screen = Screen.valueOf(
                 currentDestination?.route ?: Screen.Sessions.route
             )
-
-            val viewModel: MainViewModel = koinViewModel<MainViewModel>()
 
             Scaffold(
                 modifier = modifier.fillMaxSize(),
@@ -50,7 +46,6 @@ fun Red30TechApp(modifier: Modifier = Modifier) {
             ) { innerPadding ->
                 Red30TechNavHost(
                     navController = navController,
-                    viewModel = viewModel,
                     modifier = Modifier.padding(innerPadding)
                 )
             }
