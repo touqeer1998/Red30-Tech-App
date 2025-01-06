@@ -31,7 +31,12 @@ fun SpeakersScreen(
         LazyColumn(
             modifier = modifier.fillMaxSize(),
         ) {
-            items(uiState.speakers) {
+            items(
+                uiState.speakers,
+                key = { speaker ->
+                    speaker.id
+                }
+            ) {
                 SpeakerItem(speaker = it)
             }
         }

@@ -23,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
             app:layout_constraintTop_toTopOf="@id/speakerImage"
             app:layout_constraintStart_toEndOf="@id/speakerImage"
             style="?attr/textAppearanceTitleLarge"
@@ -30,12 +31,13 @@
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/name"
             app:layout_constraintStart_toStartOf="@id/name"
+            app:layout_constraintEnd_toEndOf="parent"
             style="?attr/textAppearanceBodyLarge"
             tools:text="Senior Engineer" />
 
@@ -43,7 +45,7 @@
             android:id="@+id/organization"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:textStyle="italic"
             app:layout_constraintTop_toBottomOf="@id/title"
             app:layout_constraintStart_toStartOf="@id/title"

@@ -26,7 +26,12 @@ fun FavoritesScreen(
             LazyColumn(
                 modifier = modifier.fillMaxSize(),
             ) {
-                items(uiState.favorites) { sessionInfo ->
+                items(
+                    uiState.favorites,
+                    key = { sessionInfo ->
+                        sessionInfo.session.id
+                    }
+                ) { sessionInfo ->
                     val sessionId = sessionInfo.session.id
                     SessionItem(
                         sessionInfo = sessionInfo,

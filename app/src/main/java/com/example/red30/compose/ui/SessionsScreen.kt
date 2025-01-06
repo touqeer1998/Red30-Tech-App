@@ -76,7 +76,12 @@ fun SessionsScreen(
                 modifier = modifier.fillMaxSize(),
                 state = listState
             ) {
-                items(uiState.sessionInfosByDay) { sessionInfo ->
+                items(
+                    uiState.sessionInfosByDay,
+                    key = { sessionInfo ->
+                        sessionInfo.session.id
+                    }
+                ) { sessionInfo ->
                     val sessionId = sessionInfo.session.id
                     SessionItem(
                         sessionInfo = sessionInfo,

@@ -2,8 +2,6 @@
     <string name="app_name">Red30 Tech</string>
     <string name="view_app_name">Red30 Tech View</string>
     <string name="sessions_label">Sessions</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="speakers_label">Speakers</string>
     <string name="favorites_label">Favorites</string>
     <string name="speaker_image_label">speaker image</string>

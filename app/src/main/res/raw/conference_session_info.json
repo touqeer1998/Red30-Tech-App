@@ -217,6 +217,13 @@
       "image_url": "https://i.pravatar.cc/150?img=54",
       "bio": "Jayden Williams loves helping others get rich\u2014in a smart way. She never wants to see you starting a fundraiser to buy a sandwich.",
       "id": 24
+    },
+    {
+      "name": "Justine Evans",
+      "title": "Computer Coding Instructor",
+      "organization": "Orange Valley University",
+      "bio": "Justine Evans began coding when she was 11, and hasn't stopped since. She has developed an open-source online learning platform for all of the state's grade schools. ",
+      "id": 34
     }
   ],
   "sessions": [
@@ -525,10 +532,11 @@
       "end_time": "12:00 PM",
       "day": "day1",
       "session_name": "AI and Education-Developing a Data Strategy",
+      "session_description": "According to research, the majority of higher education educators agree that AI will be a key part of their educational toolbox moving forward. The same research shows that nearly all of these educators have absolutely no clue how to build AI into their programs. This session gives practical suggestions for getting started on an AI data strategy.",
       "session_track": "Education and Training",
       "industry": "Education",
       "room_name": "Room 102",
-      "speaker_id": 5,
+      "speaker_id": 34,
       "id": 32
     },
     {
@@ -554,17 +562,6 @@
       "room_name": "Room 202",
       "speaker_id": 30,
       "id": 34
-    },
-    {
-      "start_time": "10:30 AM",
-      "end_time": "11:30 AM",
-      "day": "day1",
-      "session_name": "Hands-On Hacks",
-      "session_track": "Education and Training",
-      "industry": "Education",
-      "room_name": "Room 105",
-      "speaker_id": 5,
-      "id": 36
     },
     {
       "start_time": "10:30 AM",
@@ -625,17 +622,6 @@
       "room_name": "West Ballroom",
       "speaker_id": 40,
       "id": 41
-    },
-    {
-      "start_time": "11:00 AM",
-      "end_time": "12:00 PM",
-      "day": "day1",
-      "session_name": "Housebuilding and 3D Printing",
-      "session_track": "3D Printing and Design",
-      "industry": "Technology",
-      "room_name": "Room 201",
-      "speaker_id": 5,
-      "id": 42
     },
     {
       "start_time": "02:00 PM",
@@ -747,17 +733,6 @@
     },
     {
       "start_time": "02:00 PM",
-      "end_time": "03:30 PM",
-      "day": "day2",
-      "session_name": "Virtual Reality for Remote Learning",
-      "session_track": "Education and Training",
-      "industry": "Education",
-      "room_name": "Room 104",
-      "speaker_id": 5,
-      "id": 53
-    },
-    {
-      "start_time": "02:00 PM",
       "end_time": "03:00 PM",
       "day": "day2",
       "session_name": "Yarnathon for Justice",
@@ -797,10 +772,11 @@
       "end_time": "05:00 PM",
       "day": "day2",
       "session_name": "AI and Education-Developing a Data Strategy",
+      "session_description": "According to research, the majority of higher education educators agree that AI will be a key part of their educational toolbox moving forward. The same research shows that nearly all of these educators have absolutely no clue how to build AI into their programs. This session gives practical suggestions for getting started on an AI data strategy.",
       "session_track": "Education and Training",
       "industry": "Education",
       "room_name": "Room 102",
-      "speaker_id": 5,
+      "speaker_id": 34,
       "id": 57
     },
     {
@@ -814,28 +790,6 @@
       "room_name": "Room 103",
       "speaker_id": 22,
       "id": 58
-    },
-    {
-      "start_time": "04:00 PM",
-      "end_time": "05:30 AM",
-      "day": "day2",
-      "session_name": "Augmented Real(ity) Estate",
-      "session_track": "Virtual and Augmented Reality",
-      "industry": "Technology",
-      "room_name": "Room 104",
-      "speaker_id": 5,
-      "id": 59
-    },
-    {
-      "start_time": "04:00 PM",
-      "end_time": "05:00 PM",
-      "day": "day2",
-      "session_name": "Hands-On Hacks",
-      "session_track": "Education and Training",
-      "industry": "Education",
-      "room_name": "Grand View Hall",
-      "speaker_id": 5,
-      "id": 60
     },
     {
       "start_time": "04:00 PM",
@@ -887,17 +841,6 @@
     },
     {
       "start_time": "04:00 PM",
-      "end_time": "05:00 PM",
-      "day": "day2",
-      "session_name": "Virtual Reality for Remote Learning",
-      "session_track": "Education and Training",
-      "industry": "Education",
-      "room_name": "Room 105",
-      "speaker_id": 5,
-      "id": 65
-    },
-    {
-      "start_time": "04:00 PM",
       "end_time": "05:30 PM",
       "day": "day2",
       "session_name": "VR in Town and City Planning",
@@ -919,39 +862,6 @@
       "room_name": "West Ballroom",
       "speaker_id": 40,
       "id": 67
-    },
-    {
-      "start_time": "04:30 PM",
-      "end_time": "05:30 PM",
-      "day": "day2",
-      "session_name": "Housebuilding and 3D Printing",
-      "session_track": "3D Printing and Design",
-      "industry": "Technology",
-      "room_name": "Room 201",
-      "speaker_id": 5,
-      "id": 68
-    },
-    {
-      "start_time": "06:30 PM",
-      "end_time": "09:00 PM",
-      "day": "day2",
-      "session_name": "Experience Makers Festival",
-      "session_track": "Entertainment",
-      "industry": "Entertainment",
-      "room_name": "Event Center",
-      "speaker_id": 5,
-      "id": 69
-    },
-    {
-      "start_time": "10:30 AM",
-      "end_time": "11:30 AM",
-      "day": "day2",
-      "session_name": "Hands-On Hacks",
-      "session_track": "Education and Training",
-      "industry": "Education",
-      "room_name": "Grand View Hall",
-      "speaker_id": 5,
-      "id": 71
     },
     {
       "start_time": "10:30 AM",
