@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.safeargs)
+    alias(libs.plugins.screenshot)
 }
 
 android {
@@ -41,6 +42,7 @@ android {
         compose = true
         viewBinding = true
     }
+    experimentalProperties["android.experimental.enableScreenshotTest"] = true
 }
 
 dependencies {

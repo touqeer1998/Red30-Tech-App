@@ -67,7 +67,7 @@
 
         <TextView
             android:id="@+id/speakerName"
-            style="?attr/textAppearanceTitleLarge"
+            style="?attr/textAppearanceTitleMedium"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="4dp"
@@ -99,21 +99,30 @@
             android:background="@drawable/dashed_turquoise_border"
             app:layout_constraintStart_toStartOf="@id/speakerImage"
             app:layout_constraintTop_toBottomOf="@id/speakerImage">
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
 
-            <View
+            <com.example.red30.viewbased.views.TimeItemView
+                android:id="@+id/dayItem"
+                android:padding="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:layout_height="wrap_content" />
 
-            <View
+            <com.example.red30.viewbased.views.TimeItemView
+                android:id="@+id/startTime"
+                android:padding="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:layout_height="wrap_content" />
 
-            <View
+            <com.example.red30.viewbased.views.TimeItemView
+                android:id="@+id/endTime"
+                android:padding="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:layout_height="wrap_content" />
+
+            <com.example.red30.viewbased.views.TimeItemView
+                android:id="@+id/duration"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <TextView

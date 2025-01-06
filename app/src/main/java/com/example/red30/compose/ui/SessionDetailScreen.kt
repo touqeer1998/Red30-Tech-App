@@ -182,7 +182,7 @@ fun TimeItem(
         Icon(
             imageVector = icon,
             tint = MaterialTheme.colorScheme.tertiary,
-            contentDescription = null
+            contentDescription = stringResource(R.string.time_icon)
         )
         Spacer(Modifier.width(4.dp))
         Text(

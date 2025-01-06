@@ -202,6 +202,21 @@
       "organization": "Red30 Design",
       "bio": "Rose Ortiz is one of the country's foremost drone videographers, and assists public service organizations with using drones for service and safety.",
       "id": 44
+    },
+    {
+      "name": "Stephen Tao",
+      "title": "Digital Service Engineer",
+      "organization": "City of Orange Valley",
+      "bio": "Stephen Tao is passionate about VR and loves to show off projects he and his team have collaborated on\u2014including the first completely ADA-compliant renovation to an entire neighborhood in Orange Valley.",
+      "id": 47
+    },
+    {
+      "name": "Jayden Williams",
+      "title": "Sr. Program Manager",
+      "organization": "Red30 Tech",
+      "image_url": "https://i.pravatar.cc/150?img=54",
+      "bio": "Jayden Williams loves helping others get rich\u2014in a smart way. She never wants to see you starting a fundraiser to buy a sandwich.",
+      "id": 24
     }
   ],
   "sessions": [
@@ -414,10 +429,11 @@
       "end_time": "05:30 PM",
       "day": "day1",
       "session_name": "VR in Town and City Planning",
+      "session_description": "The City of Orange Valley is one of the first in the state to embrace the use of VR in its town planning. Panelists share examples of zoning request mockups, a proposed development, and other infrastructure proposals and plans that help both citizens and developers envision and edit prior to implementation.",
       "session_track": "Virtual and Augmented Reality",
       "industry": "Technology",
       "room_name": "Room 202",
-      "speaker_id": 5,
+      "speaker_id": 47,
       "id": 22
     },
     {
@@ -567,10 +583,11 @@
       "end_time": "12:00 PM",
       "day": "day1",
       "session_name": "Makers Making Money",
+      "session_description": "Making money as a maker might be what we all dream of, but business acumen has to coexist with ideas and creativity. Learn how to balance the dream and reality. ",
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "Marketing",
       "room_name": "Room 204",
-      "speaker_id": 5,
+      "speaker_id": 24,
       "id": 38
     },
     {
@@ -709,10 +726,11 @@
       "end_time": "03:30 PM",
       "day": "day2",
       "session_name": "Makers Making Money",
+      "session_description": "Making money as a maker might be what we all dream of, but business acumen has to coexist with ideas and creativity. Learn how to balance the dream and reality. ",
       "session_track": "Arts, Crafts, Fashion, and Fare",
       "industry": "Marketing",
       "room_name": "Room 204",
-      "speaker_id": 5,
+      "speaker_id": 24,
       "id": 51
     },
     {
@@ -883,10 +901,11 @@
       "end_time": "05:30 PM",
       "day": "day2",
       "session_name": "VR in Town and City Planning",
+      "session_description": "The City of Orange Valley is one of the first in the state to embrace the use of VR in its town planning. Panelists share examples of zoning request mockups, a proposed development, and other infrastructure proposals and plans that help both citizens and developers envision and edit prior to implementation.",
       "session_track": "Virtual and Augmented Reality",
       "industry": "Technology",
       "room_name": "Room 203",
-      "speaker_id": 5,
+      "speaker_id": 47,
       "id": 66
     },
     {

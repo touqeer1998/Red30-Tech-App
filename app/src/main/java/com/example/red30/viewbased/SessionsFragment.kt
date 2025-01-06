@@ -12,6 +12,7 @@ import com.example.red30.MainNavGraphDirections
 import com.example.red30.MainViewModel
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.Day
+import com.example.red30.data.sessionInfosByDay
 import com.example.red30.databinding.FragmentSessionsBinding
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.launch
@@ -70,7 +71,7 @@ class SessionsFragment : Fragment() {
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle)
                 .collect { uiState ->
                     if (uiState is ConferenceDataUiState.Loaded) {
-                        adapter.setItems(uiState.sessionInfos)
+                        adapter.setItems(uiState.sessionInfosByDay)
                     }
                 }
         }

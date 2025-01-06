@@ -2,27 +2,23 @@ package com.example.red30.viewbased
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.MenuHost
-import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.example.red30.MainViewModel
 import com.example.red30.R
 import com.example.red30.data.ConferenceDataUiState
+import com.example.red30.data.Day
+import com.example.red30.data.duration
 import com.example.red30.data.initial
 import com.example.red30.databinding.FragmentSessionDetailBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
-class SessionDetailFragment : Fragment(), MenuProvider {
+class SessionDetailFragment : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModel()
 
@@ -43,11 +39,6 @@ class SessionDetailFragment : Fragment(), MenuProvider {
         super.onViewCreated(view, savedInstanceState)
 
         (requireActivity() as AppCompatActivity).supportActionBar?.title = ""
-        (requireActivity() as MenuHost).addMenuProvider(
-            this,
-            viewLifecycleOwner,
-            Lifecycle.State.RESUMED
-        )
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.uiState
@@ -69,11 +60,36 @@ class SessionDetailFragment : Fragment(), MenuProvider {
                 name.text = session.name
                 track.text = session.track
                 roomName.text = session.roomName
+                description.text = session.description
+
                 speakerName.text = speaker.name
                 speakerImage.letter = speaker.initial
                 speakerImage.imageUrl = speaker.imageUrl
                 speakerTitle.text = speaker.title
-                description.text = session.description
+
+                dayItem.setValues(
+                    iconResourceId = R.drawable.ic_calendar_today,
+                    labelResourceId = R.string.day_label,
+                    text = if (session.day == Day.Day1)
+                        getString(R.string.day_1_label)
+                    else
+                        getString(R.string.day_2_label)
+                )
+                startTime.setValues(
+                    iconResourceId = R.drawable.ic_schedule,
+                    labelResourceId = R.string.start_time_label,
+                    text = session.startTime
+                )
+                endTime.setValues(
+                    iconResourceId = R.drawable.ic_schedule,
+                    labelResourceId = R.string.end_time_label,
+                    text = session.endTime
+                )
+                duration.setValues(
+                    iconResourceId = R.drawable.ic_hourglass_empty,
+                    labelResourceId = R.string.time_duration_label,
+                    text = "${session.duration} minutes"
+                )
             }
         }
     }
@@ -81,19 +97,5 @@ class SessionDetailFragment : Fragment(), MenuProvider {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-        menuInflater.inflate(R.menu.session_detail_menu, menu)
-    }
-
-    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        return when (menuItem.itemId) {
-            R.id.save_session -> {
-                true
-            }
-
-            else -> false
-        }
     }
 }

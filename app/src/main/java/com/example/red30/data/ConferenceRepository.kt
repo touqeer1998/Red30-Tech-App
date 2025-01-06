@@ -53,8 +53,6 @@ class InMemoryConferenceRepository(
     }
 
     override suspend fun loadConferenceInfo(): List<SessionInfo> = withContext(Dispatchers.IO) {
-        Log.d(TAG, "loading the conference info")
-
         val json = Json { ignoreUnknownKeys = true }
         val favoriteIds: List<Int> = getFavoriteIds().first()
 
