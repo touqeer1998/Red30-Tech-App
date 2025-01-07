@@ -1,32 +1,29 @@
 package com.example.red30.data
 
-import com.example.red30.data.ConferenceDataUiState.Loaded
-
-sealed class ConferenceDataUiState {
-    data class Loaded(
-        val day: Day = Day.Day1,
-        val sessionInfos: List<SessionInfo> = emptyList(),
-        val selectedSession: SessionInfo? = null
-    ): ConferenceDataUiState() {
-        companion object
-    }
-
-    object Loading: ConferenceDataUiState()
+data class ConferenceDataUiState(
+    val day: Day = Day.Day1,
+    val sessionInfos: List<SessionInfo> = emptyList(),
+    val selectedSession: SessionInfo? = null,
+    val isLoading: Boolean = false,
+    val errorMessage: Int? = null,
+    val snackbarMessage: Int? = null,
+) {
+    companion object
 }
 
-val Loaded.speakers: List<Speaker>
+val ConferenceDataUiState.speakers: List<Speaker>
     get() = sessionInfos.map { it.speaker }.distinctBy { it.id }
 
-val Loaded.favorites: List<SessionInfo>
+val ConferenceDataUiState.favorites: List<SessionInfo>
     get() = sessionInfos.filter { it.isFavorite == true }
 
-val Loaded.sessionInfosByDay: List<SessionInfo>
+val ConferenceDataUiState.sessionInfosByDay: List<SessionInfo>
     get() = sessionInfos.filter { it.day == day }
 
-fun Loaded.getSelectedSession(sessionId: Int): SessionInfo? {
+fun ConferenceDataUiState.getSelectedSession(sessionId: Int): SessionInfo? {
     return sessionInfos.find { it.session.id == sessionId }
 }
 
-fun Loaded.Companion.fakes() = Loaded(
+fun ConferenceDataUiState.Companion.fakes() = ConferenceDataUiState(
     sessionInfos = listOf(SessionInfo.fake(), SessionInfo.fake2()),
 )

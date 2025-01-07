@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.example.red30.MainViewModel
-import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.speakers
 import com.example.red30.databinding.FragmentSpeakersBinding
 import kotlinx.coroutines.launch
@@ -43,7 +42,7 @@ class SpeakersFragment : Fragment() {
             viewModel.uiState
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle)
                 .collect { uiState ->
-                    if (uiState is ConferenceDataUiState.Loaded) {
+                    if (!uiState.isLoading) {
                         adapter.setItems(uiState.speakers)
                     }
                 }

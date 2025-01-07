@@ -22,7 +22,7 @@ fun FavoritesScreen(
     onFavoriteClick: (Int) -> Unit = {}
 ) {
     Column {
-        if (uiState is ConferenceDataUiState.Loaded) {
+        if (!uiState.isLoading) {
             LazyColumn(
                 modifier = modifier.fillMaxSize(),
             ) {
@@ -49,7 +49,7 @@ fun FavoritesScreen(
 private fun FavoritesScreenPreview() {
     Red30TechTheme {
         FavoritesScreen(
-            uiState = ConferenceDataUiState.Loaded.fakes()
+            uiState = ConferenceDataUiState.fakes()
         )
     }
 }

@@ -21,7 +21,7 @@ class SpeakerImageView @JvmOverloads constructor(
     private val binding: ViewSpeakerImageBinding =
         ViewSpeakerImageBinding.inflate(LayoutInflater.from(context), this)
 
-    var letter: String = ""
+    var name: String = ""
         set(value) {
             field = value
             initializeView()
@@ -34,7 +34,7 @@ class SpeakerImageView @JvmOverloads constructor(
         }
 
     private fun initializeView() {
-        binding.speakerInitial.letter = letter
+        binding.speakerInitial.name = name
         if (imageUrl.isNullOrEmpty()) {
             binding.speakerInitial.visible()
             binding.speakerImage.invisible()

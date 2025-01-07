@@ -9,6 +9,7 @@ import com.example.red30.compose.ui.SessionsScreen
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.fake
+import com.example.red30.data.fake2
 import com.example.red30.ui.theme.Red30TechTheme
 
 @Suppress("unused")
@@ -19,7 +20,7 @@ class SessionScreenshotTests {
     fun SessionDetailScreenPreview() {
         Red30TechTheme {
             SessionDetailScreen(
-                uiState = ConferenceDataUiState.Loaded(
+                uiState = ConferenceDataUiState(
                     selectedSession = SessionInfo.fake(),
                 )
             )
@@ -41,7 +42,7 @@ class SessionScreenshotTests {
     fun SessionScreenLoadingPreview() {
         Red30TechTheme {
             SessionsScreen(
-                uiState = ConferenceDataUiState.Loading
+                uiState = ConferenceDataUiState(isLoading = true)
             )
         }
     }
@@ -51,8 +52,8 @@ class SessionScreenshotTests {
     fun SessionScreenPreview() {
         Red30TechTheme {
             SessionsScreen(
-                uiState = ConferenceDataUiState.Loaded(
-                    sessionInfos = List(3) { SessionInfo.fake() }
+                uiState = ConferenceDataUiState(
+                    sessionInfos = listOf(SessionInfo.fake(), SessionInfo.fake2())
                 )
             )
         }

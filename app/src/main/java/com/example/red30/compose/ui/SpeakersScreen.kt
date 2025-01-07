@@ -27,7 +27,7 @@ fun SpeakersScreen(
     modifier: Modifier = Modifier,
     uiState: ConferenceDataUiState,
 ) {
-    if (uiState is ConferenceDataUiState.Loaded) {
+    if (!uiState.isLoading) {
         LazyColumn(
             modifier = modifier.fillMaxSize(),
         ) {

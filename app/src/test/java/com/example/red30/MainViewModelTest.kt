@@ -2,13 +2,15 @@ package com.example.red30
 
 import androidx.lifecycle.SavedStateHandle
 import app.cash.turbine.test
-import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.ConferenceRepository
 import com.example.red30.data.Day
+import com.example.red30.data.SessionInfo
+import com.example.red30.data.fake2
 import com.example.red30.data.favorites
 import com.example.red30.data.sessionInfosByDay
 import com.example.red30.fakes.FakeConferenceRepository
 import com.example.red30.util.MainDispatcherRule
+import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
@@ -23,10 +25,6 @@ import org.koin.dsl.module
 import org.koin.test.KoinTest
 import org.koin.test.KoinTestRule
 import org.koin.test.inject
-import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
-import kotlin.test.assertNull
-import kotlin.test.assertTrue
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class MainViewModelTest : KoinTest {
@@ -53,7 +51,7 @@ class MainViewModelTest : KoinTest {
 
         viewModel.uiState.test {
             var state = awaitItem()
-            assertTrue(state is ConferenceDataUiState.Loading)
+            assertThat(state.isLoading).isTrue()
 
             cancelAndIgnoreRemainingEvents()
         }
@@ -65,13 +63,13 @@ class MainViewModelTest : KoinTest {
 
         viewModel.uiState.test {
             var state = awaitItem()
-            assertTrue(state is ConferenceDataUiState.Loading)
+            assertThat(state.isLoading).isTrue()
 
             state = awaitItem()
-            assertTrue(state is ConferenceDataUiState.Loaded)
+            assertThat(state.isLoading).isFalse()
 
-            assertEquals(2, state.sessionInfos.size)
-            assertEquals(Day.Day1, state.day)
+            assertThat(state.sessionInfos.size).isEqualTo(2)
+            assertThat(state.day).isEqualTo(Day.Day1)
 
             cancelAndIgnoreRemainingEvents()
         }
@@ -85,11 +83,9 @@ class MainViewModelTest : KoinTest {
         advanceUntilIdle()
 
         val state = viewModel.uiState.value
-        assertTrue(state is ConferenceDataUiState.Loaded)
-
-        assertEquals(1, state.sessionInfosByDay.size)
-        assertEquals(Day.Day2, state.sessionInfosByDay[0].day)
-        assertEquals(Day.Day2, state.day)
+        assertThat(state.sessionInfosByDay.size).isEqualTo(1)
+        assertThat(SessionInfo.fake2()).isIn(state.sessionInfosByDay)
+        assertThat(state.day).isEqualTo(Day.Day2)
     }
 
     @Test
@@ -100,10 +96,8 @@ class MainViewModelTest : KoinTest {
         advanceUntilIdle()
 
         val state = viewModel.uiState.value
-        assertTrue(state is ConferenceDataUiState.Loaded)
-
-        assertNotNull(state.selectedSession)
-        assertEquals(1, state.selectedSession.session.id)
+        assertThat(state.selectedSession).isNotNull()
+        assertThat(state.selectedSession!!.session.id).isEqualTo(1)
     }
 
     @Test
@@ -114,9 +108,7 @@ class MainViewModelTest : KoinTest {
         advanceUntilIdle()
 
         val state = viewModel.uiState.value
-        assertTrue(state is ConferenceDataUiState.Loaded)
-
-        assertNull(state.selectedSession)
+        assertThat(state.selectedSession).isNull()
     }
 
     @Test
@@ -129,10 +121,8 @@ class MainViewModelTest : KoinTest {
         advanceUntilIdle()
 
         val state = viewModel.uiState.value
-        assertTrue(state is ConferenceDataUiState.Loaded)
-
-        assertEquals(2, state.favorites.size)
-        assertEquals(1, state.favorites[0].session.id)
+        assertThat(state.favorites.size).isEqualTo(2)
+        assertThat(state.favorites[0].session.id).isEqualTo(1)
     }
 
     @Test
@@ -143,9 +133,7 @@ class MainViewModelTest : KoinTest {
         advanceUntilIdle()
 
         val state = viewModel.uiState.value
-        assertTrue(state is ConferenceDataUiState.Loaded)
-
-        assertTrue(state.favorites.isEmpty())
+        assertThat(state.favorites.isEmpty()).isTrue()
     }
 
     @Test
@@ -156,10 +144,9 @@ class MainViewModelTest : KoinTest {
         advanceUntilIdle()
 
         val state = viewModel.uiState.value
-        assertTrue(state is ConferenceDataUiState.Loaded)
-
-        assertEquals(1, state.favorites.size)
-        assertEquals(1, state.favorites[0].session.id)
+        assertThat(state.favorites.size).isEqualTo(1)
+        assertThat(state.favorites[0].session.id).isEqualTo(1)
+        assertThat(state.snackbarMessage).isEqualTo(R.string.save_remove_favorites_success)
     }
 
     @Test
@@ -172,15 +159,15 @@ class MainViewModelTest : KoinTest {
         advanceUntilIdle()
 
         val state = viewModel.uiState.value
-        assertTrue(state is ConferenceDataUiState.Loaded)
-
-        assertTrue(state.favorites.isEmpty())
+        assertThat(state.favorites.isEmpty()).isTrue()
     }
 
     @Test
     fun `toggleFavorite exception handling should not crash`() = runTest(testDispatcher) {
         val conferenceRepository: ConferenceRepository by inject()
-        (conferenceRepository as FakeConferenceRepository).throwFavoritesException = true
+        (conferenceRepository as FakeConferenceRepository).apply {
+            throwFavoritesException = true
+        }
 
         val viewModel = MainViewModel(
             savedStateHandle = SavedStateHandle(),
@@ -191,9 +178,8 @@ class MainViewModelTest : KoinTest {
         advanceUntilIdle()
 
         val state = viewModel.uiState.value
-        assertTrue(state is ConferenceDataUiState.Loaded)
-
-        assertTrue(state.favorites.isEmpty())
+        assertThat(state.favorites.isEmpty()).isTrue()
+        assertThat(state.snackbarMessage).isEqualTo(R.string.save_remove_favorites_error)
     }
 
     @Test
@@ -206,14 +192,13 @@ class MainViewModelTest : KoinTest {
 
         viewModel.uiState.test {
             var state = awaitItem()
-            assertTrue(state is ConferenceDataUiState.Loading)
+            assertThat(state.isLoading).isTrue()
 
             state = awaitItem()
-            assertTrue(state is ConferenceDataUiState.Loaded)
-
-            assertEquals(1, state.sessionInfosByDay.size)
-            assertEquals(Day.Day2, state.sessionInfosByDay[0].day)
-            assertEquals(Day.Day2, state.day)
+            assertThat(state.isLoading).isFalse()
+            assertThat(state.sessionInfosByDay.size).isEqualTo(1)
+            assertThat(state.sessionInfosByDay[0].day).isEqualTo(Day.Day2)
+            assertThat(state.day).isEqualTo(Day.Day2)
 
             cancelAndIgnoreRemainingEvents()
         }
@@ -222,7 +207,9 @@ class MainViewModelTest : KoinTest {
     @Test
     fun `loadConferenceInfo exception handling should not crash`() = runTest(testDispatcher) {
         val conferenceRepository: ConferenceRepository by inject()
-        (conferenceRepository as FakeConferenceRepository).throwLoadInfoException = true
+        (conferenceRepository as FakeConferenceRepository).apply {
+            throwLoadInfoException = true
+        }
 
         val viewModel = MainViewModel(
             savedStateHandle = SavedStateHandle(),
@@ -231,12 +218,12 @@ class MainViewModelTest : KoinTest {
 
         viewModel.uiState.test {
             var state = awaitItem()
-            assertTrue(state is ConferenceDataUiState.Loading)
+            assertThat(state.isLoading).isTrue()
 
             state = awaitItem()
-            assertTrue(state is ConferenceDataUiState.Loaded)
-
-            assertTrue(state.sessionInfos.isEmpty())
+            assertThat(state.isLoading).isFalse()
+            assertThat(state.sessionInfos.isEmpty()).isTrue()
+            assertThat(state.errorMessage).isNotNull()
 
             cancelAndIgnoreRemainingEvents()
         }

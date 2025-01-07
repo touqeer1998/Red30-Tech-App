@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.red30.data.Speaker
-import com.example.red30.data.initial
 import com.example.red30.databinding.ViewSpeakerItemBinding
 
 class SpeakerItemAdapter() : RecyclerView.Adapter<SpeakerItemAdapter.ViewHolder>() {
@@ -20,7 +19,7 @@ class SpeakerItemAdapter() : RecyclerView.Adapter<SpeakerItemAdapter.ViewHolder>
                 title.text = speaker.title
                 organization.text = speaker.organization
                 bio.text = speaker.bio
-                speakerImage.letter = speaker.initial
+                speakerImage.name = speaker.name
                 speakerImage.imageUrl = speaker.imageUrl
             }
         }

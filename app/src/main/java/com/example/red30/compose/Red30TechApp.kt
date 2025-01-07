@@ -3,8 +3,11 @@ package com.example.red30.compose
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -21,6 +24,7 @@ fun Red30TechApp(modifier: Modifier = Modifier) {
     Red30TechTheme {
         KoinAndroidContext {
             val navController = rememberNavController()
+            val snackbarHostState = remember { SnackbarHostState() }
             val navBackStackEntry by navController.currentBackStackEntryAsState()
             val currentDestination = navBackStackEntry?.destination
             val currentScreen: Screen = Screen.valueOf(
@@ -37,6 +41,7 @@ fun Red30TechApp(modifier: Modifier = Modifier) {
                         }
                     )
                 },
+                snackbarHost = { SnackbarHost(snackbarHostState) },
                 bottomBar = {
                     Red30TechBottomBar(
                         navController = navController,
@@ -46,6 +51,7 @@ fun Red30TechApp(modifier: Modifier = Modifier) {
             ) { innerPadding ->
                 Red30TechNavHost(
                     navController = navController,
+                    snackbarHostState = snackbarHostState,
                     modifier = Modifier.padding(innerPadding)
                 )
             }

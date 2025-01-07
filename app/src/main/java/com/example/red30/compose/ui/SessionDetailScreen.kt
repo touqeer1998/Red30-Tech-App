@@ -49,7 +49,7 @@ fun SessionDetailScreen(
     LazyColumn(
         modifier = modifier.fillMaxSize()
     ) {
-        if (uiState is ConferenceDataUiState.Loaded && uiState.selectedSession != null) {
+        if (!uiState.isLoading && uiState.selectedSession != null) {
             with(uiState.selectedSession) {
                 item {
                     SessionTags(
@@ -199,7 +199,7 @@ fun TimeItem(
 private fun SessionDetailScreenPreview() {
     Red30TechTheme {
         SessionDetailScreen(
-            uiState = ConferenceDataUiState.Loaded(
+            uiState = ConferenceDataUiState(
                 selectedSession = SessionInfo.fake(),
             )
         )

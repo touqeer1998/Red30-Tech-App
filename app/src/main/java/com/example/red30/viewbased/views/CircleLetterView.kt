@@ -15,10 +15,10 @@ class CircleLetterView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    var letter: String = ""
+    var name: String = ""
         set(value) {
             field = value
-            letterColor = pickBackgroundColorForName(context)
+            letterColor = pickBackgroundColorForName(context, value)
 
             invalidate()
             requestLayout()
@@ -42,6 +42,11 @@ class CircleLetterView @JvmOverloads constructor(
         paint.textAlign = Paint.Align.CENTER
 
         // Center the letter
-        canvas.drawText(letter, centerX, centerY - ((paint.descent() + paint.ascent()) / 2), paint)
+        canvas.drawText(
+            name.first().uppercase(),
+            centerX,
+            centerY - ((paint.descent() + paint.ascent()) / 2),
+            paint
+        )
     }
 }

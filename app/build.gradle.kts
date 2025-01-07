@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.testFixturesCompileOnly
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -8,6 +10,7 @@ plugins {
     alias(libs.plugins.screenshot)
 }
 
+@Suppress("UnstableApiUsage")
 android {
     namespace = "com.example.red30"
     compileSdk = 35
@@ -47,6 +50,9 @@ android {
             isReturnDefaultValues = true // needed for handling Log.* calls in unit tests
         }
     }
+    testFixtures {
+        enable = true
+    }
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
 }
 
@@ -84,15 +90,24 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
 
+    testFixturesImplementation(platform(libs.androidx.compose.bom))
+    testFixturesImplementation(libs.androidx.ui)
+    testFixturesCompileOnly(libs.kotlin.stdlib)
+    testFixturesRuntimeOnly(libs.kotlin.stdlib)
+
     testImplementation(libs.junit)
     testImplementation(libs.koin.test)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.app.cash.turbine)
+    testImplementation(libs.androidx.test.ext.truth)
 
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.test.rules)
+    androidTestImplementation(libs.androidx.test.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.androidx.compose.ui.test)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)

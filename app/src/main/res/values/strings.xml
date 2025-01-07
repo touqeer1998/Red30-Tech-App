@@ -22,4 +22,8 @@
     <string name="time_duration_label">Duration</string>
     <string name="day_label">Day</string>
     <string name="time_icon">time item icon</string>
+    <string name="save_remove_favorites_error">Unable to save/remove this session.</string>
+    <string name="unable_to_retrieve_session_error">Unable to retrieve this session.</string>
+    <string name="unable_to_load_conference_data_error">Unable to load conference information.</string>
+    <string name="save_remove_favorites_success">Saved/removed session from favorites.</string>
 </resources>

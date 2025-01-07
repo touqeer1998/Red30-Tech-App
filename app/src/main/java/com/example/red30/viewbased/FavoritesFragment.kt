@@ -10,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.red30.MainNavGraphDirections
 import com.example.red30.MainViewModel
-import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.favorites
 import com.example.red30.databinding.FragmentFavoritesBinding
 import kotlinx.coroutines.launch
@@ -53,7 +52,7 @@ class FavoritesFragment : Fragment() {
             viewModel.uiState
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle)
                 .collect { uiState ->
-                    if (uiState is ConferenceDataUiState.Loaded) {
+                    if (!uiState.isLoading) {
                         adapter.setItems(uiState.favorites)
                     }
                 }

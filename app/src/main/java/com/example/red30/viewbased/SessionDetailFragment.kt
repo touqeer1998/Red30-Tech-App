@@ -13,7 +13,6 @@ import com.example.red30.R
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.Day
 import com.example.red30.data.duration
-import com.example.red30.data.initial
 import com.example.red30.databinding.FragmentSessionDetailBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
@@ -44,14 +43,14 @@ class SessionDetailFragment : Fragment() {
             viewModel.uiState
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle)
                 .collect { uiState ->
-                    if (uiState is ConferenceDataUiState.Loaded) {
+                    if (!uiState.isLoading) {
                         updateUi(uiState)
                     }
                 }
         }
     }
 
-    private fun updateUi(uiState: ConferenceDataUiState.Loaded) {
+    private fun updateUi(uiState: ConferenceDataUiState) {
         uiState.selectedSession?.let { it
             val session = it.session
             val speaker = it.speaker
@@ -63,7 +62,7 @@ class SessionDetailFragment : Fragment() {
                 description.text = session.description
 
                 speakerName.text = speaker.name
-                speakerImage.letter = speaker.initial
+                speakerImage.name = speaker.name
                 speakerImage.imageUrl = speaker.imageUrl
                 speakerTitle.text = speaker.title
 

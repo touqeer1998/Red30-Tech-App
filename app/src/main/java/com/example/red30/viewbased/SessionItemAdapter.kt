@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.red30.data.SessionInfo
-import com.example.red30.data.initial
 import com.example.red30.databinding.ViewSessionItemBinding
 
 class SessionItemAdapter(
@@ -27,7 +26,7 @@ class SessionItemAdapter(
                 roomName.text = session.roomName
                 speakerName.text = speaker.name
                 favorite.isSelected = sessionInfo.isFavorite
-                speakerImage.letter = speaker.initial
+                speakerImage.name = speaker.name
                 speakerImage.imageUrl = speaker.imageUrl
 
                 favorite.setOnClickListener {

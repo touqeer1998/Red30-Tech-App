@@ -11,6 +11,7 @@ import com.example.red30.data.getSelectedSession
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 private const val TAG = "MainViewModel"
@@ -21,7 +22,9 @@ class MainViewModel(
     private val conferenceRepository: ConferenceRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<ConferenceDataUiState>(ConferenceDataUiState.Loading)
+    private val _uiState = MutableStateFlow<ConferenceDataUiState>(
+        ConferenceDataUiState(isLoading = true)
+    )
     val uiState: StateFlow<ConferenceDataUiState> = _uiState
 
     init {
@@ -29,15 +32,22 @@ class MainViewModel(
             try {
                 savedStateHandle.getStateFlow<Day>("day", initialValue = Day.Day1)
                     .collect { day ->
-                        _uiState.value = ConferenceDataUiState.Loaded(
-                            sessionInfos = conferenceRepository.loadConferenceInfo(),
-                            day = day
-                        )
+                        _uiState.update {
+                            it.copy(
+                                sessionInfos = conferenceRepository.loadConferenceInfo(),
+                                isLoading = false,
+                                day = day
+                            )
+                        }
                     }
             } catch (e: Exception) {
                 Log.e(TAG, e.toString())
-                // TODO: handle the empty/error state better
-                _uiState.value = ConferenceDataUiState.Loaded()
+                _uiState.update {
+                    it.copy(
+                        isLoading = false,
+                        errorMessage = R.string.unable_to_load_conference_data_error
+                    )
+                }
             }
         }
     }
@@ -45,17 +55,25 @@ class MainViewModel(
     fun setDay(day: Day) {
         savedStateHandle["day"] = day
 
-        (_uiState.value as? ConferenceDataUiState.Loaded)?.let {
-            _uiState.value = it.copy(day = day)
+        _uiState.update {
+            it.copy(day = day)
         }
     }
 
     fun getSessionInfoById(sessionId: Int) {
         viewModelScope.launch {
-            (_uiState.value as? ConferenceDataUiState.Loaded)?.let {
-                _uiState.value = it.copy(
-                    selectedSession = it.getSelectedSession(sessionId)
-                )
+            try {
+                _uiState.update {
+                    it.copy(selectedSession = it.getSelectedSession(sessionId))
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, e.toString())
+                _uiState.update {
+                    it.copy(
+                        selectedSession = null,
+                        errorMessage = R.string.unable_to_retrieve_session_error
+                    )
+                }
             }
         }
     }
@@ -65,15 +83,37 @@ class MainViewModel(
             try {
                 val favoriteIds = conferenceRepository.toggleFavorite(sessionId)
 
-                (_uiState.value as? ConferenceDataUiState.Loaded)?.let {
+                _uiState.update {
                     val updatedSessionInfos = it.sessionInfos.map {
                         it.copy(isFavorite = favoriteIds.contains(it.session.id))
                     }
-                    _uiState.value = it.copy(sessionInfos = updatedSessionInfos)
+                    it.copy(
+                        sessionInfos = updatedSessionInfos,
+                        snackbarMessage = R.string.save_remove_favorites_success
+                    )
                 }
             } catch (e: Exception) {
                 Log.e(TAG, e.toString())
+                _uiState.update {
+                    it.copy(
+                        isLoading = false,
+                        snackbarMessage = R.string.save_remove_favorites_error
+                    )
+                }
             }
+        }
+    }
+
+    // TODO: use this once screens support Error composable
+    fun dismissError() {
+        _uiState.update {
+            it.copy(errorMessage = null)
+        }
+    }
+
+    fun shownSnackbar() {
+        _uiState.update {
+            it.copy(snackbarMessage = null)
         }
     }
 }

@@ -10,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.red30.MainNavGraphDirections
 import com.example.red30.MainViewModel
-import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.Day
 import com.example.red30.data.sessionInfosByDay
 import com.example.red30.databinding.FragmentSessionsBinding
@@ -70,7 +69,7 @@ class SessionsFragment : Fragment() {
             viewModel.uiState
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle)
                 .collect { uiState ->
-                    if (uiState is ConferenceDataUiState.Loaded) {
+                    if (!uiState.isLoading) {
                         adapter.setItems(uiState.sessionInfosByDay)
                     }
                 }

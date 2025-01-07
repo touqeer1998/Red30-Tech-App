@@ -71,7 +71,7 @@ fun SessionsScreen(
             }
         }
 
-        if (uiState is ConferenceDataUiState.Loaded) {
+        if (!uiState.isLoading) {
             LazyColumn(
                 modifier = modifier.fillMaxSize(),
                 state = listState
@@ -119,7 +119,7 @@ val dayTabItems = listOf(
 private fun SessionScreenLoadingPreview() {
     Red30TechTheme {
         SessionsScreen(
-            uiState = ConferenceDataUiState.Loading
+            uiState = ConferenceDataUiState(isLoading = true)
         )
     }
 }
@@ -129,7 +129,7 @@ private fun SessionScreenLoadingPreview() {
 private fun SessionScreenPreview() {
     Red30TechTheme {
         SessionsScreen(
-            uiState = ConferenceDataUiState.Loaded(
+            uiState = ConferenceDataUiState(
                 sessionInfos = List(3) { SessionInfo.fake() }
             )
         )
