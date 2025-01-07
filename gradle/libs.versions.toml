@@ -26,6 +26,9 @@ screenshot = "0.0.1-alpha08"
 kotlinSerialization = "2.1.0"
 kotlinxSerialization = "1.7.3"
 
+coroutines = "1.10.1"
+turbine = "1.2.0"
+
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -61,6 +64,9 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 androidx-compose-material-icons = { group = "androidx.compose.material", name = "material-icons-extended" }
 
 androidx-compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "navigationKtx" }
+
+app-cash-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 
 coil = { group = "io.coil-kt.coil3", name = "coil", version.ref = "coil" }
 coil-network = { group = "io.coil-kt.coil3", name = "coil-network-ktor3", version.ref = "coil" }

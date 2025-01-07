@@ -42,6 +42,11 @@ android {
         compose = true
         viewBinding = true
     }
+    testOptions {
+        unitTests {
+            isReturnDefaultValues = true // needed for handling Log.* calls in unit tests
+        }
+    }
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
 }
 
@@ -81,6 +86,8 @@ dependencies {
 
     testImplementation(libs.junit)
     testImplementation(libs.koin.test)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.app.cash.turbine)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

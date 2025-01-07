@@ -26,13 +26,19 @@ class MainViewModel(
 
     init {
         viewModelScope.launch {
-            savedStateHandle.getStateFlow<Day>("day", initialValue = Day.Day1)
-                .collect { day ->
-                    _uiState.value = ConferenceDataUiState.Loaded(
-                        sessionInfos = conferenceRepository.loadConferenceInfo(),
-                        day = day
-                    )
-                }
+            try {
+                savedStateHandle.getStateFlow<Day>("day", initialValue = Day.Day1)
+                    .collect { day ->
+                        _uiState.value = ConferenceDataUiState.Loaded(
+                            sessionInfos = conferenceRepository.loadConferenceInfo(),
+                            day = day
+                        )
+                    }
+            } catch (e: Exception) {
+                Log.e(TAG, e.toString())
+                // TODO: handle the empty/error state better
+                _uiState.value = ConferenceDataUiState.Loaded()
+            }
         }
     }
 

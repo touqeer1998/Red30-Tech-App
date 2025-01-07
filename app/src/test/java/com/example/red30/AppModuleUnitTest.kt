@@ -2,6 +2,7 @@ package com.example.red30
 
 import android.app.Application
 import android.content.Context
+import androidx.datastore.core.DataStore
 import androidx.lifecycle.SavedStateHandle
 import com.example.red30.di.appModule
 import com.example.red30.di.dataStoreModule
@@ -18,6 +19,7 @@ class AppModuleUnitTest: KoinTest {
         appModule.verify(
             extraTypes = listOf(
                 SavedStateHandle::class,
+                DataStore::class,
                 Application::class,
                 Context::class,
             )
