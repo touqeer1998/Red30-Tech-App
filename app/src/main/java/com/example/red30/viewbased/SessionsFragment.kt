@@ -13,6 +13,7 @@ import com.example.red30.MainViewModel
 import com.example.red30.data.Day
 import com.example.red30.data.sessionInfosByDay
 import com.example.red30.databinding.FragmentSessionsBinding
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
@@ -71,6 +72,15 @@ class SessionsFragment : Fragment() {
                 .collect { uiState ->
                     if (!uiState.isLoading) {
                         adapter.setItems(uiState.sessionInfosByDay)
+                    }
+
+                    if (uiState.snackbarMessage != null) {
+                        Snackbar.make(
+                            binding.root,
+                            uiState.snackbarMessage,
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                        viewModel.shownSnackbar()
                     }
                 }
         }

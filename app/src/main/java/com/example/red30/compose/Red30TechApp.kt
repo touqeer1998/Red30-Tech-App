@@ -16,7 +16,7 @@ import com.example.red30.compose.ui.Red30TechAppBar
 import com.example.red30.compose.ui.Red30TechBottomBar
 import com.example.red30.compose.ui.Red30TechNavHost
 import com.example.red30.compose.ui.Screen
-import com.example.red30.ui.theme.Red30TechTheme
+import com.example.red30.compose.theme.Red30TechTheme
 import org.koin.androidx.compose.KoinAndroidContext
 
 @Composable

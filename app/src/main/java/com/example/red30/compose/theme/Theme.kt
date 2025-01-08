@@ -1,4 +1,4 @@
-package com.example.red30.ui.theme
+package com.example.red30.compose.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

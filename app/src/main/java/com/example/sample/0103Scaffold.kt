@@ -18,7 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.red30.ui.theme.Red30TechTheme
+import com.example.red30.compose.theme.Red30TechTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

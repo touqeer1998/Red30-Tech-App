@@ -1,6 +1,5 @@
 package com.example.sample
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,17 +17,19 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.red30.compose.theme.Red30TechTheme
 
 @Composable
-fun MaterialTheme0202(modifier: Modifier = Modifier) {
+fun Color0203(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -38,9 +39,18 @@ fun MaterialTheme0202(modifier: Modifier = Modifier) {
         ),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Switch(checked = true, onCheckedChange = {})
+        var checked by remember { mutableStateOf(true) }
 
-        Checkbox(checked = true, onCheckedChange = {})
+        Switch(
+            checked = checked,
+            onCheckedChange = { checked = !checked }
+        )
+
+        // TODO: update the color
+        Checkbox(
+            checked = checked,
+            onCheckedChange = { checked = !checked },
+        )
 
         Slider(value = .6F, onValueChange = {})
 
@@ -51,6 +61,7 @@ fun MaterialTheme0202(modifier: Modifier = Modifier) {
             )
         }
 
+        // TODO: update the color
         CircularProgressIndicator(
             modifier = Modifier.width(64.dp),
         )
@@ -69,42 +80,10 @@ fun MaterialTheme0202(modifier: Modifier = Modifier) {
     }
 }
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Color.DarkGray,
-    secondary = Color.Cyan,
-    tertiary = Color.Magenta,
-    primaryContainer = Color.DarkGray,
-    onPrimaryContainer = Color.White
-)
-
-private val LightColorScheme = lightColorScheme(
-    primary = Color.DarkGray,
-    secondary = Color.Cyan,
-    tertiary = Color.Magenta,
-    primaryContainer = Color.DarkGray,
-    onPrimaryContainer = Color.White
-)
-
-@Composable
-private fun MaterialTheme0202Theme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
-) {
-    val colorScheme = when {
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
-
-    MaterialTheme(
-        colorScheme = colorScheme,
-        content = content
-    )
-}
-
 @Preview(showBackground = true)
 @Composable
 private fun MaterialTheme0202Preview() {
-    MaterialTheme0202Theme {
-        MaterialTheme0202()
+    Red30TechTheme {
+        Color0203()
     }
 }

@@ -1,4 +1,4 @@
-package com.example.red30.ui.theme
+package com.example.red30.compose.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.font.FontFamily

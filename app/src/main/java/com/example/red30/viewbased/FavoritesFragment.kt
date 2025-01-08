@@ -12,6 +12,7 @@ import com.example.red30.MainNavGraphDirections
 import com.example.red30.MainViewModel
 import com.example.red30.data.favorites
 import com.example.red30.databinding.FragmentFavoritesBinding
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
@@ -54,6 +55,15 @@ class FavoritesFragment : Fragment() {
                 .collect { uiState ->
                     if (!uiState.isLoading) {
                         adapter.setItems(uiState.favorites)
+                    }
+
+                    if (uiState.snackbarMessage != null) {
+                        Snackbar.make(
+                            binding.root,
+                            uiState.snackbarMessage,
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                        viewModel.shownSnackbar()
                     }
                 }
         }

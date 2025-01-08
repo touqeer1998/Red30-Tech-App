@@ -26,34 +26,39 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.red30.compose.theme.Red30TechTheme
 
 @Composable
-fun MaterialTheme0202(modifier: Modifier = Modifier) {
+fun MaterialTheme0204(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(
-            24.dp, Alignment.CenterVertically
+            space = 16.dp,
+            alignment = Alignment.CenterVertically
         ),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Switch(checked = true, onCheckedChange = {})
-
         Checkbox(checked = true, onCheckedChange = {})
-
         Slider(value = .6F, onValueChange = {})
 
+       // TODO: Wrap with theme
         FloatingActionButton(onClick = { /*TODO*/ }) {
             Icon(
                 imageVector = Icons.Filled.Add,
                 contentDescription = null
             )
         }
+        CircularProgressIndicator(modifier = Modifier.width(64.dp))
 
-        CircularProgressIndicator(
-            modifier = Modifier.width(64.dp),
-        )
+        Text("This is my special text")
+
+        // TODO: Wrap with composition local
+        Text("This is my very special text")
+
+        Text("This is also my very special text")
 
         FilledTonalButton(
             modifier = Modifier
@@ -86,7 +91,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-private fun MaterialTheme0202Theme(
+private fun MaterialTheme0204Theme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
@@ -103,8 +108,8 @@ private fun MaterialTheme0202Theme(
 
 @Preview(showBackground = true)
 @Composable
-private fun MaterialTheme0202Preview() {
-    MaterialTheme0202Theme {
-        MaterialTheme0202()
+private fun MaterialTheme0204Preview() {
+    Red30TechTheme {
+        MaterialTheme0204()
     }
 }

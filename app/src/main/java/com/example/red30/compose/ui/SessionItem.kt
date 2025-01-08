@@ -23,7 +23,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.fake
-import com.example.red30.ui.theme.Red30TechTheme
+import com.example.red30.compose.theme.Red30TechTheme
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable

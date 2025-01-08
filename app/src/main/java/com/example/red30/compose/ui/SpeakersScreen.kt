@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.Speaker
 import com.example.red30.data.speakers
-import com.example.red30.ui.theme.Red30TechTheme
+import com.example.red30.compose.theme.Red30TechTheme
 
 @Composable
 fun SpeakersScreen(

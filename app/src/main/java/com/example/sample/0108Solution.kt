@@ -22,7 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.red30.R
-import com.example.red30.ui.theme.Red30TechTheme
+import com.example.red30.compose.theme.Red30TechTheme
 
 @Composable
 fun Solution0108(modifier: Modifier = Modifier) {

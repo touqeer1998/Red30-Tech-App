@@ -11,7 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.fakes
 import com.example.red30.data.favorites
-import com.example.red30.ui.theme.Red30TechTheme
+import com.example.red30.compose.theme.Red30TechTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

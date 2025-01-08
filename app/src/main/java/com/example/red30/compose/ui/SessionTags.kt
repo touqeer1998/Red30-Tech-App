@@ -7,13 +7,15 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import com.example.red30.ui.theme.Red30TechTheme
+import com.example.red30.compose.theme.Red30TechTheme
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -30,7 +32,7 @@ fun SessionTags(
         Text(
             text = track,
             modifier = Modifier.sessionTag(
-                color = MaterialTheme.colorScheme.secondaryContainer
+                color = MaterialTheme.colorScheme.secondary
             )
         )
         Text(
@@ -53,13 +55,15 @@ fun Modifier.sessionTag(color: Color) =
         vertical = 4.dp,
     )
 
-@Preview(showBackground = true)
+@PreviewLightDark
 @Composable
 private fun SessionTagsPreview() {
     Red30TechTheme {
-        SessionTags(
-            track = "AI for Beginners",
-            roomName = "201"
-        )
+        Surface {
+            SessionTags(
+                track = "AI for Beginners",
+                roomName = "201"
+            )
+        }
     }
 }

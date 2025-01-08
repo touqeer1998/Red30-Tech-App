@@ -25,8 +25,8 @@ import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.example.red30.data.Speaker
 import com.example.red30.data.initial
-import com.example.red30.ui.theme.AvatarColors
-import com.example.red30.ui.theme.Red30TechTheme
+import com.example.red30.compose.theme.AvatarColors
+import com.example.red30.compose.theme.Red30TechTheme
 
 private const val TEXT_TO_PARENT_SIZE_RATIO = 0.6
 

@@ -30,7 +30,7 @@ import com.example.red30.data.Day
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.fake
 import com.example.red30.data.sessionInfosByDay
-import com.example.red30.ui.theme.Red30TechTheme
+import com.example.red30.compose.theme.Red30TechTheme
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
