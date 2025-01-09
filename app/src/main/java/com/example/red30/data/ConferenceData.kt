@@ -106,11 +106,29 @@ fun Session.Companion.fake2() = Session(
     roomName = "Room 104"
 )
 
+fun Session.Companion.fake3() = Session(
+    id = 3,
+    speakerId = 3,
+    name = "Hacking for Good",
+    startTime = "02:00 PM",
+    endTime = "03:30 PM",
+    description = """
+        #Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+        #incididunt ut labore et dolore magna aliqua. 
+            
+        #Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
+        #ex ea commodo consequat.
+        """.trimMargin("#"),
+    track = "Hacks",
+    roomName = "Room 104"
+)
+
 fun Speaker.Companion.fake() = Speaker(
     id = 1,
     name = "Alycia Jones",
     title = "VP of Engineering",
-    bio = "She's a superstar!",
+    bio = """Alycia is a seasoned engineer with a passion for building scalable and reliable systems. 
+        |She's also an advocate for diversity and inclusion in tech.""".trimMargin(),
     organization = "Binaryville"
 )
 
@@ -118,8 +136,18 @@ fun Speaker.Companion.fake2() = Speaker(
     id = 2,
     name = "Jamil Waters",
     title = "Research Scientist",
-    bio = "A real artist and a fake one.",
+    bio = "Jamil is a research scientist specializing in artificial intelligence and machine learning.",
     organization = "SAMOCA"
+)
+
+fun Speaker.Companion.fake3() = Speaker(
+    id = 3,
+    name = "Bianca Adams",
+    title = "Security Engineer",
+    bio = """Bianca is a seasoned security engineer with a passion for protecting digital assets. 
+        |With extensive experience in cybersecurity, she has a proven track record of identifying 
+        |and mitigating vulnerabilities in complex systems.""".trimMargin(),
+    organization = "SecureSphere"
 )
 
 fun SessionInfo.Companion.fake() = SessionInfo(
@@ -132,4 +160,10 @@ fun SessionInfo.Companion.fake2() = SessionInfo(
     session = Session.fake2(),
     speaker = Speaker.fake2(),
     day = Day.Day2
+)
+
+fun SessionInfo.Companion.fake3() = SessionInfo(
+    session = Session.fake3(),
+    speaker = Speaker.fake3(),
+    day = Day.Day1
 )

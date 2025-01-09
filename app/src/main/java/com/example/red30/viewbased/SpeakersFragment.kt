@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.red30.MainViewModel
+import com.example.red30.R
 import com.example.red30.data.speakers
 import com.example.red30.databinding.FragmentSpeakersBinding
 import kotlinx.coroutines.launch
@@ -37,6 +40,12 @@ class SpeakersFragment : Fragment() {
 
         val adapter = SpeakerItemAdapter()
         binding.recyclerview.adapter = adapter
+
+        val columnCount = resources.getInteger(R.integer.column_count)
+        binding.recyclerview.layoutManager = when {
+            columnCount <= 1 -> LinearLayoutManager(context)
+            else -> GridLayoutManager(context, columnCount)
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.uiState

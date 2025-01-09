@@ -16,6 +16,7 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.darkColorScheme
@@ -25,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.example.red30.compose.theme.Red30TechTheme
 
@@ -106,10 +108,12 @@ private fun MaterialTheme0204Theme(
     )
 }
 
-@Preview(showBackground = true)
+@PreviewLightDark
 @Composable
 private fun MaterialTheme0204Preview() {
     Red30TechTheme {
-        MaterialTheme0204()
+        Surface {
+            MaterialTheme0204()
+        }
     }
 }

@@ -1,10 +1,11 @@
-package com.example.red30.compose.ui
+package com.example.red30.compose.ui.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -14,7 +15,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.Dp
@@ -49,7 +49,7 @@ fun SpeakerImage(
         ) {
             val parentSizeDp = with(LocalDensity.current) { imageSize }.value
             val fontSize = parentSizeDp * TEXT_TO_PARENT_SIZE_RATIO
-            val initialsFont = TextStyle(
+            val initialsFont = LocalTextStyle.current.copy(
                 fontWeight = FontWeight.Medium,
                 fontSize = fontSize.sp,
                 lineHeight = fontSize.sp,

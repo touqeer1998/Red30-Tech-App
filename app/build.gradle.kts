@@ -79,6 +79,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.compose.material.icons)
+    implementation(libs.androidx.compose.material.adaptive)
     implementation(libs.androidx.ui.text.google.fonts)
     implementation(libs.coil)
     implementation(libs.coil.network)

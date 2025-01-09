@@ -21,6 +21,7 @@ ktor = "3.0.3"
 koin-bom = "4.0.1"
 datastore = "1.1.1"
 screenshot = "0.0.1-alpha08"
+adaptive = "1.1.0-alpha08"
 
 kotlinSerialization = "2.1.0"
 kotlinxSerialization = "1.7.3"
@@ -71,7 +72,7 @@ androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lif
 androidx-lifecycle-viewModel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-material-icons = { group = "androidx.compose.material", name = "material-icons-extended" }
-
+androidx-compose-material-adaptive = { module = "androidx.compose.material3.adaptive:adaptive", version.ref = "adaptive" }
 androidx-compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "navigationKtx" }
 
 coil = { group = "io.coil-kt.coil3", name = "coil", version.ref = "coil" }

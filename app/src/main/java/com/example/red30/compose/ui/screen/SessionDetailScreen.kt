@@ -1,4 +1,4 @@
-package com.example.red30.compose.ui
+package com.example.red30.compose.ui.screen
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
@@ -40,6 +40,8 @@ import com.example.red30.data.Speaker
 import com.example.red30.data.duration
 import com.example.red30.data.fake
 import com.example.red30.compose.theme.Red30TechTheme
+import com.example.red30.compose.ui.component.SessionTags
+import com.example.red30.compose.ui.component.SpeakerImage
 
 @Composable
 fun SessionDetailScreen(

@@ -26,8 +26,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@android:layout/simple_list_item_1"/>
+        android:layout_height="wrap_content"
+        tools:itemCount="3"
+        tools:listitem="@layout/view_session_item" />
 </LinearLayout>

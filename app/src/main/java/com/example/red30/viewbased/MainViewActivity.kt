@@ -9,9 +9,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.red30.R
 import com.example.red30.databinding.ActivityMainViewBinding
@@ -25,12 +22,6 @@ class MainViewActivity : AppCompatActivity() {
         navHostFragment.navController
     }
 
-    val appBarConfiguration: AppBarConfiguration by lazy {
-        AppBarConfiguration(
-            setOf(R.id.sessionsFragment, R.id.speakersFragment, R.id.favoritesFragment)
-        )
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
@@ -39,23 +30,17 @@ class MainViewActivity : AppCompatActivity() {
         setContentView(view)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, windowInsets ->
-            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.statusBars())
             view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
                 topMargin = insets.top
                 leftMargin = insets.left
                 bottomMargin = insets.bottom
                 rightMargin = insets.right
             }
+
             WindowInsetsCompat.CONSUMED
         }
 
-        setSupportActionBar(findViewById(R.id.toolbar))
-
         binding.bottomNav.setupWithNavController(navController)
-        setupActionBarWithNavController(navController, appBarConfiguration)
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        return navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp()
     }
 }

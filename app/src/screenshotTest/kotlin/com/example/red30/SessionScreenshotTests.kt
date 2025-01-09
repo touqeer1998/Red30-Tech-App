@@ -3,14 +3,17 @@ package com.example.red30
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.example.red30.compose.ui.SessionDetailScreen
-import com.example.red30.compose.ui.SessionItem
-import com.example.red30.compose.ui.SessionsScreen
+import com.example.red30.compose.ui.screen.SessionDetailScreen
+import com.example.red30.compose.ui.component.SessionItem
+import com.example.red30.compose.ui.screen.SessionsScreen
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.fake
 import com.example.red30.data.fake2
 import com.example.red30.compose.theme.Red30TechTheme
+import com.example.red30.data.Day
+import com.example.red30.data.Session
+import com.example.red30.data.fake3
 
 @Suppress("unused")
 class SessionScreenshotTests {
@@ -54,6 +57,43 @@ class SessionScreenshotTests {
             SessionsScreen(
                 uiState = ConferenceDataUiState(
                     sessionInfos = listOf(SessionInfo.fake(), SessionInfo.fake2())
+                )
+            )
+        }
+    }
+
+    @Preview(showBackground = true, device = "spec:parent=pixel_8,orientation=landscape")
+    @Composable
+    private fun SessionScreenLandscapePreview() {
+        Red30TechTheme {
+            SessionsScreen(
+                uiState = ConferenceDataUiState(
+                    sessionInfos = listOf(SessionInfo.fake(), SessionInfo.fake3())
+                )
+            )
+        }
+    }
+
+    @Preview(showBackground = true, device = "spec:width=1280dp,height=800dp,dpi=240")
+    @Composable
+    private fun SessionScreenTabletPreview() {
+        Red30TechTheme {
+            SessionsScreen(
+                uiState = ConferenceDataUiState(
+                    sessionInfos = listOf(
+                        SessionInfo.fake(),
+                        SessionInfo.fake2().copy(
+                            day = Day.Day1
+                        ),
+                        SessionInfo.fake3(),
+                        SessionInfo.fake3().copy(
+                            session = Session.fake3()
+                                .copy(
+                                    id = 55,
+                                    name = "Hacking for Money"
+                                )
+                        )
+                    )
                 )
             )
         }

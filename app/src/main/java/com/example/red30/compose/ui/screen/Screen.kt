@@ -1,4 +1,4 @@
-package com.example.red30.compose.ui
+package com.example.red30.compose.ui.screen
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons

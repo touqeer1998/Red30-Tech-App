@@ -1,4 +1,4 @@
-package com.example.red30.compose.ui
+package com.example.red30.compose.ui.component
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
@@ -12,7 +12,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.example.red30.compose.theme.Red30TechTheme

@@ -8,8 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.red30.MainNavGraphDirections
 import com.example.red30.MainViewModel
+import com.example.red30.R
 import com.example.red30.data.favorites
 import com.example.red30.databinding.FragmentFavoritesBinding
 import com.google.android.material.snackbar.Snackbar
@@ -48,6 +51,12 @@ class FavoritesFragment : Fragment() {
             }
         )
         binding.recyclerview.adapter = adapter
+
+        val columnCount = resources.getInteger(R.integer.column_count)
+        binding.recyclerview.layoutManager = when {
+            columnCount <= 1 -> LinearLayoutManager(context)
+            else -> GridLayoutManager(context, columnCount)
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.uiState

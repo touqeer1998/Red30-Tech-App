@@ -12,13 +12,19 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.red30.MainViewModel
+import com.example.red30.compose.ui.screen.FavoritesScreen
+import com.example.red30.compose.ui.screen.Screen
+import com.example.red30.compose.ui.screen.SessionDetailScreen
+import com.example.red30.compose.ui.screen.SessionsScreen
+import com.example.red30.compose.ui.screen.SpeakersScreen
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun Red30TechNavHost(
     navController: NavHostController,
     snackbarHostState: SnackbarHostState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    shouldAnimateScrollToTop: Boolean = false
 ) {
     val viewModel: MainViewModel = koinViewModel<MainViewModel>()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -31,6 +37,7 @@ fun Red30TechNavHost(
         composable(route = Screen.Sessions.route) {
             SessionsScreen(
                 uiState = uiState,
+                shouldAnimateScrollToTop = shouldAnimateScrollToTop,
                 onSessionClick = { sessionId ->
                     navController.onSessionClick(viewModel, sessionId)
                 },
@@ -39,11 +46,15 @@ fun Red30TechNavHost(
             )
         }
         composable(route = Screen.Speakers.route) {
-            SpeakersScreen(uiState = uiState)
+            SpeakersScreen(
+                uiState = uiState,
+                shouldAnimateScrollToTop = shouldAnimateScrollToTop
+            )
         }
         composable(route = Screen.Favorites.route) {
             FavoritesScreen(
                 uiState = uiState,
+                shouldAnimateScrollToTop = shouldAnimateScrollToTop,
                 onSessionClick = { sessionId ->
                     navController.onSessionClick(viewModel, sessionId)
                 },

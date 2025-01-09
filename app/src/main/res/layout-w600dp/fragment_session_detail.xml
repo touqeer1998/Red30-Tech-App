@@ -23,8 +23,7 @@
             app:flow_horizontalStyle="packed"
             app:flow_wrapMode="chain"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/track"
@@ -52,7 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/sessionTime"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sessionTags"
             tools:text="AI for Beginners" />
@@ -91,14 +90,18 @@
 
         <LinearLayout
             android:id="@+id/sessionTime"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:padding="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="86dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             android:orientation="vertical"
             android:background="@drawable/dashed_turquoise_border"
-            app:layout_constraintStart_toStartOf="@id/speakerImage"
-            app:layout_constraintTop_toBottomOf="@id/speakerImage">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.example.red30.viewbased.views.TimeItemView
                 android:id="@+id/dayItem"
@@ -131,9 +134,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:layout_marginEnd="24dp"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@id/sessionTime"
-            app:layout_constraintTop_toBottomOf="@id/sessionTime"
+            app:layout_constraintStart_toStartOf="@id/speakerImage"
+            app:layout_constraintTop_toBottomOf="@id/speakerImage"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="@tools:sample/lorem/random" />
     </androidx.constraintlayout.widget.ConstraintLayout>
