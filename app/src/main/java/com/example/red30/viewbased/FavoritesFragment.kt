@@ -8,20 +8,18 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.red30.MainNavGraphDirections
 import com.example.red30.MainViewModel
 import com.example.red30.R
 import com.example.red30.data.favorites
 import com.example.red30.databinding.FragmentFavoritesBinding
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class FavoritesFragment : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModel()
+    private var adapter: SessionItemAdapter? = null
 
     private var _binding: FragmentFavoritesBinding? = null
     private val binding get() = _binding!!
@@ -39,6 +37,24 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        adapter = setUpAdapter()
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.uiState
+                .flowWithLifecycle(viewLifecycleOwner.lifecycle)
+                .collect { uiState ->
+                    if (!uiState.isLoading) {
+                        adapter?.setItems(uiState.favorites)
+                    }
+
+                    if (uiState.snackbarMessage != null) {
+                        displaySnackbar(uiState.snackbarMessage)
+                    }
+                }
+        }
+    }
+
+    private fun setUpAdapter(): SessionItemAdapter {
         val adapter = SessionItemAdapter(
             onSessionItemClick = { sessionId ->
                 viewModel.getSessionInfoById(sessionId = sessionId)
@@ -52,34 +68,21 @@ class FavoritesFragment : Fragment() {
         )
         binding.recyclerview.adapter = adapter
 
-        val columnCount = resources.getInteger(R.integer.column_count)
-        binding.recyclerview.layoutManager = when {
-            columnCount <= 1 -> LinearLayoutManager(context)
-            else -> GridLayoutManager(context, columnCount)
-        }
+        binding.recyclerview.layoutManager = getAppLayoutManager(
+            columnCount = resources.getInteger(R.integer.column_count),
+            context = requireContext()
+        )
+        return adapter
+    }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.uiState
-                .flowWithLifecycle(viewLifecycleOwner.lifecycle)
-                .collect { uiState ->
-                    if (!uiState.isLoading) {
-                        adapter.setItems(uiState.favorites)
-                    }
-
-                    if (uiState.snackbarMessage != null) {
-                        Snackbar.make(
-                            binding.root,
-                            uiState.snackbarMessage,
-                            Snackbar.LENGTH_SHORT
-                        ).show()
-                        viewModel.shownSnackbar()
-                    }
-                }
-        }
+    private fun displaySnackbar(snackbarMessage: Int) {
+        makeAppSnackbar(binding.root, snackbarMessage).show()
+        viewModel.shownSnackbar()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        adapter = null
         _binding = null
     }
 }

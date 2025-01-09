@@ -1,5 +1,6 @@
 package com.example.red30
 
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -22,11 +23,13 @@ class SessionScreenshotTests {
     @Composable
     fun SessionDetailScreenPreview() {
         Red30TechTheme {
-            SessionDetailScreen(
-                uiState = ConferenceDataUiState(
-                    selectedSession = SessionInfo.fake(),
+            Surface {
+                SessionDetailScreen(
+                    uiState = ConferenceDataUiState(
+                        selectedSession = SessionInfo.fake(),
+                    )
                 )
-            )
+            }
         }
     }
 
@@ -44,9 +47,11 @@ class SessionScreenshotTests {
     @Composable
     fun SessionScreenLoadingPreview() {
         Red30TechTheme {
-            SessionsScreen(
-                uiState = ConferenceDataUiState(isLoading = true)
-            )
+            Surface {
+                SessionsScreen(
+                    uiState = ConferenceDataUiState(isLoading = true)
+                )
+            }
         }
     }
 
@@ -54,23 +59,27 @@ class SessionScreenshotTests {
     @Composable
     fun SessionScreenPreview() {
         Red30TechTheme {
-            SessionsScreen(
-                uiState = ConferenceDataUiState(
-                    sessionInfos = listOf(SessionInfo.fake(), SessionInfo.fake2())
+            Surface {
+                SessionsScreen(
+                    uiState = ConferenceDataUiState(
+                        sessionInfos = listOf(SessionInfo.fake(), SessionInfo.fake2())
+                    )
                 )
-            )
+            }
         }
     }
 
-    @Preview(showBackground = true, device = "spec:parent=pixel_8,orientation=landscape")
+    @Preview(showBackground = true, device = "spec:orientation=landscape,width=411dp,height=891dp")
     @Composable
     private fun SessionScreenLandscapePreview() {
         Red30TechTheme {
-            SessionsScreen(
-                uiState = ConferenceDataUiState(
-                    sessionInfos = listOf(SessionInfo.fake(), SessionInfo.fake3())
+            Surface {
+                SessionsScreen(
+                    uiState = ConferenceDataUiState(
+                        sessionInfos = listOf(SessionInfo.fake(), SessionInfo.fake3())
+                    )
                 )
-            )
+            }
         }
     }
 
@@ -78,24 +87,26 @@ class SessionScreenshotTests {
     @Composable
     private fun SessionScreenTabletPreview() {
         Red30TechTheme {
-            SessionsScreen(
-                uiState = ConferenceDataUiState(
-                    sessionInfos = listOf(
-                        SessionInfo.fake(),
-                        SessionInfo.fake2().copy(
-                            day = Day.Day1
-                        ),
-                        SessionInfo.fake3(),
-                        SessionInfo.fake3().copy(
-                            session = Session.fake3()
-                                .copy(
-                                    id = 55,
-                                    name = "Hacking for Money"
-                                )
+            Surface {
+                SessionsScreen(
+                    uiState = ConferenceDataUiState(
+                        sessionInfos = listOf(
+                            SessionInfo.fake(),
+                            SessionInfo.fake2().copy(
+                                day = Day.Day1
+                            ),
+                            SessionInfo.fake3(),
+                            SessionInfo.fake3().copy(
+                                session = Session.fake3()
+                                    .copy(
+                                        id = 55,
+                                        name = "Hacking for Money"
+                                    )
+                            )
                         )
                     )
                 )
-            )
+            }
         }
     }
 }

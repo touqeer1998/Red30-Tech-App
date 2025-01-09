@@ -30,12 +30,14 @@ fun SessionTags(
     ) {
         Text(
             text = track,
+            style = MaterialTheme.typography.bodySmall,
             modifier = Modifier.sessionTag(
                 color = MaterialTheme.colorScheme.secondary
             )
         )
         Text(
             text = roomName,
+            style = MaterialTheme.typography.bodySmall,
             modifier = Modifier.sessionTag(
                 color = MaterialTheme.colorScheme.tertiaryContainer
             )

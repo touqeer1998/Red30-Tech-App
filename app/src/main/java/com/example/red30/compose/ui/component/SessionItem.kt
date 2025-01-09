@@ -51,16 +51,16 @@ fun SessionItem(
                     Text(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(16.dp),
+                            .padding(vertical = 8.dp, horizontal = 16.dp),
                         text = session.name,
-                        style = MaterialTheme.typography.titleLarge,
+                        style = MaterialTheme.typography.titleLarge
                     )
                     Row(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         SpeakerImage(
                             speaker = speaker,
-                            imageSize = 50.dp
+                            imageSize = 48.dp
                         )
                         Text(
                             text = speaker.name,

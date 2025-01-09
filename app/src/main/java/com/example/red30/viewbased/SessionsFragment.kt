@@ -8,22 +8,19 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.red30.MainNavGraphDirections
 import com.example.red30.MainViewModel
 import com.example.red30.R
 import com.example.red30.data.Day
 import com.example.red30.data.sessionInfosByDay
 import com.example.red30.databinding.FragmentSessionsBinding
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class SessionsFragment : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModel()
+    private var adapter: SessionItemAdapter? = null
 
     private var _binding: FragmentSessionsBinding? = null
     private val binding get() = _binding!!
@@ -41,6 +38,26 @@ class SessionsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUpDayChips()
+
+        adapter = setUpAdapter()
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.uiState
+                .flowWithLifecycle(viewLifecycleOwner.lifecycle)
+                .collect { uiState ->
+                    if (!uiState.isLoading) {
+                        adapter?.setItems(uiState.sessionInfosByDay)
+                    }
+
+                    if (uiState.snackbarMessage != null) {
+                        displaySnackbar(uiState.snackbarMessage)
+                    }
+                }
+        }
+    }
+
+    private fun setUpAdapter(): SessionItemAdapter {
         val adapter = SessionItemAdapter(
             onSessionItemClick = { sessionId ->
                 viewModel.getSessionInfoById(sessionId = sessionId)
@@ -54,49 +71,33 @@ class SessionsFragment : Fragment() {
         )
         binding.recyclerview.adapter = adapter
 
-        val columnCount = resources.getInteger(R.integer.column_count)
-        binding.recyclerview.layoutManager = when {
-            columnCount <= 1 -> LinearLayoutManager(context)
-            else -> GridLayoutManager(context, columnCount)
+        binding.recyclerview.layoutManager = getAppLayoutManager(
+            columnCount = resources.getInteger(R.integer.column_count),
+            context = requireContext()
+        )
+        return adapter
+    }
+
+    private fun setUpDayChips() {
+        binding.chipLayout.setOnCheckedStateChangeListener { group, checkedIds ->
+            viewModel.setDay(
+                if (checkedIds.contains(R.id.day1Chip))
+                    Day.Day1
+                else
+                    Day.Day2
+            )
+            binding.recyclerview.smoothScrollToPosition(0)
         }
+    }
 
-        binding.tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                viewModel.setDay(if (tab?.position == 0) Day.Day1 else Day.Day2)
-                binding.recyclerview.smoothScrollToPosition(0)
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-                // do nothing
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-                // do nothing
-            }
-        })
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.uiState
-                .flowWithLifecycle(viewLifecycleOwner.lifecycle)
-                .collect { uiState ->
-                    if (!uiState.isLoading) {
-                        adapter.setItems(uiState.sessionInfosByDay)
-                    }
-
-                    if (uiState.snackbarMessage != null) {
-                        Snackbar.make(
-                            binding.root,
-                            uiState.snackbarMessage,
-                            Snackbar.LENGTH_SHORT
-                        ).show()
-                        viewModel.shownSnackbar()
-                    }
-                }
-        }
+    private fun displaySnackbar(snackbarMessage: Int) {
+        makeAppSnackbar(binding.root, snackbarMessage).show()
+        viewModel.shownSnackbar()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        adapter = null
         _binding = null
     }
 }

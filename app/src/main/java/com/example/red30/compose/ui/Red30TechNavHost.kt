@@ -1,6 +1,7 @@
 package com.example.red30.compose.ui
 
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -28,6 +29,7 @@ fun Red30TechNavHost(
 ) {
     val viewModel: MainViewModel = koinViewModel<MainViewModel>()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
 
     NavHost(
         navController = navController,
@@ -38,6 +40,7 @@ fun Red30TechNavHost(
             SessionsScreen(
                 uiState = uiState,
                 shouldAnimateScrollToTop = shouldAnimateScrollToTop,
+                windowSizeClass = windowSizeClass,
                 onSessionClick = { sessionId ->
                     navController.onSessionClick(viewModel, sessionId)
                 },
@@ -48,13 +51,15 @@ fun Red30TechNavHost(
         composable(route = Screen.Speakers.route) {
             SpeakersScreen(
                 uiState = uiState,
-                shouldAnimateScrollToTop = shouldAnimateScrollToTop
+                shouldAnimateScrollToTop = shouldAnimateScrollToTop,
+                windowSizeClass = windowSizeClass
             )
         }
         composable(route = Screen.Favorites.route) {
             FavoritesScreen(
                 uiState = uiState,
                 shouldAnimateScrollToTop = shouldAnimateScrollToTop,
+                windowSizeClass = windowSizeClass,
                 onSessionClick = { sessionId ->
                     navController.onSessionClick(viewModel, sessionId)
                 },

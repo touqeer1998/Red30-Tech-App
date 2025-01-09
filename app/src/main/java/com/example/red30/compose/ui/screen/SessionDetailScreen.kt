@@ -63,7 +63,7 @@ fun SessionDetailScreen(
                     Text(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(16.dp),
+                            .padding(vertical = 8.dp, horizontal = 16.dp),
                         text = session.name,
                         style = MaterialTheme.typography.headlineLarge,
                     )

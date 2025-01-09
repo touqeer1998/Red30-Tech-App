@@ -5,8 +5,8 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
@@ -18,9 +18,14 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
@@ -29,6 +34,7 @@ import androidx.window.core.layout.WindowSizeClass
 import androidx.window.core.layout.WindowWidthSizeClass
 import com.example.red30.compose.theme.Red30TechTheme
 import com.example.red30.compose.ui.component.SpeakerImage
+import com.example.red30.compose.ui.rememberColumns
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.Speaker
@@ -41,7 +47,8 @@ import com.example.red30.data.speakers
 fun SpeakersScreen(
     modifier: Modifier = Modifier,
     uiState: ConferenceDataUiState,
-    shouldAnimateScrollToTop: Boolean = false
+    shouldAnimateScrollToTop: Boolean = false,
+    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
 ) {
     val listState = rememberLazyGridState()
     LaunchedEffect(shouldAnimateScrollToTop) {
@@ -50,7 +57,8 @@ fun SpeakersScreen(
         }
     }
 
-    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    var maxHeight by remember { mutableStateOf(0.dp) }
+    val density = LocalDensity.current
 
     if (!uiState.isLoading) {
         LazyVerticalGrid(
@@ -65,7 +73,19 @@ fun SpeakersScreen(
                 if (windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT) {
                     SpeakerItem(speaker = it)
                 } else {
-                    PortraitSpeakerItem(speaker = it)
+                    PortraitSpeakerItem(
+                        speaker = it,
+                        modifier = Modifier
+                            .onGloballyPositioned { coordinates ->
+                                val height = with(density) {
+                                    coordinates.size.height.toDp()
+                                }
+                                if (height > maxHeight) {
+                                    maxHeight = height
+                                }
+                            }
+                            .heightIn(min = maxHeight),
+                    )
                 }
             }
         }
@@ -165,15 +185,6 @@ fun SpeakerDetails(
             fontStyle = FontStyle.Italic,
             text = speaker.organization,
         )
-    }
-}
-
-@Composable
-private fun rememberColumns(windowSizeClass: WindowSizeClass) = remember(windowSizeClass) {
-    when (windowSizeClass.windowWidthSizeClass) {
-        WindowWidthSizeClass.COMPACT -> GridCells.Fixed(1)
-        WindowWidthSizeClass.MEDIUM -> GridCells.Fixed(2)
-        else -> GridCells.Adaptive(320.dp)
     }
 }
 
