@@ -7,6 +7,7 @@ data class ConferenceDataUiState(
     val isLoading: Boolean = false,
     val errorMessage: Int? = null,
     val snackbarMessage: Int? = null,
+    val shouldAnimateScrollToTop: Boolean = false,
 ) {
     companion object
 }

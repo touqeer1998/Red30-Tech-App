@@ -15,3 +15,17 @@ fun rememberColumns(windowSizeClass: WindowSizeClass) = remember(windowSizeClass
         else -> GridCells.Adaptive(300.dp)
     }
 }
+
+enum class NavigationType {
+    BOTTOM_NAVIGATION,
+    RAIL;
+
+    companion object {
+        fun forWindowSizeSize(
+            windowSizeClass: WindowWidthSizeClass
+        ): NavigationType = when (windowSizeClass) {
+            WindowWidthSizeClass.COMPACT -> BOTTOM_NAVIGATION
+            else -> RAIL
+        }
+    }
+}

@@ -24,12 +24,12 @@ import org.koin.androidx.compose.koinViewModel
 fun Red30TechNavHost(
     navController: NavHostController,
     snackbarHostState: SnackbarHostState,
-    modifier: Modifier = Modifier,
-    shouldAnimateScrollToTop: Boolean = false
+    modifier: Modifier = Modifier
 ) {
-    val viewModel: MainViewModel = koinViewModel<MainViewModel>()
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val viewModel = koinViewModel<MainViewModel>()
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     NavHost(
         navController = navController,
@@ -39,7 +39,6 @@ fun Red30TechNavHost(
         composable(route = Screen.Sessions.route) {
             SessionsScreen(
                 uiState = uiState,
-                shouldAnimateScrollToTop = shouldAnimateScrollToTop,
                 windowSizeClass = windowSizeClass,
                 onSessionClick = { sessionId ->
                     navController.onSessionClick(viewModel, sessionId)
@@ -51,14 +50,12 @@ fun Red30TechNavHost(
         composable(route = Screen.Speakers.route) {
             SpeakersScreen(
                 uiState = uiState,
-                shouldAnimateScrollToTop = shouldAnimateScrollToTop,
                 windowSizeClass = windowSizeClass
             )
         }
         composable(route = Screen.Favorites.route) {
             FavoritesScreen(
                 uiState = uiState,
-                shouldAnimateScrollToTop = shouldAnimateScrollToTop,
                 windowSizeClass = windowSizeClass,
                 onSessionClick = { sessionId ->
                     navController.onSessionClick(viewModel, sessionId)

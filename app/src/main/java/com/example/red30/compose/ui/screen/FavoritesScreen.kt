@@ -1,7 +1,12 @@
 package com.example.red30.compose.ui.screen
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.union
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
@@ -24,22 +29,27 @@ import com.example.red30.data.favorites
 fun FavoritesScreen(
     modifier: Modifier = Modifier,
     uiState: ConferenceDataUiState,
-    shouldAnimateScrollToTop: Boolean = false,
     windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
     onSessionClick: (Int) -> Unit = {},
     onFavoriteClick: (Int) -> Unit = {}
 ) {
     Column {
         val listState = rememberLazyGridState()
-        LaunchedEffect(shouldAnimateScrollToTop) {
-            if (shouldAnimateScrollToTop) {
+
+        LaunchedEffect(uiState) {
+            if (uiState.shouldAnimateScrollToTop) {
                 listState.animateScrollToItem(0)
             }
         }
 
         if (!uiState.isLoading) {
             LazyVerticalGrid(
-                modifier = modifier.fillMaxSize(),
+                modifier = modifier
+                    .fillMaxSize()
+                    .windowInsetsPadding(
+                        WindowInsets.systemBars
+                            .union(WindowInsets.displayCutout)
+                    ),
                 columns = rememberColumns(windowSizeClass),
                 state = listState
             ) {

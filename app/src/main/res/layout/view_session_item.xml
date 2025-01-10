@@ -6,8 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
     app:contentPadding="16dp"
-    app:cardBackgroundColor="@color/md_theme_surfaceContainer"
-    tools:context=".viewbased.MainViewActivity">
+    app:cardBackgroundColor="@color/md_theme_surfaceContainer">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

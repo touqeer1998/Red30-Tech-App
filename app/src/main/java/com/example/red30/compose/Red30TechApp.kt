@@ -1,10 +1,10 @@
 package com.example.red30.compose
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -15,48 +15,61 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.red30.MainViewModel
 import com.example.red30.compose.theme.Red30TechTheme
+import com.example.red30.compose.ui.NavigationType
 import com.example.red30.compose.ui.Red30TechBottomBar
-import com.example.red30.compose.ui.Red30TechNavHost
+import com.example.red30.compose.ui.Red30TechContent
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.KoinAndroidContext
+import org.koin.androidx.compose.koinViewModel
 import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 fun Red30TechApp(modifier: Modifier = Modifier) {
     Red30TechTheme {
         KoinAndroidContext {
-            var shouldAnimateScrollToTop by remember { mutableStateOf(false) }
             val coroutineScope = rememberCoroutineScope()
-
             val navController = rememberNavController()
             val snackbarHostState = remember { SnackbarHostState() }
             val navBackStackEntry by navController.currentBackStackEntryAsState()
             val currentDestination = navBackStackEntry?.destination
 
+            val viewModel = koinViewModel<MainViewModel>()
+            val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+            var navigationType: NavigationType by remember {
+                mutableStateOf(
+                    NavigationType.forWindowSizeSize(windowSizeClass.windowWidthSizeClass)
+                )
+            }
+
             Scaffold(
                 modifier = modifier.fillMaxSize(),
                 snackbarHost = { SnackbarHost(snackbarHostState) },
                 bottomBar = {
-                    Red30TechBottomBar(
-                        navController = navController,
-                        currentDestination = currentDestination,
-                        onActiveDestinationClick = {
-                            shouldAnimateScrollToTop = true
-                            coroutineScope.launch {
-                                delay(500.milliseconds)
-                                shouldAnimateScrollToTop = false
-                            }
-                        },
-                    )
+                    if (navigationType == NavigationType.BOTTOM_NAVIGATION) {
+                        Red30TechBottomBar(
+                            navController = navController,
+                            currentDestination = currentDestination,
+                            onActiveDestinationClick = { viewModel::scrollToTop },
+                        )
+                    }
                 }
             ) { innerPadding ->
-                Red30TechNavHost(
+                Red30TechContent(
                     navController = navController,
                     snackbarHostState = snackbarHostState,
-                    shouldAnimateScrollToTop = shouldAnimateScrollToTop,
-                    modifier = Modifier.padding(innerPadding)
+                    currentDestination = currentDestination,
+                    paddingValues = innerPadding,
+                    showNavigationRail = navigationType == NavigationType.RAIL,
+                    onActiveDestinationClick = {
+                        viewModel::scrollToTop
+                        coroutineScope.launch {
+                            delay(500.milliseconds)
+                            viewModel::clearScrollToTop
+                        }
+                    },
                 )
             }
         }

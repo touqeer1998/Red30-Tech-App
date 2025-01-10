@@ -86,7 +86,6 @@ class SessionsFragment : Fragment() {
                 else
                     Day.Day2
             )
-            binding.recyclerview.smoothScrollToPosition(0)
         }
     }
 

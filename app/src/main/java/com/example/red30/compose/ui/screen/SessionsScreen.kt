@@ -3,10 +3,17 @@ package com.example.red30.compose.ui.screen
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.union
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -22,7 +29,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,17 +48,15 @@ import com.example.red30.data.SessionInfo
 import com.example.red30.data.fake
 import com.example.red30.data.fake3
 import com.example.red30.data.sessionInfosByDay
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SessionsScreen(
     modifier: Modifier = Modifier,
     uiState: ConferenceDataUiState,
-    shouldAnimateScrollToTop: Boolean = false,
     windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
     onSessionClick: (Int) -> Unit = {},
-    onDayClick: (Day) -> Unit  = {},
+    onDayClick: (Day) -> Unit = {},
     onFavoriteClick: (Int) -> Unit = {}
 ) {
     Column(
@@ -60,10 +64,9 @@ fun SessionsScreen(
     ) {
         var selectedTabIndex by remember { mutableIntStateOf(0) }
         val listState = rememberLazyGridState()
-        val coroutineScope = rememberCoroutineScope()
 
-        LaunchedEffect(shouldAnimateScrollToTop) {
-            if (shouldAnimateScrollToTop) {
+        LaunchedEffect(uiState) {
+            if (uiState.shouldAnimateScrollToTop) {
                 listState.animateScrollToItem(0)
             }
         }
@@ -71,34 +74,37 @@ fun SessionsScreen(
         var maxHeight by remember { mutableStateOf(0.dp) }
         val density = LocalDensity.current
 
-        if (!uiState.isLoading) {
-            LazyVerticalGrid(
-                modifier = modifier.fillMaxSize(),
-                columns = rememberColumns(windowSizeClass),
-                state = listState
-            ) {
-                item(span = { GridItemSpan(maxLineSpan) }) {
-                    Row(
-                        modifier = Modifier.padding(16.dp),
-                        horizontalArrangement = Arrangement.spacedBy(16.dp)
-                    ) {
-                        dayTabItems.forEachIndexed { index, tabItem ->
-                            FilterChip(
-                                selected = selectedTabIndex == index,
-                                onClick = {
-                                    selectedTabIndex = index
-                                    onDayClick(tabItem.day)
-                                    coroutineScope.launch {
-                                        listState.animateScrollToItem(0)
-                                    }
-                                },
-                                label = {
-                                    Text(stringResource(tabItem.labelResourceId))
-                                },
-                            )
-                        }
+        LazyVerticalGrid(
+            modifier = modifier
+                .fillMaxSize()
+                .windowInsetsPadding(
+                    WindowInsets.systemBars
+                        .union(WindowInsets.displayCutout)
+                ),
+            columns = rememberColumns(windowSizeClass),
+            state = listState
+        ) {
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                Row(
+                    modifier = Modifier.padding(16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    dayTabItems.forEachIndexed { index, tabItem ->
+                        FilterChip(
+                            selected = selectedTabIndex == index,
+                            onClick = {
+                                selectedTabIndex = index
+                                onDayClick(tabItem.day)
+                            },
+                            label = {
+                                Text(stringResource(tabItem.labelResourceId))
+                            },
+                        )
                     }
                 }
+            }
+
+            if (!uiState.isLoading) {
                 items(
                     uiState.sessionInfosByDay,
                     key = { it.session.id }
@@ -120,16 +126,18 @@ fun SessionsScreen(
                         onFavoriteClick = { onFavoriteClick(sessionId) }
                     )
                 }
-            }
-        } else {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                CircularProgressIndicator(
-                    modifier = Modifier.size(64.dp)
-                )
+            } else {
+                item(span = { GridItemSpan(maxLineSpan) }) {
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Spacer(Modifier.height(100.dp))
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(64.dp)
+                        )
+                    }
+                }
             }
         }
     }
@@ -145,8 +153,15 @@ val dayTabItems = listOf(
     DayTabItem(day = Day.Day2, labelResourceId = R.string.day_2_label)
 )
 
-@Preview(showBackground = true, device = "spec:parent=pixel_8,orientation=landscape")
-@Preview(showBackground = true)
+@Preview(
+    showBackground = true,
+    device = "spec:width=1080px,height=2400px,orientation=landscape,cutout=punch_hole",
+    showSystemUi = true
+)
+@Preview(
+    showBackground = true,
+    device = "spec:width=1080px,height=2340px,dpi=440,cutout=punch_hole", showSystemUi = true
+)
 @Composable
 private fun SessionScreenPreview() {
     Red30TechTheme {
