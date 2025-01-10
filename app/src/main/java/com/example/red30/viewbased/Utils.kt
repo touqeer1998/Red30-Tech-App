@@ -1,6 +1,7 @@
 package com.example.red30.viewbased
 
 import android.content.Context
+import android.content.res.Resources
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
@@ -10,6 +11,9 @@ import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.window.core.layout.WindowSizeClass
+import androidx.window.core.layout.WindowWidthSizeClass
+import androidx.window.layout.WindowMetricsCalculator
 import com.example.red30.R
 import com.google.android.material.snackbar.Snackbar
 
@@ -31,10 +35,18 @@ fun View.invisible() {
     this.visibility = INVISIBLE
 }
 
-fun getAppLayoutManager(columnCount: Int, context: Context): RecyclerView.LayoutManager {
-    return when {
-        columnCount <= 1 -> LinearLayoutManager(context)
-        else -> GridLayoutManager(context, columnCount)
+fun getAppLayoutManager(resources: Resources, context: Context): RecyclerView.LayoutManager {
+    val metrics = WindowMetricsCalculator.getOrCreate().computeCurrentWindowMetrics(context)
+    val width = metrics.bounds.width()
+    val height = metrics.bounds.height()
+    val density = resources.displayMetrics.density
+    val windowSizeClass = WindowSizeClass.compute(width / density, height / density)
+    val widthWindowSizeClass = windowSizeClass.windowWidthSizeClass
+
+    return when(widthWindowSizeClass) {
+        WindowWidthSizeClass.COMPACT -> LinearLayoutManager(context)
+        WindowWidthSizeClass.MEDIUM -> GridLayoutManager(context, 2)
+        else -> GridLayoutManager(context, 3)
     }
 }
 
@@ -46,7 +58,6 @@ fun makeAppSnackbar(view: View, snackbarMessage: Int): Snackbar {
     )
 
     (snackbar.view.layoutParams as (CoordinatorLayout.LayoutParams)).apply {
-        setMargins(16, 0, 16, 32)
         width = FrameLayout.LayoutParams.WRAP_CONTENT
     }.also {
         snackbar.view.layoutParams = it

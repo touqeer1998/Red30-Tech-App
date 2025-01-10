@@ -16,6 +16,7 @@
             android:id="@+id/sessionTags"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             app:constraint_referenced_ids="track,roomName"
             app:flow_horizontalAlign="start"
             app:flow_horizontalBias="0"

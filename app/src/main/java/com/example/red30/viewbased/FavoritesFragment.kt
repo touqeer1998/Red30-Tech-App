@@ -10,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.red30.MainNavGraphDirections
 import com.example.red30.MainViewModel
-import com.example.red30.R
 import com.example.red30.data.favorites
 import com.example.red30.databinding.FragmentFavoritesBinding
 import kotlinx.coroutines.launch
@@ -67,9 +66,8 @@ class FavoritesFragment : Fragment() {
             }
         )
         binding.recyclerview.adapter = adapter
-
         binding.recyclerview.layoutManager = getAppLayoutManager(
-            columnCount = resources.getInteger(R.integer.column_count),
+            resources = resources,
             context = requireContext()
         )
         return adapter

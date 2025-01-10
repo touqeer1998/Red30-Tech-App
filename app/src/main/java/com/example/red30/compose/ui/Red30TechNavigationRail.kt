@@ -1,7 +1,10 @@
 package com.example.red30.compose.ui
 
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
@@ -25,7 +28,9 @@ fun Red30TechNavigationRail(
     currentDestination: NavDestination? = null,
     onActiveDestinationClick: () -> Unit = {},
 ) {
-    NavigationRail(modifier = modifier) {
+    NavigationRail(
+        modifier = modifier.windowInsetsPadding(WindowInsets.displayCutout)
+    ) {
         Spacer(Modifier.weight(1f))
 
         topLevelScreens.forEach { screen ->
@@ -61,7 +66,7 @@ fun Red30TechNavigationRail(
     }
 }
 
-@Preview
+@Preview()
 @Composable
 private fun NavigationRailPreview() {
     Red30TechTheme {

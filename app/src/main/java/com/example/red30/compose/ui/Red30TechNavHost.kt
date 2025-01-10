@@ -1,5 +1,8 @@
 package com.example.red30.compose.ui
 
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
@@ -34,7 +37,9 @@ fun Red30TechNavHost(
     NavHost(
         navController = navController,
         startDestination = Screen.Sessions.route,
-        modifier = modifier
+        modifier = modifier.consumeWindowInsets(
+            WindowInsets.systemBars
+        )
     ) {
         composable(route = Screen.Sessions.route) {
             SessionsScreen(
@@ -64,7 +69,10 @@ fun Red30TechNavHost(
             )
         }
         composable(route = Screen.SessionDetail.route) {
-            SessionDetailScreen(uiState = uiState)
+            SessionDetailScreen(
+                uiState = uiState,
+                windowSizeClass = windowSizeClass,
+            )
         }
     }
 

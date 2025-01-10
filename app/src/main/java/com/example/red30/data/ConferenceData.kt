@@ -75,7 +75,7 @@ enum class Day {
 fun Session.Companion.fake() = Session(
     id = 1,
     speakerId = 1,
-    name = "AI for Beginners",
+    name = "AI for Beginners: Very Easy Path",
     startTime = "02:00 PM",
     endTime = "03:00 PM",
     description = """

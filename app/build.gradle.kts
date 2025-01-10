@@ -81,6 +81,8 @@ dependencies {
     implementation(libs.androidx.compose.material.icons)
     implementation(libs.androidx.compose.material.adaptive)
     implementation(libs.androidx.ui.text.google.fonts)
+    implementation(libs.androidx.window)
+    implementation(libs.androidx.window.core)
     implementation(libs.coil)
     implementation(libs.coil.network)
     implementation(libs.coil.compose)
