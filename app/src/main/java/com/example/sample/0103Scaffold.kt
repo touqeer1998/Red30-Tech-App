@@ -22,7 +22,7 @@ import com.example.red30.compose.theme.Red30TechTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Scaffold0103(modifier: Modifier = Modifier) {
+private fun Scaffold0103(modifier: Modifier = Modifier) {
     Red30TechTheme {
         Scaffold(
             modifier = modifier.fillMaxSize(),
@@ -66,6 +66,6 @@ fun Scaffold0103(modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true)
 @Composable
-fun Scaffold0103Preview() {
+private fun Scaffold0103Preview() {
     Scaffold0103()
 }
