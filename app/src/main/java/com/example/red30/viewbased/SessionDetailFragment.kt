@@ -8,11 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.red30.MainViewModel
 import com.example.red30.R
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.Day
 import com.example.red30.data.duration
+import com.example.red30.data.hasSessionLoadingError
 import com.example.red30.databinding.FragmentSessionDetailBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
@@ -51,6 +53,10 @@ class SessionDetailFragment : Fragment() {
     }
 
     private fun updateUi(uiState: ConferenceDataUiState) {
+        if (uiState.hasSessionLoadingError) {
+            findNavController().popBackStack()
+        }
+
         uiState.selectedSession?.let { it
             val session = it.session
             val speaker = it.speaker

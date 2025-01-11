@@ -15,6 +15,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,13 +35,21 @@ import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.Speaker
 import com.example.red30.data.fake
+import com.example.red30.data.hasSessionLoadingError
 
 @Composable
 fun SessionDetailScreen(
     modifier: Modifier = Modifier,
     windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
     uiState: ConferenceDataUiState,
+    onLoadingErrorReceived: () -> Unit = {}
 ) {
+    LaunchedEffect(uiState) {
+        if (uiState.hasSessionLoadingError) {
+            onLoadingErrorReceived()
+        }
+    }
+
     val isCompact by remember {
         mutableStateOf(windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT)
     }

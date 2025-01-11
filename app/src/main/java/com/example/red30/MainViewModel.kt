@@ -59,17 +59,11 @@ class MainViewModel(
 
     fun getSessionInfoById(sessionId: Int) {
         viewModelScope.launch {
-            try {
+            _uiState.value.getSelectedSession(sessionId)?.let { session ->
+                _uiState.update { it.copy(selectedSession = session) }
+            } ?: run {
                 _uiState.update {
-                    it.copy(selectedSession = it.getSelectedSession(sessionId))
-                }
-            } catch (e: Exception) {
-                Log.e(TAG, e.toString())
-                _uiState.update {
-                    it.copy(
-                        selectedSession = null,
-                        errorMessage = R.string.unable_to_retrieve_session_error
-                    )
+                    it.copy(snackbarMessage = R.string.unable_to_retrieve_session_error)
                 }
             }
         }
@@ -101,13 +95,9 @@ class MainViewModel(
     // TODO: use this once screens support Error composable
     fun dismissError() = _uiState.update { it.copy(errorMessage = null) }
 
-    fun scrollToTop() {
-        _uiState.update { it.copy(shouldAnimateScrollToTop = true) }
-    }
+    fun scrollToTop() = _uiState.update { it.copy(shouldAnimateScrollToTop = true) }
 
-    fun clearScrollToTop() {
-        _uiState.update { it.copy(shouldAnimateScrollToTop = false) }
-    }
+    fun clearScrollToTop() = _uiState.update { it.copy(shouldAnimateScrollToTop = false) }
 
     fun shownSnackbar() = _uiState.update { it.copy(snackbarMessage = null) }
 }

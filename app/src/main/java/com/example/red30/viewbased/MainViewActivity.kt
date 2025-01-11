@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.red30.R
 import com.example.red30.databinding.ActivityMainViewBinding
@@ -44,5 +45,6 @@ class MainViewActivity : AppCompatActivity() {
         }
 
         binding.bottomNav.setupWithNavController(navController)
+//        NavigationUI.setupWithNavController(binding.navigationRail, navController)
     }
 }

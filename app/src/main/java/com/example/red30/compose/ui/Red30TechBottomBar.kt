@@ -42,7 +42,7 @@ fun Red30TechBottomBar(
                             launchSingleTop = true
                         }
                     } else {
-                        onActiveDestinationClick.invoke()
+                        onActiveDestinationClick()
                     }
                 }
             )

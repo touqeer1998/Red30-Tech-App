@@ -35,7 +35,6 @@ fun Red30TechNavHost(
         viewModelStoreOwner = LocalContext.current as ComponentActivity
     )
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     NavHost(
@@ -76,6 +75,9 @@ fun Red30TechNavHost(
             SessionDetailScreen(
                 uiState = uiState,
                 windowSizeClass = windowSizeClass,
+                onLoadingErrorReceived = {
+                    navController.popBackStack()
+                }
             )
         }
     }

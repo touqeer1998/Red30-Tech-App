@@ -1,5 +1,7 @@
 package com.example.red30.data
 
+import com.example.red30.R
+
 data class ConferenceDataUiState(
     val day: Day = Day.Day1,
     val sessionInfos: List<SessionInfo> = emptyList(),
@@ -20,6 +22,10 @@ val ConferenceDataUiState.favorites: List<SessionInfo>
 
 val ConferenceDataUiState.sessionInfosByDay: List<SessionInfo>
     get() = sessionInfos.filter { it.day == day }
+
+val ConferenceDataUiState.hasSessionLoadingError: Boolean
+    get() = snackbarMessage != null
+            && snackbarMessage == R.string.unable_to_retrieve_session_error
 
 fun ConferenceDataUiState.getSelectedSession(sessionId: Int): SessionInfo? {
     return sessionInfos.find { it.session.id == sessionId }
