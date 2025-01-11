@@ -36,7 +36,6 @@ class SpeakersFragment : Fragment() {
         val adapter = SpeakerItemAdapter()
         binding.recyclerview.adapter = adapter
         binding.recyclerview.layoutManager = getAppLayoutManager(
-            resources = resources,
             context = requireContext()
         )
 

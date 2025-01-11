@@ -1,7 +1,6 @@
 package com.example.red30.viewbased
 
 import android.content.Context
-import android.content.res.Resources
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
@@ -35,18 +34,18 @@ fun View.invisible() {
     this.visibility = INVISIBLE
 }
 
-fun getAppLayoutManager(resources: Resources, context: Context): RecyclerView.LayoutManager {
+fun getAppLayoutManager(context: Context): RecyclerView.LayoutManager {
     val metrics = WindowMetricsCalculator.getOrCreate().computeCurrentWindowMetrics(context)
     val width = metrics.bounds.width()
     val height = metrics.bounds.height()
-    val density = resources.displayMetrics.density
+    val density = context.resources.displayMetrics.density
     val windowSizeClass = WindowSizeClass.compute(width / density, height / density)
     val widthWindowSizeClass = windowSizeClass.windowWidthSizeClass
 
     return when(widthWindowSizeClass) {
         WindowWidthSizeClass.COMPACT -> LinearLayoutManager(context)
         WindowWidthSizeClass.MEDIUM -> GridLayoutManager(context, 2)
-        else -> GridLayoutManager(context, 3)
+        else -> GridAutofitLayoutManager(context, 800)
     }
 }
 

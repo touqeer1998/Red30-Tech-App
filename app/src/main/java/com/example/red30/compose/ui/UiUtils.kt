@@ -21,11 +21,14 @@ enum class NavigationType {
     RAIL;
 
     companion object {
-        fun forWindowSizeSize(
+        @Composable
+        fun rememberNavigationType(
             windowSizeClass: WindowWidthSizeClass
-        ): NavigationType = when (windowSizeClass) {
-            WindowWidthSizeClass.COMPACT -> BOTTOM_NAVIGATION
-            else -> RAIL
+        ): NavigationType = remember(windowSizeClass) {
+            when (windowSizeClass) {
+                WindowWidthSizeClass.COMPACT -> BOTTOM_NAVIGATION
+                else -> RAIL
+            }
         }
     }
 }

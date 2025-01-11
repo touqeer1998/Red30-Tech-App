@@ -16,6 +16,7 @@ import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
@@ -69,32 +70,32 @@ fun SessionsScreen(
         var maxHeight by remember { mutableStateOf(0.dp) }
         val density = LocalDensity.current
 
-        LazyVerticalGrid(
-            modifier = modifier.fillMaxSize(),
-            columns = rememberColumns(windowSizeClass),
-            state = listState
-        ) {
-            item(span = { GridItemSpan(maxLineSpan) }) {
-                Row(
-                    modifier = Modifier.padding(16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    dayTabItems.forEachIndexed { index, tabItem ->
-                        FilterChip(
-                            selected = selectedTabIndex == index,
-                            onClick = {
-                                selectedTabIndex = index
-                                onDayClick(tabItem.day)
-                            },
-                            label = {
-                                Text(stringResource(tabItem.labelResourceId))
-                            },
-                        )
+        if (!uiState.isLoading) {
+            LazyVerticalGrid(
+                modifier = modifier.fillMaxSize(),
+                columns = rememberColumns(windowSizeClass),
+                state = listState
+            ) {
+                item(span = { GridItemSpan(maxLineSpan) }) {
+                    Row(
+                        modifier = Modifier.padding(16.dp),
+                        horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        dayTabItems.forEachIndexed { index, tabItem ->
+                            FilterChip(
+                                selected = selectedTabIndex == index,
+                                onClick = {
+                                    selectedTabIndex = index
+                                    onDayClick(tabItem.day)
+                                },
+                                label = {
+                                    Text(stringResource(tabItem.labelResourceId))
+                                },
+                            )
+                        }
                     }
                 }
-            }
 
-            if (!uiState.isLoading) {
                 items(
                     uiState.sessionInfosByDay,
                     key = { it.session.id }
@@ -116,20 +117,25 @@ fun SessionsScreen(
                         onFavoriteClick = { onFavoriteClick(sessionId) }
                     )
                 }
-            } else {
-                item(span = { GridItemSpan(maxLineSpan) }) {
-                    Column(
-                        modifier = Modifier.fillMaxSize(),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Spacer(Modifier.height(100.dp))
-                        CircularProgressIndicator(
-                            modifier = Modifier.size(64.dp)
-                        )
-                    }
-                }
             }
+        } else {
+            LoadingIndicator()
         }
+    }
+}
+
+@Composable
+fun LoadingIndicator(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CircularProgressIndicator(
+            modifier = Modifier.size(64.dp)
+        )
+        Spacer(Modifier.height(24.dp))
+        Text(stringResource(R.string.loading))
     }
 }
 
@@ -160,5 +166,17 @@ private fun SessionScreenPreview() {
                 sessionInfos = listOf(SessionInfo.fake(), SessionInfo.fake3())
             )
         )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SessionScreenLoadingPreview() {
+    Red30TechTheme {
+        Surface {
+            SessionsScreen(
+                uiState = ConferenceDataUiState(isLoading = true)
+            )
+        }
     }
 }

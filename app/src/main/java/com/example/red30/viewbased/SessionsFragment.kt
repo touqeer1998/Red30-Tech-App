@@ -71,7 +71,6 @@ class SessionsFragment : Fragment() {
         )
         binding.recyclerview.adapter = adapter
         binding.recyclerview.layoutManager = getAppLayoutManager(
-            resources = resources,
             context = requireContext()
         )
         return adapter

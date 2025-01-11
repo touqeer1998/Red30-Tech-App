@@ -54,10 +54,7 @@ class MainViewModel(
 
     fun setDay(day: Day) {
         savedStateHandle["day"] = day
-
-        _uiState.update {
-            it.copy(day = day)
-        }
+        _uiState.update { it.copy(day = day) }
     }
 
     fun getSessionInfoById(sessionId: Int) {
@@ -95,37 +92,22 @@ class MainViewModel(
             } catch (e: Exception) {
                 Log.e(TAG, e.toString())
                 _uiState.update {
-                    it.copy(
-                        isLoading = false,
-                        snackbarMessage = R.string.save_remove_favorites_error
-                    )
+                    it.copy(snackbarMessage = R.string.save_remove_favorites_error)
                 }
             }
         }
     }
 
     // TODO: use this once screens support Error composable
-    fun dismissError() {
-        _uiState.update {
-            it.copy(errorMessage = null)
-        }
-    }
+    fun dismissError() = _uiState.update { it.copy(errorMessage = null) }
 
     fun scrollToTop() {
-        _uiState.update {
-            it.copy(shouldAnimateScrollToTop = true)
-        }
+        _uiState.update { it.copy(shouldAnimateScrollToTop = true) }
     }
 
     fun clearScrollToTop() {
-        _uiState.update {
-            it.copy(shouldAnimateScrollToTop = false)
-        }
+        _uiState.update { it.copy(shouldAnimateScrollToTop = false) }
     }
 
-    fun shownSnackbar() {
-        _uiState.update {
-            it.copy(snackbarMessage = null)
-        }
-    }
+    fun shownSnackbar() = _uiState.update { it.copy(snackbarMessage = null) }
 }

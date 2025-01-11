@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.example.red30.R
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -25,7 +26,8 @@ val FAVORITE_IDS = stringPreferencesKey("favorite_ids")
 
 class InMemoryConferenceRepository(
     private val appContext: Context,
-    private val dataStore: DataStore<Preferences>
+    private val dataStore: DataStore<Preferences>,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ): ConferenceRepository {
 
     override suspend fun toggleFavorite(sessionId: Int): List<Int> {
@@ -52,7 +54,7 @@ class InMemoryConferenceRepository(
             .orEmpty()
     }
 
-    override suspend fun loadConferenceInfo(): List<SessionInfo> = withContext(Dispatchers.IO) {
+    override suspend fun loadConferenceInfo(): List<SessionInfo> = withContext(dispatcher) {
         val json = Json { ignoreUnknownKeys = true }
         val favoriteIds: List<Int> = getFavoriteIds().first()
 

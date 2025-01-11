@@ -11,6 +11,7 @@ import com.example.red30.data.sessionInfosByDay
 import com.example.red30.fakes.FakeConferenceRepository
 import com.example.red30.util.MainDispatcherRule
 import com.google.common.truth.Truth.assertThat
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
@@ -38,6 +39,7 @@ class MainViewModelTest : KoinTest {
     val koinTestRule = KoinTestRule.create {
         this.modules(
             module {
+                single<CoroutineDispatcher> { testDispatcher }
                 singleOf(::FakeConferenceRepository) bind ConferenceRepository::class
                 factoryOf<SavedStateHandle>(::SavedStateHandle)
                 viewModelOf(::MainViewModel)

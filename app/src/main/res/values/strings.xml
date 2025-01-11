@@ -26,4 +26,6 @@
     <string name="unable_to_retrieve_session_error">Unable to retrieve this session.</string>
     <string name="unable_to_load_conference_data_error">Unable to load conference information.</string>
     <string name="save_remove_favorites_success">Saved/removed session from favorites.</string>
+    <string name="loading">Loading…</string>
+    <string name="favorites_here">Your favorites will be here</string>
 </resources>
