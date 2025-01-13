@@ -17,6 +17,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -36,6 +37,7 @@ import com.example.red30.compose.theme.Red30TechTheme
 import com.example.red30.compose.ui.component.SpeakerImage
 import com.example.red30.compose.ui.rememberColumns
 import com.example.red30.data.ConferenceDataUiState
+import com.example.red30.data.MainAction
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.Speaker
 import com.example.red30.data.fake
@@ -47,6 +49,7 @@ import com.example.red30.data.speakers
 fun SpeakersScreen(
     modifier: Modifier = Modifier,
     uiState: ConferenceDataUiState,
+    onAction: (action: MainAction) -> Unit = {},
     windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
 ) {
     val listState = rememberLazyGridState()
@@ -54,6 +57,12 @@ fun SpeakersScreen(
     LaunchedEffect(uiState) {
         if (uiState.shouldAnimateScrollToTop) {
             listState.animateScrollToItem(0)
+        }
+    }
+
+    if (listState.isScrollInProgress) {
+        DisposableEffect(Unit) {
+            onDispose { onAction(MainAction.OnScrollComplete) }
         }
     }
 

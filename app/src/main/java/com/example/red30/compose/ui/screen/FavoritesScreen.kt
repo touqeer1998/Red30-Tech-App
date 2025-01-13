@@ -17,6 +17,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,24 +25,24 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.window.core.layout.WindowSizeClass
+import com.example.red30.R
 import com.example.red30.compose.theme.Red30TechTheme
 import com.example.red30.compose.ui.component.SessionItem
 import com.example.red30.compose.ui.rememberColumns
 import com.example.red30.data.ConferenceDataUiState
+import com.example.red30.data.MainAction
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.fake
 import com.example.red30.data.fakes
 import com.example.red30.data.favorites
-import com.example.red30.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FavoritesScreen(
     modifier: Modifier = Modifier,
     uiState: ConferenceDataUiState,
-    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
-    onSessionClick: (Int) -> Unit = {},
-    onFavoriteClick: (Int) -> Unit = {}
+    onAction: (action: MainAction) -> Unit = {},
+    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
 ) {
     Column(modifier = modifier.fillMaxSize()) {
         val listState = rememberLazyGridState()
@@ -49,6 +50,12 @@ fun FavoritesScreen(
         LaunchedEffect(uiState) {
             if (uiState.shouldAnimateScrollToTop) {
                 listState.animateScrollToItem(0)
+            }
+        }
+
+        if (listState.isScrollInProgress) {
+            DisposableEffect(Unit) {
+                onDispose { onAction(MainAction.OnScrollComplete) }
             }
         }
 
@@ -63,11 +70,14 @@ fun FavoritesScreen(
                         uiState.favorites,
                         key = { it.session.id }
                     ) { sessionInfo ->
-                        val sessionId = sessionInfo.session.id
                         SessionItem(
                             sessionInfo = sessionInfo,
-                            onSessionClick = { onSessionClick(sessionId) },
-                            onFavoriteClick = { onFavoriteClick(sessionId) }
+                            onSessionClick = { sessionId ->
+                                onAction(MainAction.OnSessionClick(sessionId))
+                            },
+                            onFavoriteClick = { sessionId ->
+                                onAction(MainAction.OnFavoriteClick(sessionId))
+                            }
                         )
                     }
                 }

@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
+import com.example.red30.data.MainAction
 
 @Composable
 fun Red30TechContent(
@@ -18,14 +19,14 @@ fun Red30TechContent(
     snackbarHostState: SnackbarHostState,
     currentDestination: NavDestination? = null,
     showNavigationRail: Boolean = false,
-    onActiveDestinationClick: () -> Unit = {},
+    onAction: (action: MainAction) -> Unit = {}
 ) {
     Row(modifier = modifier.fillMaxSize()) {
         if (showNavigationRail) {
             Red30TechNavigationRail(
                 navController = navController,
                 currentDestination = currentDestination,
-                onActiveDestinationClick = onActiveDestinationClick
+                onAction = onAction
             )
         }
 

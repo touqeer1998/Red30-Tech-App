@@ -9,7 +9,6 @@ import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,18 +20,13 @@ import com.example.red30.compose.ui.NavigationType
 import com.example.red30.compose.ui.NavigationType.Companion.rememberNavigationType
 import com.example.red30.compose.ui.Red30TechBottomBar
 import com.example.red30.compose.ui.Red30TechContent
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import org.koin.androidx.compose.KoinAndroidContext
 import org.koin.androidx.compose.koinViewModel
-import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 fun Red30TechApp(modifier: Modifier = Modifier) {
     Red30TechTheme {
         KoinAndroidContext {
-            val coroutineScope = rememberCoroutineScope()
             val navController = rememberNavController()
             val snackbarHostState = remember { SnackbarHostState() }
             val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -54,9 +48,7 @@ fun Red30TechApp(modifier: Modifier = Modifier) {
                         Red30TechBottomBar(
                             navController = navController,
                             currentDestination = currentDestination,
-                            onActiveDestinationClick = {
-                                scrollToTop(viewModel, coroutineScope)
-                            }
+                            onAction = viewModel::onMainAction
                         )
                     }
                 }
@@ -67,23 +59,10 @@ fun Red30TechApp(modifier: Modifier = Modifier) {
                     currentDestination = currentDestination,
                     paddingValues = innerPadding,
                     showNavigationRail = navigationType == NavigationType.RAIL,
-                    onActiveDestinationClick = {
-                        scrollToTop(viewModel, coroutineScope)
-                    },
+                    onAction = viewModel::onMainAction
                 )
             }
         }
-    }
-}
-
-private fun scrollToTop(
-    viewModel: MainViewModel,
-    coroutineScope: CoroutineScope
-) {
-    viewModel.scrollToTop()
-    coroutineScope.launch {
-        delay(500.milliseconds)
-        viewModel.clearScrollToTop()
     }
 }
 

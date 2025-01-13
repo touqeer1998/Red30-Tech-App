@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -16,35 +17,63 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.red30.compose.theme.Red30TechTheme
 
+data class DataFlowUiState(
+    val numAttendees: Int = 0,
+    val numDoubleAttendees: Int = 0,
+)
+
+@Preview
 @Composable
-private fun Remember0304(
+private fun DataFlow0401Preview() {
+    Red30TechTheme {
+        Surface {
+            var numAttendees by remember { mutableIntStateOf(0) }
+            var numDoubleAttendees by remember { mutableIntStateOf(1) }
+
+            DataFlow0401(
+                uiState = DataFlowUiState(
+                    numAttendees = numAttendees,
+                    numDoubleAttendees = numDoubleAttendees
+                ),
+                onAndroidBasicsClick = { numAttendees++ },
+                onAIBeginnersClick = { numDoubleAttendees = numDoubleAttendees * 2 }
+            )
+        }
+    }
+}
+
+@Composable
+private fun DataFlow0401(
     modifier: Modifier = Modifier,
+    uiState: DataFlowUiState,
+    onAndroidBasicsClick: () -> Unit,
+    onAIBeginnersClick: () -> Unit,
 ) {
     Column(
-        modifier = modifier.padding(16.dp),
+        modifier = modifier.fillMaxSize().padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(
-            space = 24.dp,
+            space = 48.dp,
             alignment = Alignment.CenterVertically
         )
     ) {
-        var numAttendees by remember { mutableIntStateOf(0) }
         Tag(
+            modifier = Modifier.clickable {
+                onAndroidBasicsClick()
+            },
             tag = "Android Basics",
-            numAttendees = numAttendees,
-            onTagClick = { numAttendees++ }
+            numAttendees = uiState.numAttendees,
         )
-
-        var numDoubleAttendees by remember { mutableIntStateOf(1) }
         Tag(
+            modifier = Modifier.clickable {
+                onAIBeginnersClick()
+            },
             tag = "AI for Beginners",
-            numAttendees = numDoubleAttendees,
-            onTagClick = {
-                numDoubleAttendees = numDoubleAttendees * 2
-            }
+            numAttendees = uiState.numDoubleAttendees,
         )
     }
 }
@@ -54,14 +83,14 @@ private fun Tag(
     modifier: Modifier = Modifier,
     tag: String,
     numAttendees: Int,
-    onTagClick: () -> Unit
 ) {
     Text(
         text = "$tag --> Attendees: $numAttendees",
-        style = MaterialTheme.typography.bodySmall,
+        style = MaterialTheme.typography.bodyMedium,
+        fontWeight = FontWeight.Bold,
         modifier = modifier
             .tag()
-            .clickable { onTagClick() }
+            .padding(16.dp)
     )
 }
 
@@ -76,13 +105,3 @@ private fun Modifier.tag() =
         horizontal = 6.dp,
         vertical = 4.dp,
     )
-
-@Preview
-@Composable
-private fun Remember0304Preview() {
-    Red30TechTheme {
-        Surface {
-            Remember0304()
-        }
-    }
-}

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -13,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -23,6 +23,7 @@ import com.example.red30.compose.ui.screen.Screen
 import com.example.red30.compose.ui.screen.SessionDetailScreen
 import com.example.red30.compose.ui.screen.SessionsScreen
 import com.example.red30.compose.ui.screen.SpeakersScreen
+import com.example.red30.data.hasSessionLoadingError
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -47,12 +48,8 @@ fun Red30TechNavHost(
         composable(route = Screen.Sessions.route) {
             SessionsScreen(
                 uiState = uiState,
-                windowSizeClass = windowSizeClass,
-                onSessionClick = { sessionId ->
-                    navController.onSessionClick(viewModel, sessionId)
-                },
-                onDayClick = viewModel::setDay,
-                onFavoriteClick = viewModel::toggleFavorite
+                onAction = viewModel::onMainAction,
+                windowSizeClass = windowSizeClass
             )
         }
         composable(route = Screen.Speakers.route) {
@@ -64,34 +61,31 @@ fun Red30TechNavHost(
         composable(route = Screen.Favorites.route) {
             FavoritesScreen(
                 uiState = uiState,
+                onAction = viewModel::onMainAction,
                 windowSizeClass = windowSizeClass,
-                onSessionClick = { sessionId ->
-                    navController.onSessionClick(viewModel, sessionId)
-                },
-                onFavoriteClick = viewModel::toggleFavorite
             )
         }
         composable(route = Screen.SessionDetail.route) {
             SessionDetailScreen(
                 uiState = uiState,
-                windowSizeClass = windowSizeClass,
-                onLoadingErrorReceived = {
-                    navController.popBackStack()
-                }
+                windowSizeClass = windowSizeClass
             )
         }
     }
 
     uiState.snackbarMessage?.let { snackbarMessage ->
         val message = stringResource(snackbarMessage)
-        LaunchedEffect(snackbarHostState, viewModel, snackbarMessage, message) {
-            snackbarHostState.showSnackbar(message)
-            viewModel.shownSnackbar()
+        LaunchedEffect(snackbarHostState, snackbarMessage) {
+            val result = snackbarHostState.showSnackbar(message)
+            if (result == SnackbarResult.Dismissed) {
+                viewModel.shownSnackbar()
+            }
         }
     }
-}
 
-fun NavController.onSessionClick(viewModel: MainViewModel, sessionId: Int) {
-    viewModel.getSessionInfoById(sessionId)
-    navigate(Screen.SessionDetail.route)
+    LaunchedEffect(uiState.selectedSession) {
+        uiState.selectedSession?.let {
+            navController.navigate(Screen.SessionDetail.route)
+        }
+    }
 }

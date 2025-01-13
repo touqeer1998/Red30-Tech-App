@@ -20,6 +20,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -40,6 +41,7 @@ import com.example.red30.compose.ui.component.SessionItem
 import com.example.red30.compose.ui.rememberColumns
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.Day
+import com.example.red30.data.MainAction
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.fake
 import com.example.red30.data.fake3
@@ -50,20 +52,24 @@ import com.example.red30.data.sessionInfosByDay
 fun SessionsScreen(
     modifier: Modifier = Modifier,
     uiState: ConferenceDataUiState,
+    onAction: (action: MainAction) -> Unit = {},
     windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
-    onSessionClick: (Int) -> Unit = {},
-    onDayClick: (Day) -> Unit = {},
-    onFavoriteClick: (Int) -> Unit = {}
 ) {
     Column(
         modifier = modifier.fillMaxSize(),
     ) {
-        var selectedTabIndex by remember { mutableIntStateOf(0) }
+        var selectedChipIndex by remember { mutableIntStateOf(0) }
         val listState = rememberLazyGridState()
 
         LaunchedEffect(uiState) {
             if (uiState.shouldAnimateScrollToTop) {
                 listState.animateScrollToItem(0)
+            }
+        }
+
+        if (listState.isScrollInProgress) {
+            DisposableEffect(Unit) {
+                onDispose { onAction(MainAction.OnScrollComplete) }
             }
         }
 
@@ -83,10 +89,10 @@ fun SessionsScreen(
                     ) {
                         dayTabItems.forEachIndexed { index, tabItem ->
                             FilterChip(
-                                selected = selectedTabIndex == index,
+                                selected = selectedChipIndex == index,
                                 onClick = {
-                                    selectedTabIndex = index
-                                    onDayClick(tabItem.day)
+                                    selectedChipIndex = index
+                                    onAction(MainAction.OnDayClick(tabItem.day))
                                 },
                                 label = {
                                     Text(stringResource(tabItem.labelResourceId))
@@ -100,7 +106,6 @@ fun SessionsScreen(
                     uiState.sessionInfosByDay,
                     key = { it.session.id }
                 ) { sessionInfo ->
-                    val sessionId = sessionInfo.session.id
                     SessionItem(
                         modifier = Modifier
                             .onGloballyPositioned { coordinates ->
@@ -113,8 +118,12 @@ fun SessionsScreen(
                             }
                             .heightIn(min = maxHeight),
                         sessionInfo = sessionInfo,
-                        onSessionClick = { onSessionClick(sessionId) },
-                        onFavoriteClick = { onFavoriteClick(sessionId) }
+                        onSessionClick = { sessionId ->
+                            onAction(MainAction.OnSessionClick(sessionId))
+                        },
+                        onFavoriteClick = { sessionId ->
+                            onAction(MainAction.OnFavoriteClick(sessionId))
+                        }
                     )
                 }
             }

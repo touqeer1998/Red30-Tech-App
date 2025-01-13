@@ -10,9 +10,10 @@ import androidx.core.view.updateLayoutParams
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupWithNavController
 import com.example.red30.R
 import com.example.red30.databinding.ActivityMainViewBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 
 class MainViewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainViewBinding
@@ -30,21 +31,43 @@ class MainViewActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.mainContainer) { view, windowInsets ->
-            val insets = windowInsets.getInsets(
-                WindowInsetsCompat.Type.systemBars()
-                    or WindowInsetsCompat.Type.displayCutout()
-            )
-            view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                topMargin = insets.top
-                leftMargin = insets.left
-                bottomMargin = insets.bottom
-                rightMargin = insets.right
-            }
-            windowInsets
-        }
+        setUpWindowInsets()
 
-        binding.bottomNav.setupWithNavController(navController)
-//        NavigationUI.setupWithNavController(binding.navigationRail, navController)
+        NavigationUI.setupWithNavController(
+            binding.navigationView as NavigationBarView,
+            navController
+        )
+    }
+
+    private fun setUpWindowInsets() {
+        if (binding.navigationView is BottomNavigationView) {
+            ViewCompat.setOnApplyWindowInsetsListener(binding.mainContainer) { view, windowInsets ->
+                val insets = windowInsets.getInsets(
+                    WindowInsetsCompat.Type.systemBars()
+                            or WindowInsetsCompat.Type.displayCutout()
+                )
+                view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                    topMargin = insets.top
+                    leftMargin = insets.left
+                    bottomMargin = insets.bottom
+                    rightMargin = insets.right
+                }
+                windowInsets
+            }
+        } else {
+            ViewCompat.setOnApplyWindowInsetsListener(binding.rootLayout) { view, windowInsets ->
+                val insets = windowInsets.getInsets(
+                    WindowInsetsCompat.Type.systemBars()
+                            or WindowInsetsCompat.Type.displayCutout()
+                )
+                view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                    topMargin = insets.top
+                    leftMargin = insets.left
+                    bottomMargin = insets.bottom
+                    rightMargin = insets.right
+                }
+                WindowInsetsCompat.CONSUMED
+            }
+        }
     }
 }

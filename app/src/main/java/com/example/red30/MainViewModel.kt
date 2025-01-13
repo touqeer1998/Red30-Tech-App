@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.ConferenceRepository
 import com.example.red30.data.Day
+import com.example.red30.data.MainAction
 import com.example.red30.data.getSelectedSession
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -52,6 +53,15 @@ class MainViewModel(
         }
     }
 
+    fun onMainAction(event: MainAction) = when (event) {
+        is MainAction.OnDayClick -> setDay(event.day)
+        is MainAction.OnFavoriteClick -> toggleFavorite(event.sessionId)
+        is MainAction.OnScrollComplete -> clearScrollToTop()
+        is MainAction.OnSessionClick -> getSessionInfoById(event.sessionId)
+        is MainAction.OnActiveDestinationClick -> activeDestinationClick()
+        is MainAction.OnDestinationClick -> onDestinationChange()
+    }
+
     fun setDay(day: Day) {
         savedStateHandle["day"] = day
         _uiState.update { it.copy(day = day) }
@@ -63,7 +73,10 @@ class MainViewModel(
                 _uiState.update { it.copy(selectedSession = session) }
             } ?: run {
                 _uiState.update {
-                    it.copy(snackbarMessage = R.string.unable_to_retrieve_session_error)
+                    it.copy(
+                        snackbarMessage = R.string.unable_to_retrieve_session_error,
+                        selectedSession = null
+                    )
                 }
             }
         }
@@ -86,18 +99,27 @@ class MainViewModel(
             } catch (e: Exception) {
                 Log.e(TAG, e.toString())
                 _uiState.update {
-                    it.copy(snackbarMessage = R.string.save_remove_favorites_error)
+                    it.copy(
+                        snackbarMessage = R.string.save_remove_favorites_error,
+                    )
                 }
             }
         }
     }
 
-    // TODO: use this once screens support Error composable
-    fun dismissError() = _uiState.update { it.copy(errorMessage = null) }
+    fun activeDestinationClick() = _uiState.update {
+        it.copy(shouldAnimateScrollToTop = true)
+    }
 
-    fun scrollToTop() = _uiState.update { it.copy(shouldAnimateScrollToTop = true) }
+    fun clearScrollToTop() = _uiState.update {
+        it.copy(shouldAnimateScrollToTop = false)
+    }
 
-    fun clearScrollToTop() = _uiState.update { it.copy(shouldAnimateScrollToTop = false) }
+    fun shownSnackbar() = _uiState.update {
+        it.copy(snackbarMessage = null)
+    }
 
-    fun shownSnackbar() = _uiState.update { it.copy(snackbarMessage = null) }
+    fun onDestinationChange() = _uiState.update {
+        it.copy(selectedSession = null)
+    }
 }

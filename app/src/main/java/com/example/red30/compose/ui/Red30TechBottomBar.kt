@@ -11,13 +11,14 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import com.example.red30.compose.ui.screen.topLevelScreens
+import com.example.red30.data.MainAction
 
 @Composable
 fun Red30TechBottomBar(
     modifier: Modifier = Modifier,
     navController: NavHostController,
     currentDestination: NavDestination?,
-    onActiveDestinationClick: () -> Unit = {},
+    onAction: (action: MainAction) -> Unit = {}
 ) {
     NavigationBar(modifier = modifier) {
         topLevelScreens.forEach { screen ->
@@ -37,12 +38,13 @@ fun Red30TechBottomBar(
                 } == true,
                 onClick = {
                     if (screen.route != currentDestination?.route) {
+                        onAction(MainAction.OnDestinationClick)
                         navController.navigate(screen.route) {
                             popUpTo(navController.graph.startDestinationId)
                             launchSingleTop = true
                         }
                     } else {
-                        onActiveDestinationClick()
+                        onAction(MainAction.OnActiveDestinationClick)
                     }
                 }
             )

@@ -20,13 +20,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.red30.compose.theme.Red30TechTheme
 import com.example.red30.compose.ui.screen.topLevelScreens
+import com.example.red30.data.MainAction
 
 @Composable
 fun Red30TechNavigationRail(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     currentDestination: NavDestination? = null,
-    onActiveDestinationClick: () -> Unit = {},
+    onAction: (action: MainAction) -> Unit = {}
 ) {
     NavigationRail(
         modifier = modifier.windowInsetsPadding(WindowInsets.displayCutout)
@@ -50,12 +51,13 @@ fun Red30TechNavigationRail(
                 } == true,
                 onClick = {
                     if (screen.route != currentDestination?.route) {
+                        onAction(MainAction.OnDestinationClick)
                         navController.navigate(screen.route) {
                             popUpTo(navController.graph.startDestinationId)
                             launchSingleTop = true
                         }
                     } else {
-                        onActiveDestinationClick.invoke()
+                        onAction(MainAction.OnActiveDestinationClick)
                     }
                 }
             )
