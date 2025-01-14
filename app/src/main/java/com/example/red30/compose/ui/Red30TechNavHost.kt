@@ -23,7 +23,6 @@ import com.example.red30.compose.ui.screen.Screen
 import com.example.red30.compose.ui.screen.SessionDetailScreen
 import com.example.red30.compose.ui.screen.SessionsScreen
 import com.example.red30.compose.ui.screen.SpeakersScreen
-import com.example.red30.data.hasSessionLoadingError
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
