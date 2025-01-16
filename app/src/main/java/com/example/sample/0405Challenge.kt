@@ -30,14 +30,14 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
-private class FavoritesViewModel: ViewModel() {
-    private val _sessionInfo = MutableStateFlow<SessionInfo>(SessionInfo.fake())
-    val sessionInfo: StateFlow<SessionInfo> = _sessionInfo
-
-    fun toggleFavorite() {
-        // TODO: update the sessionInfo with the new favorite value
-    }
-}
+//private class FavoritesViewModel: ViewModel() {
+//    private val _sessionInfo = MutableStateFlow<SessionInfo>(SessionInfo.fake())
+//    val sessionInfo: StateFlow<SessionInfo> = _sessionInfo
+//
+//    fun toggleFavorite() {
+//        // TODO: update the sessionInfo with the new favorite value
+//    }
+//}
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -88,10 +88,10 @@ private fun SessionItemPreview() {
 
     Red30TechTheme {
         Surface {
-            SessionItem(
-                sessionInfo = ,
-                onFavoriteClick = {  }
-            )
+//            SessionItem(
+//                sessionInfo = ,
+//                onFavoriteClick = {  }
+//            )
         }
     }
 }
