@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "MainViewModel"
 
-private class MainViewModel2(
+internal class MainViewModel2(
     private val conferenceRepository: ConferenceRepository
 ): ViewModel() {
 
@@ -72,7 +72,7 @@ private fun MainApp(modifier: Modifier = Modifier) {
     }
 }
 
-private class FakeConferenceRepository: ConferenceRepository {
+internal class FakeConferenceRepository: ConferenceRepository {
     override suspend fun loadConferenceInfo(): List<SessionInfo> {
         return listOf(SessionInfo.fake(), SessionInfo.fake2())
     }
@@ -84,7 +84,7 @@ private class FakeConferenceRepository: ConferenceRepository {
 
 @Preview
 @Composable
-private fun AppPreview() {
+private fun StateFlow0404Preview() {
     Red30TechTheme {
         MainApp()
     }

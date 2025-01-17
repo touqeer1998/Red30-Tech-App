@@ -87,7 +87,7 @@ fun SessionsScreen(
                         modifier = Modifier.padding(16.dp),
                         horizontalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
-                        dayTabItems.forEachIndexed { index, tabItem ->
+                        dayChipItems.forEachIndexed { index, tabItem ->
                             FilterChip(
                                 selected = selectedChipIndex == index,
                                 onClick = {
@@ -118,12 +118,7 @@ fun SessionsScreen(
                             }
                             .heightIn(min = maxHeight),
                         sessionInfo = sessionInfo,
-                        onSessionClick = { sessionId ->
-                            onAction(MainAction.OnSessionClick(sessionId))
-                        },
-                        onFavoriteClick = { sessionId ->
-                            onAction(MainAction.OnFavoriteClick(sessionId))
-                        }
+                        onAction = onAction
                     )
                 }
             }
@@ -148,14 +143,14 @@ fun LoadingIndicator(modifier: Modifier = Modifier) {
     }
 }
 
-data class DayTabItem(
+data class DayChipItem(
     val day: Day,
     val labelResourceId: Int
 )
 
-val dayTabItems = listOf(
-    DayTabItem(day = Day.Day1, labelResourceId = R.string.day_1_label),
-    DayTabItem(day = Day.Day2, labelResourceId = R.string.day_2_label)
+val dayChipItems = listOf(
+    DayChipItem(day = Day.Day1, labelResourceId = R.string.day_1_label),
+    DayChipItem(day = Day.Day2, labelResourceId = R.string.day_2_label)
 )
 
 @Preview(

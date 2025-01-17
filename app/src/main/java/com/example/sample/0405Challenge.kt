@@ -83,7 +83,7 @@ private fun SessionItem(
 
 @Preview
 @Composable
-private fun SessionItemPreview() {
+private fun Challenge0405Preview() {
     // TODO: Create the needed variables
 
     Red30TechTheme {

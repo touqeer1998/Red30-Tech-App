@@ -72,12 +72,7 @@ fun FavoritesScreen(
                     ) { sessionInfo ->
                         SessionItem(
                             sessionInfo = sessionInfo,
-                            onSessionClick = { sessionId ->
-                                onAction(MainAction.OnSessionClick(sessionId))
-                            },
-                            onFavoriteClick = { sessionId ->
-                                onAction(MainAction.OnFavoriteClick(sessionId))
-                            }
+                            onAction = onAction
                         )
                     }
                 }

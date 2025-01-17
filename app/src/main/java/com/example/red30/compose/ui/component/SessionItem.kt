@@ -24,20 +24,22 @@ import androidx.compose.ui.unit.dp
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.fake
 import com.example.red30.compose.theme.Red30TechTheme
+import com.example.red30.data.MainAction
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun SessionItem(
     modifier: Modifier = Modifier,
     sessionInfo: SessionInfo,
-    onSessionClick: (Int) -> Unit = {},
-    onFavoriteClick: (Int) -> Unit = {}
+    onAction: (action: MainAction) -> Unit = {}
 ) {
     ElevatedCard(
         modifier = modifier
             .padding(16.dp)
             .clickable {
-                onSessionClick(sessionInfo.session.id)
+                onAction(
+                    MainAction.OnSessionClick(sessionInfo.session.id)
+                )
             },
         shape = RoundedCornerShape(0.dp)
     ) {
@@ -71,7 +73,11 @@ fun SessionItem(
 
                 IconToggleButton(
                     checked = sessionInfo.isFavorite,
-                    onCheckedChange = { onFavoriteClick(sessionInfo.session.id) }
+                    onCheckedChange = {
+                        onAction(
+                            MainAction.OnFavoriteClick(sessionInfo.session.id)
+                        )
+                    }
                 ) {
                     if (sessionInfo.isFavorite) {
                         Icon(Icons.Filled.Favorite, contentDescription = "un-favorite session")

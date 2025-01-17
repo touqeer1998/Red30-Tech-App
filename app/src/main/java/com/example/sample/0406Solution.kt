@@ -30,52 +30,58 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
-private class FavoritesViewModel: ViewModel() {
-    private val _sessionInfo = MutableStateFlow<SessionInfo>(SessionInfo.fake())
-    val sessionInfo: StateFlow<SessionInfo> = _sessionInfo
+private class Solution0406 {
 
-    fun toggleFavorite() {
-        _sessionInfo.update {
-            it.copy(isFavorite = !it.isFavorite)
+    inner class FavoritesViewModel : ViewModel() {
+        private val _sessionInfo = MutableStateFlow<SessionInfo>(SessionInfo.fake())
+        val sessionInfo: StateFlow<SessionInfo> = _sessionInfo
+
+        fun toggleFavorite() {
+            _sessionInfo.update {
+                it.copy(isFavorite = !it.isFavorite)
+            }
         }
     }
-}
 
-@OptIn(ExperimentalLayoutApi::class)
-@Composable
-private fun SessionItem(
-    modifier: Modifier = Modifier,
-    sessionInfo: SessionInfo,
-    onFavoriteClick: () -> Unit = {}
-) {
-    ElevatedCard(
-        modifier = modifier.padding(16.dp),
-        shape = RoundedCornerShape(0.dp)
+    @OptIn(ExperimentalLayoutApi::class)
+    @Composable
+    fun SessionItem(
+        modifier: Modifier = Modifier,
+        sessionInfo: SessionInfo,
+        onFavoriteClick: () -> Unit = {}
     ) {
-        with(sessionInfo) {
-            Row {
-                Column(modifier = Modifier.weight(1f)) {
-                    SessionTags(
-                        track = session.track,
-                        roomName = session.roomName
-                    )
-                    Text(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 8.dp, horizontal = 16.dp),
-                        text = session.name,
-                        style = MaterialTheme.typography.titleLarge
-                    )
-                }
+        ElevatedCard(
+            modifier = modifier.padding(16.dp),
+            shape = RoundedCornerShape(0.dp)
+        ) {
+            with(sessionInfo) {
+                Row {
+                    Column(modifier = Modifier.weight(1f)) {
+                        SessionTags(
+                            track = session.track,
+                            roomName = session.roomName
+                        )
+                        Text(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 8.dp, horizontal = 16.dp),
+                            text = session.name,
+                            style = MaterialTheme.typography.titleLarge
+                        )
+                    }
 
-                IconToggleButton(
-                    checked = sessionInfo.isFavorite,
-                    onCheckedChange = { onFavoriteClick() }
-                ) {
-                    if (sessionInfo.isFavorite) {
-                        Icon(Icons.Filled.Favorite, contentDescription = "un-favorite session")
-                    } else {
-                        Icon(Icons.Outlined.FavoriteBorder, contentDescription = "favorite session")
+                    IconToggleButton(
+                        checked = sessionInfo.isFavorite,
+                        onCheckedChange = { onFavoriteClick() }
+                    ) {
+                        if (sessionInfo.isFavorite) {
+                            Icon(Icons.Filled.Favorite, contentDescription = "un-favorite session")
+                        } else {
+                            Icon(
+                                Icons.Outlined.FavoriteBorder,
+                                contentDescription = "favorite session"
+                            )
+                        }
                     }
                 }
             }
@@ -85,13 +91,14 @@ private fun SessionItem(
 
 @Preview
 @Composable
-private fun SessionItemPreview() {
-    val viewModel = FavoritesViewModel()
+fun SessionItemPreview() {
+    val solution0406 = Solution0406()
+    val viewModel = solution0406.FavoritesViewModel()
     val sessionInfo by viewModel.sessionInfo.collectAsState()
 
     Red30TechTheme {
         Surface {
-            SessionItem(
+            solution0406.SessionItem(
                 sessionInfo = sessionInfo,
                 onFavoriteClick = { viewModel.toggleFavorite() }
             )
