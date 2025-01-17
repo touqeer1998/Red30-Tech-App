@@ -1,6 +1,7 @@
 package com.example.red30.compose
 
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -10,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -33,7 +33,7 @@ fun Red30TechApp(modifier: Modifier = Modifier) {
             val currentDestination = navBackStackEntry?.destination
 
             val viewModel = koinViewModel<MainViewModel>(
-                viewModelStoreOwner = LocalContext.current as ComponentActivity
+                viewModelStoreOwner = LocalActivity.current as ComponentActivity
             )
             val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
             var navigationType: NavigationType = rememberNavigationType(

@@ -1,6 +1,7 @@
 package com.example.red30.compose.ui
 
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.systemBars
@@ -11,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -32,7 +32,7 @@ fun Red30TechNavHost(
     modifier: Modifier = Modifier
 ) {
     val viewModel = koinViewModel<MainViewModel>(
-        viewModelStoreOwner = LocalContext.current as ComponentActivity
+        viewModelStoreOwner = LocalActivity.current as ComponentActivity
     )
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
