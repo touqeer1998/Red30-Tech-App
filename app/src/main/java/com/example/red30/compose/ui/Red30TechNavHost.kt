@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -34,8 +33,6 @@ fun Red30TechNavHost(
     val viewModel = koinViewModel<MainViewModel>(
         viewModelStoreOwner = LocalActivity.current as ComponentActivity
     )
-    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val navigateToSession by viewModel.navigateToSession.collectAsStateWithLifecycle(
         initialValue = false
@@ -71,8 +68,7 @@ fun Red30TechNavHost(
         }
         composable(route = Screen.SessionDetail.route) {
             SessionDetailScreen(
-                uiState = uiState,
-                windowSizeClass = windowSizeClass
+                uiState = uiState
             )
         }
     }

@@ -42,8 +42,13 @@ class FavoritesFragment : Fragment() {
             viewModel.uiState
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle)
                 .collect { uiState ->
-                    if (!uiState.isLoading) {
+                    if (!uiState.isLoading && uiState.favorites.isNotEmpty()) {
                         adapter?.setItems(uiState.favorites)
+                        binding.recyclerview.visible()
+                        binding.emptyFavorites.gone()
+                    } else {
+                        binding.recyclerview.gone()
+                        binding.emptyFavorites.visible()
                     }
 
                     if (uiState.snackbarMessage != null) {
