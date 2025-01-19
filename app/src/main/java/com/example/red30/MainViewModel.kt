@@ -10,7 +10,9 @@ import com.example.red30.data.Day
 import com.example.red30.data.MainAction
 import com.example.red30.data.getSelectedSession
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -27,6 +29,9 @@ class MainViewModel(
         ConferenceDataUiState(isLoading = true)
     )
     val uiState: StateFlow<ConferenceDataUiState> = _uiState
+
+    private val _navigateToSession = MutableSharedFlow<Boolean>()
+    val navigateToSession: SharedFlow<Boolean> = _navigateToSession
 
     init {
         viewModelScope.launch {
@@ -59,7 +64,6 @@ class MainViewModel(
         is MainAction.OnScrollComplete -> clearScrollToTop()
         is MainAction.OnSessionClick -> getSessionInfoById(event.sessionId)
         is MainAction.OnActiveDestinationClick -> activeDestinationClick()
-        is MainAction.OnDestinationClick -> onDestinationChange()
     }
 
     fun setDay(day: Day) {
@@ -71,6 +75,7 @@ class MainViewModel(
         viewModelScope.launch {
             _uiState.value.getSelectedSession(sessionId)?.let { session ->
                 _uiState.update { it.copy(selectedSession = session) }
+                _navigateToSession.emit(true)
             } ?: run {
                 _uiState.update {
                     it.copy(
@@ -117,9 +122,5 @@ class MainViewModel(
 
     fun shownSnackbar() = _uiState.update {
         it.copy(snackbarMessage = null)
-    }
-
-    fun onDestinationChange() = _uiState.update {
-        it.copy(selectedSession = null)
     }
 }

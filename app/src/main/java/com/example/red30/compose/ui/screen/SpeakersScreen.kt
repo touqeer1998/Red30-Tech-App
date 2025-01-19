@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
@@ -49,8 +50,7 @@ import com.example.red30.data.speakers
 fun SpeakersScreen(
     modifier: Modifier = Modifier,
     uiState: ConferenceDataUiState,
-    onAction: (action: MainAction) -> Unit = {},
-    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    onAction: (action: MainAction) -> Unit = {}
 ) {
     val listState = rememberLazyGridState()
 
@@ -66,36 +66,49 @@ fun SpeakersScreen(
         }
     }
 
+    if (!uiState.isLoading && uiState.speakers.isEmpty()) {
+        EmptyConferenceData(modifier = modifier)
+    } else {
+        SpeakersList(
+            modifier = modifier,
+            speakers = uiState.speakers,
+            listState = listState
+        )
+    }
+}
+
+@Composable
+private fun SpeakersList(
+    modifier: Modifier = Modifier,
+    speakers: List<Speaker>,
+    listState: LazyGridState = rememberLazyGridState(),
+    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+) {
     var maxHeight by remember { mutableStateOf(0.dp) }
     val density = LocalDensity.current
 
-    if (!uiState.isLoading) {
-        LazyVerticalGrid(
-            modifier = modifier.fillMaxSize(),
-            columns = rememberColumns(windowSizeClass),
-            state = listState
-        ) {
-            items(
-                uiState.speakers,
-                key = { it.id }
-            ) {
-                if (windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT) {
-                    SpeakerItem(speaker = it)
-                } else {
-                    PortraitSpeakerItem(
-                        speaker = it,
-                        modifier = Modifier
-                            .onGloballyPositioned { coordinates ->
-                                val height = with(density) {
-                                    coordinates.size.height.toDp()
-                                }
-                                if (height > maxHeight) {
-                                    maxHeight = height
-                                }
+    LazyVerticalGrid(
+        modifier = modifier.fillMaxSize(),
+        columns = rememberColumns(windowSizeClass),
+        state = listState
+    ) {
+        items(speakers, key = { it.id }) {
+            if (windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT) {
+                SpeakerItem(speaker = it)
+            } else {
+                PortraitSpeakerItem(
+                    speaker = it,
+                    modifier = Modifier
+                        .onGloballyPositioned { coordinates ->
+                            val height = with(density) {
+                                coordinates.size.height.toDp()
                             }
-                            .heightIn(min = maxHeight),
-                    )
-                }
+                            if (height > maxHeight) {
+                                maxHeight = height
+                            }
+                        }
+                        .heightIn(min = maxHeight),
+                )
             }
         }
     }

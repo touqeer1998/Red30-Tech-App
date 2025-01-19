@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
@@ -52,13 +53,11 @@ import com.example.red30.data.sessionInfosByDay
 fun SessionsScreen(
     modifier: Modifier = Modifier,
     uiState: ConferenceDataUiState,
-    onAction: (action: MainAction) -> Unit = {},
-    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
+    onAction: (action: MainAction) -> Unit = {}
 ) {
     Column(
         modifier = modifier.fillMaxSize(),
     ) {
-        var selectedChipIndex by remember { mutableIntStateOf(0) }
         val listState = rememberLazyGridState()
 
         LaunchedEffect(uiState) {
@@ -73,57 +72,70 @@ fun SessionsScreen(
             }
         }
 
-        var maxHeight by remember { mutableStateOf(0.dp) }
-        val density = LocalDensity.current
+        when {
+            uiState.isLoading -> LoadingIndicator()
+            uiState.sessionInfos.isEmpty() -> EmptyConferenceData()
+            else -> SessionsList(
+                sessionInfos = uiState.sessionInfosByDay,
+                listState = listState,
+                onAction = onAction
+            )
+        }
+    }
+}
 
-        if (!uiState.isLoading) {
-            LazyVerticalGrid(
-                modifier = modifier.fillMaxSize(),
-                columns = rememberColumns(windowSizeClass),
-                state = listState
+@Composable
+fun SessionsList(
+    modifier: Modifier = Modifier,
+    sessionInfos: List<SessionInfo>,
+    listState: LazyGridState = rememberLazyGridState(),
+    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
+    onAction: (action: MainAction) -> Unit = {},
+) {
+    var selectedChipIndex by remember { mutableIntStateOf(0) }
+    var maxHeight by remember { mutableStateOf(0.dp) }
+    val density = LocalDensity.current
+
+    LazyVerticalGrid(
+        modifier = modifier.fillMaxSize(),
+        columns = rememberColumns(windowSizeClass),
+        state = listState
+    ) {
+        item(span = { GridItemSpan(maxLineSpan) }) {
+            Row(
+                modifier = Modifier.padding(16.dp),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                item(span = { GridItemSpan(maxLineSpan) }) {
-                    Row(
-                        modifier = Modifier.padding(16.dp),
-                        horizontalArrangement = Arrangement.spacedBy(16.dp)
-                    ) {
-                        dayChipItems.forEachIndexed { index, tabItem ->
-                            FilterChip(
-                                selected = selectedChipIndex == index,
-                                onClick = {
-                                    selectedChipIndex = index
-                                    onAction(MainAction.OnDayClick(tabItem.day))
-                                },
-                                label = {
-                                    Text(stringResource(tabItem.labelResourceId))
-                                },
-                            )
-                        }
-                    }
-                }
-
-                items(
-                    uiState.sessionInfosByDay,
-                    key = { it.session.id }
-                ) { sessionInfo ->
-                    SessionItem(
-                        modifier = Modifier
-                            .onGloballyPositioned { coordinates ->
-                                val height = with(density) {
-                                    coordinates.size.height.toDp()
-                                }
-                                if (height > maxHeight) {
-                                    maxHeight = height
-                                }
-                            }
-                            .heightIn(min = maxHeight),
-                        sessionInfo = sessionInfo,
-                        onAction = onAction
+                dayChipItems.forEachIndexed { index, tabItem ->
+                    FilterChip(
+                        selected = selectedChipIndex == index,
+                        onClick = {
+                            selectedChipIndex = index
+                            onAction(MainAction.OnDayClick(tabItem.day))
+                        },
+                        label = {
+                            Text(stringResource(tabItem.labelResourceId))
+                        },
                     )
                 }
             }
-        } else {
-            LoadingIndicator()
+        }
+
+        items(sessionInfos, key = { it.session.id }) { sessionInfo ->
+            SessionItem(
+                modifier = Modifier
+                    .onGloballyPositioned { coordinates ->
+                        val height = with(density) {
+                            coordinates.size.height.toDp()
+                        }
+                        if (height > maxHeight) {
+                            maxHeight = height
+                        }
+                    }
+                    .heightIn(min = maxHeight),
+                sessionInfo = sessionInfo,
+                onAction = onAction
+            )
         }
     }
 }
@@ -160,7 +172,8 @@ val dayChipItems = listOf(
 )
 @Preview(
     showBackground = true,
-    device = "spec:width=1080px,height=2340px,dpi=440,cutout=punch_hole", showSystemUi = true
+    device = "spec:width=1080px,height=2340px,dpi=440,cutout=punch_hole",
+    showSystemUi = true
 )
 @Composable
 private fun SessionScreenPreview() {
@@ -180,6 +193,21 @@ fun SessionScreenLoadingPreview() {
         Surface {
             SessionsScreen(
                 uiState = ConferenceDataUiState(isLoading = true)
+            )
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SessionScreenErrorMessagePreview() {
+    Red30TechTheme {
+        Surface {
+            SessionsScreen(
+                uiState = ConferenceDataUiState(
+                    isLoading = false,
+                    errorMessage = R.string.unable_to_load_conference_data_error
+                )
             )
         }
     }

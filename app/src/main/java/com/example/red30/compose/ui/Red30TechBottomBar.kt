@@ -38,7 +38,6 @@ fun Red30TechBottomBar(
                 } == true,
                 onClick = {
                     if (screen.route != currentDestination?.route) {
-                        onAction(MainAction.OnDestinationClick)
                         navController.navigate(screen.route) {
                             popUpTo(navController.graph.startDestinationId)
                             launchSingleTop = true

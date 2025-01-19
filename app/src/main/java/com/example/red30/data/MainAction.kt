@@ -6,5 +6,4 @@ sealed class MainAction {
     data class OnFavoriteClick(val sessionId: Int): MainAction()
     object OnScrollComplete: MainAction()
     object OnActiveDestinationClick: MainAction()
-    object OnDestinationClick: MainAction()
 }

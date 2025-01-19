@@ -35,7 +35,15 @@ fun Red30TechNavHost(
         viewModelStoreOwner = LocalActivity.current as ComponentActivity
     )
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val navigateToSession by viewModel.navigateToSession.collectAsStateWithLifecycle(
+        initialValue = false
+    )
+
+    if (navigateToSession) {
+        navController.navigate(Screen.SessionDetail.route)
+    }
 
     NavHost(
         navController = navController,
@@ -47,21 +55,18 @@ fun Red30TechNavHost(
         composable(route = Screen.Sessions.route) {
             SessionsScreen(
                 uiState = uiState,
-                onAction = viewModel::onMainAction,
-                windowSizeClass = windowSizeClass
+                onAction = viewModel::onMainAction
             )
         }
         composable(route = Screen.Speakers.route) {
             SpeakersScreen(
-                uiState = uiState,
-                windowSizeClass = windowSizeClass
+                uiState = uiState
             )
         }
         composable(route = Screen.Favorites.route) {
             FavoritesScreen(
                 uiState = uiState,
                 onAction = viewModel::onMainAction,
-                windowSizeClass = windowSizeClass,
             )
         }
         composable(route = Screen.SessionDetail.route) {
@@ -79,12 +84,6 @@ fun Red30TechNavHost(
             if (result == SnackbarResult.Dismissed) {
                 viewModel.shownSnackbar()
             }
-        }
-    }
-
-    LaunchedEffect(uiState.selectedSession) {
-        uiState.selectedSession?.let {
-            navController.navigate(Screen.SessionDetail.route)
         }
     }
 }

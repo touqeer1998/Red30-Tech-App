@@ -109,4 +109,19 @@ class SessionScreenshotTests {
             }
         }
     }
+
+    @Preview(showBackground = true)
+    @Composable
+    private fun SessionScreenErrorMessagePreview() {
+        Red30TechTheme {
+            Surface {
+                SessionsScreen(
+                    uiState = ConferenceDataUiState(
+                        isLoading = false,
+                        errorMessage = R.string.unable_to_load_conference_data_error
+                    )
+                )
+            }
+        }
+    }
 }

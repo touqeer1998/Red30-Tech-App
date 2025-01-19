@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
@@ -41,8 +42,7 @@ import com.example.red30.data.favorites
 fun FavoritesScreen(
     modifier: Modifier = Modifier,
     uiState: ConferenceDataUiState,
-    onAction: (action: MainAction) -> Unit = {},
-    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    onAction: (action: MainAction) -> Unit = {}
 ) {
     Column(modifier = modifier.fillMaxSize()) {
         val listState = rememberLazyGridState()
@@ -59,43 +59,58 @@ fun FavoritesScreen(
             }
         }
 
-        if (!uiState.isLoading) {
-            if (uiState.favorites.isNotEmpty()) {
-                LazyVerticalGrid(
-                    modifier = modifier.fillMaxSize(),
-                    columns = rememberColumns(windowSizeClass),
-                    state = listState
-                ) {
-                    items(
-                        uiState.favorites,
-                        key = { it.session.id }
-                    ) { sessionInfo ->
-                        SessionItem(
-                            sessionInfo = sessionInfo,
-                            onAction = onAction
-                        )
-                    }
-                }
-            } else {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Icon(
-                        modifier = Modifier.size(80.dp),
-                        imageVector = Icons.Filled.BookmarkAdd,
-                        tint = MaterialTheme.colorScheme.onSecondaryContainer,
-                        contentDescription = null
-                    )
-                    Spacer(Modifier.height(24.dp))
-                    Text(
-                        text = stringResource(R.string.favorites_here),
-                        style = MaterialTheme.typography.titleMedium
-                    )
-                }
-            }
+        when {
+            uiState.isLoading -> LoadingIndicator()
+            uiState.favorites.isEmpty() -> EmptyFavorites()
+            else -> FavoritesList(
+                favorites = uiState.favorites,
+                listState = listState,
+                onAction = onAction
+            )
         }
+    }
+}
+
+@Composable
+private fun FavoritesList(
+    modifier: Modifier = Modifier,
+    favorites: List<SessionInfo>,
+    listState: LazyGridState = rememberLazyGridState(),
+    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
+    onAction: (action: MainAction) -> Unit = {}
+) {
+    LazyVerticalGrid(
+        modifier = modifier.fillMaxSize(),
+        columns = rememberColumns(windowSizeClass),
+        state = listState
+    ) {
+        items(favorites, key = { it.session.id }) { sessionInfo ->
+            SessionItem(
+                sessionInfo = sessionInfo,
+                onAction = onAction
+            )
+        }
+    }
+}
+
+@Composable
+private fun EmptyFavorites(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Icon(
+            modifier = Modifier.size(80.dp),
+            imageVector = Icons.Filled.BookmarkAdd,
+            tint = MaterialTheme.colorScheme.onSecondaryContainer,
+            contentDescription = null
+        )
+        Spacer(Modifier.height(24.dp))
+        Text(
+            text = stringResource(R.string.favorites_here),
+            style = MaterialTheme.typography.titleMedium
+        )
     }
 }
 
