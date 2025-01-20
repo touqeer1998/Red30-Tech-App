@@ -12,6 +12,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import com.example.red30.compose.ui.screen.topLevelScreens
 import com.example.red30.data.MainAction
+import com.example.red30.data.MainAction.OnActiveDestinationClick
 
 @Composable
 fun Red30TechBottomBar(
@@ -43,7 +44,7 @@ fun Red30TechBottomBar(
                             launchSingleTop = true
                         }
                     } else {
-                        onAction(MainAction.OnActiveDestinationClick)
+                        onAction(OnActiveDestinationClick)
                     }
                 }
             )

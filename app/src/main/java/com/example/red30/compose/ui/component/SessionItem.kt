@@ -25,6 +25,8 @@ import com.example.red30.data.SessionInfo
 import com.example.red30.data.fake
 import com.example.red30.compose.theme.Red30TechTheme
 import com.example.red30.data.MainAction
+import com.example.red30.data.MainAction.OnFavoriteClick
+import com.example.red30.data.MainAction.OnSessionClick
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -37,9 +39,7 @@ fun SessionItem(
         modifier = modifier
             .padding(16.dp)
             .clickable {
-                onAction(
-                    MainAction.OnSessionClick(sessionInfo.session.id)
-                )
+                onAction(OnSessionClick(sessionInfo.session.id))
             },
         shape = RoundedCornerShape(0.dp)
     ) {
@@ -74,9 +74,7 @@ fun SessionItem(
                 IconToggleButton(
                     checked = sessionInfo.isFavorite,
                     onCheckedChange = {
-                        onAction(
-                            MainAction.OnFavoriteClick(sessionInfo.session.id)
-                        )
+                        onAction(OnFavoriteClick(sessionInfo.session.id))
                     }
                 ) {
                     if (sessionInfo.isFavorite) {

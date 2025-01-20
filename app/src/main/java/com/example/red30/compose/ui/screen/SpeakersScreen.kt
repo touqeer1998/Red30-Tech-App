@@ -39,6 +39,7 @@ import com.example.red30.compose.ui.component.SpeakerImage
 import com.example.red30.compose.ui.rememberColumns
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.MainAction
+import com.example.red30.data.MainAction.OnScrollComplete
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.Speaker
 import com.example.red30.data.fake
@@ -62,7 +63,7 @@ fun SpeakersScreen(
 
     if (listState.isScrollInProgress) {
         DisposableEffect(Unit) {
-            onDispose { onAction(MainAction.OnScrollComplete) }
+            onDispose { onAction(OnScrollComplete) }
         }
     }
 

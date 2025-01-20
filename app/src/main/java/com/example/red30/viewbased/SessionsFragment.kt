@@ -12,6 +12,9 @@ import com.example.red30.MainNavGraphDirections
 import com.example.red30.MainViewModel
 import com.example.red30.R
 import com.example.red30.data.Day
+import com.example.red30.data.MainAction.OnFavoriteClick
+import com.example.red30.data.MainAction.OnScrollComplete
+import com.example.red30.data.MainAction.OnSessionClick
 import com.example.red30.data.sessionInfosByDay
 import com.example.red30.databinding.FragmentSessionsBinding
 import kotlinx.coroutines.launch
@@ -20,7 +23,7 @@ import org.koin.androidx.viewmodel.ext.android.activityViewModel
 class SessionsFragment : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModel()
-    private var adapter: SessionItemAdapter? = null
+    private lateinit var adapter: SessionItemAdapter
 
     private var _binding: FragmentSessionsBinding? = null
     private val binding get() = _binding!!
@@ -39,7 +42,6 @@ class SessionsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpDayChips()
-
         adapter = setUpAdapter()
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -47,7 +49,12 @@ class SessionsFragment : Fragment() {
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle)
                 .collect { uiState ->
                     if (!uiState.isLoading) {
-                        adapter?.setItems(uiState.sessionInfosByDay)
+                        adapter.setItems(uiState.sessionInfosByDay)
+                    }
+
+                    if (uiState.shouldAnimateScrollToTop) {
+                        binding.nestedScrollView.fling(0)
+                        binding.nestedScrollView.smoothScrollTo(0, 0)
                     }
 
                     if (uiState.snackbarMessage != null) {
@@ -60,29 +67,34 @@ class SessionsFragment : Fragment() {
     private fun setUpAdapter(): SessionItemAdapter {
         val adapter = SessionItemAdapter(
             onSessionItemClick = { sessionId ->
-                viewModel.getSessionInfoById(sessionId = sessionId)
+                viewModel.onMainAction(OnSessionClick(sessionId))
                 findNavController().navigate(
                     MainNavGraphDirections.actionGlobalToSessionDetailFragment()
                 )
             },
             onFavoriteClick = { sessionId ->
-                viewModel.toggleFavorite(sessionId = sessionId)
+                viewModel.onMainAction(OnFavoriteClick(sessionId))
             }
         )
-        binding.recyclerview.adapter = adapter
-        binding.recyclerview.layoutManager = getAppLayoutManager(
-            context = requireContext()
-        )
+
+        binding.recyclerview.apply {
+            setHasFixedSize(true)
+            layoutManager = getAppLayoutManager(context = requireContext())
+            this.adapter = adapter
+        }
+
+        binding.nestedScrollView.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+            if (scrollY > oldScrollY) {
+                viewModel.onMainAction(OnScrollComplete)
+            }
+        }
         return adapter
     }
 
     private fun setUpDayChips() {
         binding.chipLayout.setOnCheckedStateChangeListener { group, checkedIds ->
             viewModel.setDay(
-                if (checkedIds.contains(R.id.day1Chip))
-                    Day.Day1
-                else
-                    Day.Day2
+                if (checkedIds.contains(R.id.day1Chip)) Day.Day1 else Day.Day2
             )
         }
     }
@@ -94,7 +106,6 @@ class SessionsFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        adapter = null
         _binding = null
     }
 }

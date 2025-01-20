@@ -21,6 +21,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.red30.compose.theme.Red30TechTheme
 import com.example.red30.compose.ui.screen.topLevelScreens
 import com.example.red30.data.MainAction
+import com.example.red30.data.MainAction.OnActiveDestinationClick
 
 @Composable
 fun Red30TechNavigationRail(
@@ -56,7 +57,7 @@ fun Red30TechNavigationRail(
                             launchSingleTop = true
                         }
                     } else {
-                        onAction(MainAction.OnActiveDestinationClick)
+                        onAction(OnActiveDestinationClick)
                     }
                 }
             )

@@ -10,12 +10,17 @@ import androidx.core.view.updateLayoutParams
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.example.red30.MainViewModel
 import com.example.red30.R
+import com.example.red30.data.MainAction.OnActiveDestinationClick
 import com.example.red30.databinding.ActivityMainViewBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainViewActivity : AppCompatActivity() {
+    private val viewModel: MainViewModel by viewModel()
+
     private lateinit var binding: ActivityMainViewBinding
 
     val navController: NavController by lazy {
@@ -37,6 +42,10 @@ class MainViewActivity : AppCompatActivity() {
             binding.navigationView as NavigationBarView,
             navController
         )
+
+        (binding.navigationView as NavigationBarView).setOnItemReselectedListener {
+            viewModel.onMainAction(OnActiveDestinationClick)
+        }
     }
 
     private fun setUpWindowInsets() {

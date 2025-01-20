@@ -32,6 +32,7 @@ import com.example.red30.compose.ui.component.SessionItem
 import com.example.red30.compose.ui.rememberColumns
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.MainAction
+import com.example.red30.data.MainAction.OnScrollComplete
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.fake
 import com.example.red30.data.fakes
@@ -55,7 +56,7 @@ fun FavoritesScreen(
 
         if (listState.isScrollInProgress) {
             DisposableEffect(Unit) {
-                onDispose { onAction(MainAction.OnScrollComplete) }
+                onDispose { onAction(OnScrollComplete) }
             }
         }
 

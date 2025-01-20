@@ -43,6 +43,8 @@ import com.example.red30.compose.ui.rememberColumns
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.Day
 import com.example.red30.data.MainAction
+import com.example.red30.data.MainAction.OnDayClick
+import com.example.red30.data.MainAction.OnScrollComplete
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.fake
 import com.example.red30.data.fake3
@@ -68,7 +70,7 @@ fun SessionsScreen(
 
         if (listState.isScrollInProgress) {
             DisposableEffect(Unit) {
-                onDispose { onAction(MainAction.OnScrollComplete) }
+                onDispose { onAction(OnScrollComplete) }
             }
         }
 
@@ -111,7 +113,7 @@ fun SessionsList(
                         selected = selectedChipIndex == index,
                         onClick = {
                             selectedChipIndex = index
-                            onAction(MainAction.OnDayClick(tabItem.day))
+                            onAction(OnDayClick(tabItem.day))
                         },
                         label = {
                             Text(stringResource(tabItem.labelResourceId))
