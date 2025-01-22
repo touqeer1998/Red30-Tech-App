@@ -15,9 +15,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -25,11 +22,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.window.core.layout.WindowSizeClass
-import androidx.window.core.layout.WindowWidthSizeClass
 import com.example.red30.compose.theme.Red30TechTheme
 import com.example.red30.compose.ui.component.SessionTags
 import com.example.red30.compose.ui.component.SessionTime
 import com.example.red30.compose.ui.component.SpeakerImage
+import com.example.red30.compose.ui.isCompact
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.Speaker
@@ -41,10 +38,6 @@ fun SessionDetailScreen(
     windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
     uiState: ConferenceDataUiState
 ) {
-    val isCompact by remember {
-        mutableStateOf(windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT)
-    }
-
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -52,7 +45,7 @@ fun SessionDetailScreen(
     ) {
         if (!uiState.isLoading && uiState.selectedSession != null) {
             with(uiState.selectedSession) {
-                if (isCompact) {
+                if (windowSizeClass.isCompact) {
                     SessionHeader(
                         modifier = Modifier.fillMaxWidth(),
                         sessionInfo = this

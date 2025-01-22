@@ -16,6 +16,9 @@ fun rememberColumns(windowSizeClass: WindowSizeClass) = remember(windowSizeClass
     }
 }
 
+val WindowSizeClass.isCompact: Boolean
+    get() = windowWidthSizeClass == WindowWidthSizeClass.COMPACT
+
 enum class NavigationType {
     BOTTOM_NAVIGATION,
     RAIL;

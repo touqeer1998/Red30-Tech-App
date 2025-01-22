@@ -4,13 +4,17 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import androidx.core.content.withStyledAttributes
 import coil3.load
 import coil3.request.crossfade
 import coil3.request.transformations
 import coil3.transform.CircleCropTransformation
+import com.example.red30.R
 import com.example.red30.databinding.ViewSpeakerImageBinding
 import com.example.red30.viewbased.invisible
 import com.example.red30.viewbased.visible
+
+private const val EXAMPLE_NAME = "Alycia Jones"
 
 class SpeakerImageView @JvmOverloads constructor(
     context: Context,
@@ -32,6 +36,16 @@ class SpeakerImageView @JvmOverloads constructor(
             field = value
             initializeView()
         }
+
+    init {
+        context.withStyledAttributes(attrs, R.styleable.SpeakerImageView) {
+            name = getString(R.styleable.CircleLetterView_example_name).orEmpty().ifEmpty {
+                if (isInEditMode) EXAMPLE_NAME else ""
+            }
+        }
+        invalidate()
+        requestLayout()
+    }
 
     private fun initializeView() {
         binding.speakerInitial.name = name

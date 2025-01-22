@@ -15,7 +15,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -23,10 +25,11 @@ import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.example.red30.data.Speaker
-import com.example.red30.data.initial
+import com.example.red30.R
 import com.example.red30.compose.theme.AvatarColors
 import com.example.red30.compose.theme.Red30TechTheme
+import com.example.red30.data.Speaker
+import com.example.red30.data.initial
 
 private const val TEXT_TO_PARENT_SIZE_RATIO = 0.6
 
@@ -65,15 +68,26 @@ fun SpeakerImage(
             modifier = modifier.padding(16.dp),
             contentAlignment = Alignment.Center
         ) {
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(speaker.imageUrl)
-                    .crossfade(true)
-                    .build(),
-                contentDescription = null,
-                modifier = Modifier.clip(CircleShape)
-                    .size(imageSize),
-            )
+            if (LocalInspectionMode.current) {
+                AsyncImage(
+                    model = R.drawable.placeholder_speaker_image,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .size(imageSize)
+                )
+            } else {
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(speaker.imageUrl)
+                        .crossfade(true)
+                        .build(),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .size(imageSize)
+                )
+            }
         }
     }
 }
@@ -97,7 +111,7 @@ private fun SpeakerImagePreview() {
     }
 }
 
-@PreviewLightDark
+@Preview
 @Composable
 private fun SpeakerImageSmallPreview() {
     Red30TechTheme {
@@ -107,6 +121,24 @@ private fun SpeakerImageSmallPreview() {
                 id = 1,
                 name = "Alycia Jones",
                 title = "VP of Engineering",
+                bio = "She's a superstar!",
+                organization = "Binaryville"
+            )
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun SpeakerImageUrlPreview() {
+    Red30TechTheme {
+        SpeakerImage(
+            imageSize = 50.dp,
+            speaker = Speaker(
+                id = 1,
+                name = "Alycia Jones",
+                title = "VP of Engineering",
+                imageUrl = "https://drumsgmkdq.an",
                 bio = "She's a superstar!",
                 organization = "Binaryville"
             )

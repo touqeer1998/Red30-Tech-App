@@ -127,6 +127,7 @@ fun Speaker.Companion.fake() = Speaker(
     id = 1,
     name = "Alycia Jones",
     title = "VP of Engineering",
+    imageUrl = "https://i.pravatar.cc/150?img=47",
     bio = """Alycia is a seasoned engineer with a passion for building scalable and reliable systems. 
         |She's also an advocate for diversity and inclusion in tech.""".trimMargin(),
     organization = "Binaryville"

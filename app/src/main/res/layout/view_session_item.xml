@@ -76,7 +76,8 @@
             android:layout_height="50dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            app:example_name="Alycia Jones" />
 
         <TextView
             android:id="@+id/speakerName"

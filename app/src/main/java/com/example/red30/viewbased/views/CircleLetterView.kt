@@ -6,8 +6,12 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.content.withStyledAttributes
+import com.example.red30.R
 import com.example.red30.viewbased.pickBackgroundColorForName
 import kotlin.math.min
+
+private const val EXAMPLE_NAME = "Alycia Jones"
 
 class CircleLetterView @JvmOverloads constructor(
     context: Context,
@@ -24,11 +28,23 @@ class CircleLetterView @JvmOverloads constructor(
             requestLayout()
         }
 
+    init {
+        context.withStyledAttributes(attrs, R.styleable.CircleLetterView) {
+            name = getString(R.styleable.CircleLetterView_example_name).orEmpty().ifEmpty {
+                if (isInEditMode) EXAMPLE_NAME else ""
+            }
+        }
+        invalidate()
+        requestLayout()
+    }
+
     private var letterColor: Int = Color.CYAN
     private var paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+
+        if (name.isEmpty()) return
 
         val centerX = (width / 2).toFloat()
         val centerY = (height / 2).toFloat()

@@ -28,14 +28,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import androidx.window.core.layout.WindowSizeClass
-import androidx.window.core.layout.WindowWidthSizeClass
 import com.example.red30.compose.theme.Red30TechTheme
 import com.example.red30.compose.ui.component.SpeakerImage
+import com.example.red30.compose.ui.isCompact
 import com.example.red30.compose.ui.rememberColumns
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.MainAction
@@ -94,7 +95,7 @@ private fun SpeakersList(
         state = listState
     ) {
         items(speakers, key = { it.id }) {
-            if (windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT) {
+            if (windowSizeClass.isCompact) {
                 SpeakerItem(speaker = it)
             } else {
                 PortraitSpeakerItem(
@@ -124,7 +125,8 @@ fun SpeakerItem(
     ElevatedCard(
         modifier = modifier
             .padding(16.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .testTag("ui:speakerItem"),
         shape = RoundedCornerShape(0.dp),
     ) {
         Column {
@@ -153,7 +155,8 @@ fun PortraitSpeakerItem(
     ElevatedCard(
         modifier = modifier
             .padding(16.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .testTag("ui:portrait-speakerItem"),
         shape = RoundedCornerShape(0.dp),
     ) {
         Column(
