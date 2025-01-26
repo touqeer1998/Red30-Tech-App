@@ -1,21 +1,23 @@
 package com.example.red30
 
 import androidx.activity.ComponentActivity
-import androidx.annotation.StringRes
 import androidx.compose.ui.test.ExperimentalTestApi
-import androidx.compose.ui.test.SemanticsNodeInteraction
-import androidx.compose.ui.test.junit4.AndroidComposeTestRule
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsSelected
+import androidx.compose.ui.test.junit4.StateRestorationTester
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
-import androidx.test.ext.junit.rules.ActivityScenarioRule
+import androidx.compose.ui.test.printToString
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.red30.compose.Red30TechApp
 import com.example.red30.data.ConferenceRepository
+import com.example.red30.data.SessionInfo
 import com.example.red30.data.Speaker
 import com.example.red30.data.fake
-import com.example.red30.fakes.FakeConferenceRepository
-import org.junit.Before
+import com.example.red30.data.fake2
+import com.example.sample.FakeConferenceRepository
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -41,19 +43,15 @@ class Red30TechAppTests {
     @get:Rule(order = 1)
     val composeRule = createAndroidComposeRule<ComponentActivity>()
 
-    @Before
-    fun setUp() {
+    @Test
+    fun app_launches() {
         composeRule.setContent {
             Red30TechApp()
         }
-    }
 
-    @Test
-    fun app_launches() {
         composeRule
             .onNodeWithString(R.string.day_1_label)
             .assertExists()
-
         composeRule
             .onNodeWithString(R.string.day_2_label)
             .assertExists()
@@ -61,6 +59,10 @@ class Red30TechAppTests {
 
     @Test
     fun app_navigates_to_speakers_screen() {
+        composeRule.setContent {
+            Red30TechApp()
+        }
+
         composeRule
             .onNodeWithString(R.string.speakers_label)
             .performClick()
@@ -68,33 +70,43 @@ class Red30TechAppTests {
         composeRule
             .onNodeWithText(Speaker.fake().name)
             .assertExists()
+        composeRule
+            .onNodeWithText(Speaker.fake().organization)
+            .assertExists()
     }
 
     @Test
-    fun app_navigates_to_speaker_details_screen() {
+    fun should_handle_config_change_restoration_on_sessions_screen() {
+        val stateRestorationTester = StateRestorationTester(composeRule)
+        stateRestorationTester.setContent {
+            Red30TechApp()
+        }
+
         composeRule
-            .onNodeWithString(R.string.speakers_label)
+            .onNodeWithString(R.string.day_1_label)
+            .assertIsSelected()
+
+        composeRule
+            .onNodeWithString(R.string.day_2_label)
             .performClick()
 
-        with(Speaker.fake()) {
+        // verify first day 2 session is displayed
+        try {
             composeRule
-                .onNodeWithText(name)
-                .assertExists()
-
-            composeRule
-                .onNodeWithText(name)
-                .performClick()
-
-            composeRule
-                .onNodeWithText(title)
-                .assertExists()
-            composeRule
-                .onNodeWithText(organization)
-                .assertExists()
+                .onNodeWithText(SessionInfo.fake2().session.name)
+                .assertIsDisplayed()
+        } catch (e: AssertionError) {
+            println(composeRule.onRoot().printToString())
+            throw e
         }
+
+        stateRestorationTester.emulateSavedInstanceStateRestore()
+
+        composeRule
+            .onNodeWithString(R.string.day_2_label)
+            .assertIsSelected()
+        composeRule
+            .onNodeWithText(SessionInfo.fake2().session.name)
+            .assertIsDisplayed()
     }
 }
-
-fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule<A>, A>.onNodeWithString(
-    @StringRes resourceId: Int
-): SemanticsNodeInteraction = onNodeWithText(activity.getString(resourceId))

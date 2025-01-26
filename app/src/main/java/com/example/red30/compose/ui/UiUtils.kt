@@ -16,9 +16,6 @@ fun rememberColumns(windowSizeClass: WindowSizeClass) = remember(windowSizeClass
     }
 }
 
-val WindowSizeClass.isCompact: Boolean
-    get() = windowWidthSizeClass == WindowWidthSizeClass.COMPACT
-
 enum class NavigationType {
     BOTTOM_NAVIGATION,
     RAIL;
@@ -26,9 +23,9 @@ enum class NavigationType {
     companion object {
         @Composable
         fun rememberNavigationType(
-            windowSizeClass: WindowWidthSizeClass
-        ): NavigationType = remember(windowSizeClass) {
-            when (windowSizeClass) {
+            windowSizeClass: WindowSizeClass
+        ) = remember(windowSizeClass) {
+            when (windowSizeClass.windowWidthSizeClass) {
                 WindowWidthSizeClass.COMPACT -> BOTTOM_NAVIGATION
                 else -> RAIL
             }

@@ -1,7 +1,6 @@
 package com.example.sample
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -43,7 +42,6 @@ private class Solution0406 {
         }
     }
 
-    @OptIn(ExperimentalLayoutApi::class)
     @Composable
     fun SessionItem(
         modifier: Modifier = Modifier,

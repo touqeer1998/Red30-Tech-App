@@ -1,16 +1,19 @@
 package com.example.red30
 
 import androidx.activity.ComponentActivity
-import androidx.compose.ui.test.DeviceConfigurationOverride
 import androidx.compose.ui.test.ExperimentalTestApi
-import androidx.compose.ui.test.ForcedSize
 import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.unit.DpSize
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.test.onRoot
+import androidx.compose.ui.test.printToString
+import androidx.test.espresso.device.DeviceInteraction.Companion.setDisplaySize
+import androidx.test.espresso.device.EspressoDevice.Companion.onDevice
+import androidx.test.espresso.device.rules.DisplaySizeRule
+import androidx.test.espresso.device.sizeclass.HeightSizeClass
+import androidx.test.espresso.device.sizeclass.WidthSizeClass
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.red30.compose.theme.Red30TechTheme
 import com.example.red30.compose.ui.screen.SpeakersScreen
@@ -24,8 +27,11 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class SpeakersScreenTests {
 
-    @get:Rule
+    @get:Rule(order = 1)
     val composeRule = createAndroidComposeRule<ComponentActivity>()
+
+    @get:Rule(order = 2)
+    var displaySizeRule: DisplaySizeRule = DisplaySizeRule()
 
     @Test
     fun should_display_empty_view_when_no_data() {
@@ -47,15 +53,15 @@ class SpeakersScreenTests {
 
     @Test
     fun should_display_default_item_when_compact() {
+        onDevice().setDisplaySize(
+            widthSizeClass = WidthSizeClass.COMPACT,
+            heightSizeClass = HeightSizeClass.MEDIUM
+        )
         composeRule.setContent {
-            DeviceConfigurationOverride(
-                DeviceConfigurationOverride.ForcedSize(DpSize(480.dp, 720.dp))
-            ) {
-                Red30TechTheme {
-                    SpeakersScreen(
-                        uiState = ConferenceDataUiState.fakes(),
-                    )
-                }
+            Red30TechTheme {
+                SpeakersScreen(
+                    uiState = ConferenceDataUiState.fakes(),
+                )
             }
         }
 
@@ -66,34 +72,39 @@ class SpeakersScreenTests {
 
     @Test
     fun should_display_portrait_item_when_medium() {
+        onDevice().setDisplaySize(
+            widthSizeClass = WidthSizeClass.MEDIUM,
+            heightSizeClass = HeightSizeClass.EXPANDED
+        )
         composeRule.setContent {
-            DeviceConfigurationOverride(
-                DeviceConfigurationOverride.ForcedSize(DpSize(720.dp, 480.dp))
-            ) {
-                Red30TechTheme {
-                    SpeakersScreen(
-                        uiState = ConferenceDataUiState.fakes()
-                    )
-                }
+            Red30TechTheme {
+                SpeakersScreen(
+                    uiState = ConferenceDataUiState.fakes()
+                )
             }
         }
 
-        composeRule
-            .onAllNodesWithTag("ui:portrait-speakerItem")
-            .assertCountEquals(2)
+        try {
+            composeRule
+                .onAllNodesWithTag("ui:portrait-speakerItem")
+                .assertCountEquals(2)
+        } catch (e: AssertionError) {
+            println(composeRule.onRoot().printToString())
+            throw e
+        }
     }
 
     @Test
     fun should_display_portrait_item_when_expanded() {
+        onDevice().setDisplaySize(
+            widthSizeClass = WidthSizeClass.EXPANDED,
+            heightSizeClass = HeightSizeClass.EXPANDED
+        )
         composeRule.setContent {
-            DeviceConfigurationOverride(
-                DeviceConfigurationOverride.ForcedSize(DpSize(1280.dp, 800.dp))
-            ) {
-                Red30TechTheme {
-                    SpeakersScreen(
-                        uiState = ConferenceDataUiState.fakes()
-                    )
-                }
+            Red30TechTheme {
+                SpeakersScreen(
+                    uiState = ConferenceDataUiState.fakes()
+                )
             }
         }
 

@@ -4,6 +4,7 @@ import com.example.red30.data.ConferenceRepository
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.fake
 import com.example.red30.data.fake2
+import com.example.red30.data.fake3
 
 class FakeConferenceRepository : ConferenceRepository {
 
@@ -14,7 +15,7 @@ class FakeConferenceRepository : ConferenceRepository {
     override suspend fun loadConferenceInfo(): List<SessionInfo> {
         if (throwLoadInfoException) throw Exception()
 
-        return listOf(SessionInfo.fake(), SessionInfo.fake2())
+        return listOf(SessionInfo.fake(), SessionInfo.fake2(), SessionInfo.fake3())
     }
 
     override suspend fun toggleFavorite(sessionId: Int): List<Int> {

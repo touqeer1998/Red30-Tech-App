@@ -12,9 +12,6 @@ import com.example.red30.MainNavGraphDirections
 import com.example.red30.MainViewModel
 import com.example.red30.R
 import com.example.red30.data.Day
-import com.example.red30.data.MainAction.OnFavoriteClick
-import com.example.red30.data.MainAction.OnScrollComplete
-import com.example.red30.data.MainAction.OnSessionClick
 import com.example.red30.data.sessionInfosByDay
 import com.example.red30.databinding.FragmentSessionsBinding
 import kotlinx.coroutines.launch
@@ -67,13 +64,13 @@ class SessionsFragment : Fragment() {
     private fun setUpAdapter(): SessionItemAdapter {
         val adapter = SessionItemAdapter(
             onSessionItemClick = { sessionId ->
-                viewModel.onMainAction(OnSessionClick(sessionId))
+                viewModel.setSelectedSessionId(sessionId)
                 findNavController().navigate(
                     MainNavGraphDirections.actionGlobalToSessionDetailFragment()
                 )
             },
             onFavoriteClick = { sessionId ->
-                viewModel.onMainAction(OnFavoriteClick(sessionId))
+                viewModel.toggleFavorite(sessionId)
             }
         )
 
@@ -85,7 +82,7 @@ class SessionsFragment : Fragment() {
 
         binding.nestedScrollView.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
             if (scrollY > oldScrollY) {
-                viewModel.onMainAction(OnScrollComplete)
+                viewModel.onScrollComplete()
             }
         }
         return adapter

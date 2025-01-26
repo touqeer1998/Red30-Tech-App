@@ -2,7 +2,6 @@ package com.example.red30.compose.ui.component
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -21,25 +20,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import com.example.red30.compose.theme.Red30TechTheme
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.fake
-import com.example.red30.compose.theme.Red30TechTheme
-import com.example.red30.data.MainAction
-import com.example.red30.data.MainAction.OnFavoriteClick
-import com.example.red30.data.MainAction.OnSessionClick
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun SessionItem(
     modifier: Modifier = Modifier,
     sessionInfo: SessionInfo,
-    onAction: (action: MainAction) -> Unit = {}
+    onFavoriteClick: (sessionId: Int) -> Unit = {},
+    navigateToSessionDetail: (sessionId: Int) -> Unit = {}
 ) {
     ElevatedCard(
         modifier = modifier
             .padding(16.dp)
             .clickable {
-                onAction(OnSessionClick(sessionInfo.session.id))
+                navigateToSessionDetail(sessionInfo.session.id)
             },
         shape = RoundedCornerShape(0.dp)
     ) {
@@ -74,7 +70,7 @@ fun SessionItem(
                 IconToggleButton(
                     checked = sessionInfo.isFavorite,
                     onCheckedChange = {
-                        onAction(OnFavoriteClick(sessionInfo.session.id))
+                        onFavoriteClick(sessionInfo.session.id)
                     }
                 ) {
                     if (sessionInfo.isFavorite) {

@@ -12,7 +12,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.red30.MainViewModel
 import com.example.red30.R
-import com.example.red30.data.MainAction.OnActiveDestinationClick
 import com.example.red30.databinding.ActivityMainViewBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
@@ -44,7 +43,7 @@ class MainViewActivity : AppCompatActivity() {
         )
 
         (binding.navigationView as NavigationBarView).setOnItemReselectedListener {
-            viewModel.onMainAction(OnActiveDestinationClick)
+            viewModel.activeDestinationClick()
         }
     }
 

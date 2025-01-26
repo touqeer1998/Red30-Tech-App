@@ -1,7 +1,7 @@
 package com.example.red30.compose.ui.screen
 
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -36,11 +36,8 @@ import androidx.compose.ui.unit.dp
 import androidx.window.core.layout.WindowSizeClass
 import com.example.red30.compose.theme.Red30TechTheme
 import com.example.red30.compose.ui.component.SpeakerImage
-import com.example.red30.compose.ui.isCompact
 import com.example.red30.compose.ui.rememberColumns
 import com.example.red30.data.ConferenceDataUiState
-import com.example.red30.data.MainAction
-import com.example.red30.data.MainAction.OnScrollComplete
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.Speaker
 import com.example.red30.data.fake
@@ -52,7 +49,7 @@ import com.example.red30.data.speakers
 fun SpeakersScreen(
     modifier: Modifier = Modifier,
     uiState: ConferenceDataUiState,
-    onAction: (action: MainAction) -> Unit = {}
+    onScrollComplete: () -> Unit = {}
 ) {
     val listState = rememberLazyGridState()
 
@@ -64,7 +61,7 @@ fun SpeakersScreen(
 
     if (listState.isScrollInProgress) {
         DisposableEffect(Unit) {
-            onDispose { onAction(OnScrollComplete) }
+            onDispose { onScrollComplete() }
         }
     }
 
@@ -95,28 +92,29 @@ private fun SpeakersList(
         state = listState
     ) {
         items(speakers, key = { it.id }) {
-            if (windowSizeClass.isCompact) {
-                SpeakerItem(speaker = it)
-            } else {
-                PortraitSpeakerItem(
-                    speaker = it,
-                    modifier = Modifier
-                        .onGloballyPositioned { coordinates ->
-                            val height = with(density) {
-                                coordinates.size.height.toDp()
+            BoxWithConstraints {
+                if (this.maxWidth > 360.dp) {
+                    SpeakerItem(speaker = it)
+                } else {
+                    PortraitSpeakerItem(
+                        speaker = it,
+                        modifier = Modifier
+                            .onGloballyPositioned { coordinates ->
+                                val height = with(density) {
+                                    coordinates.size.height.toDp()
+                                }
+                                if (height > maxHeight) {
+                                    maxHeight = height
+                                }
                             }
-                            if (height > maxHeight) {
-                                maxHeight = height
-                            }
-                        }
-                        .heightIn(min = maxHeight),
-                )
+                            .heightIn(min = maxHeight)
+                    )
+                }
             }
         }
     }
 }
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun SpeakerItem(
     modifier: Modifier = Modifier,
@@ -146,7 +144,6 @@ fun SpeakerItem(
     }
 }
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun PortraitSpeakerItem(
     modifier: Modifier = Modifier,

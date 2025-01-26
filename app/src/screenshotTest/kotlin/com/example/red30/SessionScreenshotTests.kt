@@ -25,9 +25,7 @@ class SessionScreenshotTests {
         Red30TechTheme {
             Surface {
                 SessionDetailScreen(
-                    uiState = ConferenceDataUiState(
-                        selectedSession = SessionInfo.fake(),
-                    )
+                    sessionInfo = SessionInfo.fake()
                 )
             }
         }

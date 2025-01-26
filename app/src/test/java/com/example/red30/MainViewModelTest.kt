@@ -68,7 +68,7 @@ class MainViewModelTest : KoinTest {
             state = awaitItem()
             assertThat(state.isLoading).isFalse()
 
-            assertThat(state.sessionInfos.size).isEqualTo(2)
+            assertThat(state.sessionInfos.size).isEqualTo(3)
             assertThat(state.day).isEqualTo(Day.Day1)
 
             cancelAndIgnoreRemainingEvents()
@@ -90,26 +90,36 @@ class MainViewModelTest : KoinTest {
 
     @Test
     fun `getSessionInfoById valid session ID`() = runTest(testDispatcher) {
-        val viewModel: MainViewModel by inject()
+        val conferenceRepository: ConferenceRepository by inject()
+        val viewModel = MainViewModel(
+            savedStateHandle = SavedStateHandle(mapOf("sessionId" to 1)),
+            conferenceRepository = conferenceRepository
+        )
 
-        viewModel.getSessionInfoById(sessionId = 1)
-        advanceUntilIdle()
+        viewModel.selectedSession.test {
+            var selectedSession = awaitItem()
+            assertThat(selectedSession).isNull()
 
-        val state = viewModel.uiState.value
-        assertThat(state.selectedSession).isNotNull()
-        assertThat(state.selectedSession!!.session.id).isEqualTo(1)
+            selectedSession = awaitItem()
+            assertThat(selectedSession).isNotNull()
+            assertThat(selectedSession!!.session.id).isEqualTo(1)
+
+            cancelAndIgnoreRemainingEvents()
+        }
     }
 
     @Test
     fun `getSessionInfoById invalid session ID`() = runTest(testDispatcher) {
-        val viewModel: MainViewModel by inject()
+        val conferenceRepository: ConferenceRepository by inject()
+        val viewModel = MainViewModel(
+            savedStateHandle = SavedStateHandle(mapOf("sessionId" to 55)),
+            conferenceRepository = conferenceRepository
+        )
 
-        viewModel.getSessionInfoById(sessionId = 55)
         advanceUntilIdle()
 
-        val state = viewModel.uiState.value
-        assertThat(state.selectedSession).isNull()
-        assertThat(state.snackbarMessage).isEqualTo(R.string.unable_to_retrieve_session_error)
+        val selectedSession = viewModel.selectedSession.value
+        assertThat(selectedSession).isNull()
     }
 
     @Test

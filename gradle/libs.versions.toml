@@ -22,13 +22,13 @@ koin-bom = "4.0.1"
 datastore = "1.1.2"
 screenshot = "0.0.1-alpha08"
 adaptive = "1.1.0-alpha09"
-window = "1.3.0"
 
 kotlinSerialization = "2.1.0"
 kotlinxSerialization = "1.7.3"
 
 testCore = "1.6.1"
 testEspresso = "3.6.1"
+testEspressoDevice = "1.0.1"
 testTruth = "1.6.0"
 coroutines = "1.10.1"
 turbine = "1.2.0"
@@ -37,6 +37,7 @@ turbine = "1.2.0"
 junit = { module = "junit:junit", version.ref = "junit" }
 androidx-junit = { module = "androidx.test.ext:junit", version.ref = "junitVersion" }
 androidx-test-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "testEspresso" }
+androidx-test-espresso-device = { module = "androidx.test.espresso:espresso-device", version.ref = "testEspressoDevice" }
 androidx-test-ext-truth = { module = "androidx.test.ext:truth", version.ref = "testTruth" }
 androidx-test-rules = { module = "androidx.test:rules", version.ref = "testCore" }
 app-cash-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
@@ -72,12 +73,10 @@ androidx-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text
 androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose" }
 androidx-lifecycle-viewModel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-material3-window-size = { module = "androidx.compose.material3:material3-window-size-class", name = "material3" }
 androidx-compose-material-icons = { group = "androidx.compose.material", name = "material-icons-extended" }
 androidx-compose-material-adaptive = { module = "androidx.compose.material3.adaptive:adaptive", version.ref = "adaptive" }
 androidx-compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "navigationKtx" }
-
-androidx-window = { module = "androidx.window:window", version.ref = "window" }
-androidx-window-core = { module = "androidx.window:window-core", version.ref = "window" }
 
 coil = { group = "io.coil-kt.coil3", name = "coil", version.ref = "coil" }
 coil-network = { group = "io.coil-kt.coil3", name = "coil-network-ktor3", version.ref = "coil" }

@@ -1,9 +1,12 @@
 package com.example.red30.compose.ui.screen
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -13,21 +16,17 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.window.core.layout.WindowSizeClass
 import com.example.red30.compose.theme.Red30TechTheme
 import com.example.red30.compose.ui.component.SessionTags
 import com.example.red30.compose.ui.component.SessionTime
 import com.example.red30.compose.ui.component.SpeakerImage
-import com.example.red30.compose.ui.isCompact
-import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.Speaker
 import com.example.red30.data.fake
@@ -35,54 +34,38 @@ import com.example.red30.data.fake
 @Composable
 fun SessionDetailScreen(
     modifier: Modifier = Modifier,
-    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
-    uiState: ConferenceDataUiState
+    sessionInfo: SessionInfo
 ) {
     Column(
         modifier = modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
     ) {
-        if (!uiState.isLoading && uiState.selectedSession != null) {
-            with(uiState.selectedSession) {
-                if (windowSizeClass.isCompact) {
-                    SessionHeader(
-                        modifier = Modifier.fillMaxWidth(),
-                        sessionInfo = this
-                    )
-                    SessionTime(
-                        modifier = Modifier.fillMaxWidth(),
-                        session = session
-                    )
-                } else {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        SessionHeader(
-                            modifier = Modifier.weight(1f),
-                            sessionInfo = this@with,
-                        )
-                        SessionTime(
-                            modifier = Modifier
-                                .padding(horizontal = 24.dp)
-                                .weight(1.25f),
-                            session = session
-                        )
-                    }
-                }
-
-                Spacer(Modifier.height(8.dp))
-                Text(
+        with(sessionInfo) {
+            FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(36.dp)
+            ) {
+                SessionHeader(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    text = session.description,
-                    style = MaterialTheme.typography.bodyLarge.copy(
-                        fontSize = 18.sp,
-                        lineHeight = 28.sp
-                    )
+                        .defaultMinSize(minWidth = 360.dp),
+                    sessionInfo = this@with,
+                )
+                SessionTime(
+                    modifier = Modifier.width(340.dp),
+                    session = session
                 )
             }
+            Spacer(Modifier.height(8.dp))
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                text = session.description,
+                style = MaterialTheme.typography.bodyLarge.copy(
+                    fontSize = 18.sp,
+                    lineHeight = 28.sp
+                )
+            )
         }
     }
 }
@@ -136,26 +119,12 @@ fun SpeakerInfo(
     }
 }
 
-@Preview(showBackground = true)
+@PreviewScreenSizes
 @Composable
 private fun SessionDetailScreenPreview() {
     Red30TechTheme {
         SessionDetailScreen(
-            uiState = ConferenceDataUiState(
-                selectedSession = SessionInfo.fake(),
-            )
-        )
-    }
-}
-
-@Preview(showBackground = true, device = "spec:parent=pixel_5,orientation=landscape")
-@Composable
-private fun SessionDetailScreenLandscapePreview() {
-    Red30TechTheme {
-        SessionDetailScreen(
-            uiState = ConferenceDataUiState(
-                selectedSession = SessionInfo.fake(),
-            )
+            sessionInfo = SessionInfo.fake()
         )
     }
 }

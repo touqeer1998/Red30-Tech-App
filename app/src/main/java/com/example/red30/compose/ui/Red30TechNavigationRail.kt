@@ -11,6 +11,7 @@ import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -20,18 +21,18 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.red30.compose.theme.Red30TechTheme
 import com.example.red30.compose.ui.screen.topLevelScreens
-import com.example.red30.data.MainAction
-import com.example.red30.data.MainAction.OnActiveDestinationClick
 
 @Composable
 fun Red30TechNavigationRail(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     currentDestination: NavDestination? = null,
-    onAction: (action: MainAction) -> Unit = {}
+    onActiveDestinationClick: () -> Unit = {},
 ) {
     NavigationRail(
-        modifier = modifier.windowInsetsPadding(WindowInsets.displayCutout)
+        modifier = modifier
+            .windowInsetsPadding(WindowInsets.displayCutout)
+            .testTag("ui:navigationRail")
     ) {
         Spacer(Modifier.weight(1f))
 
@@ -57,7 +58,7 @@ fun Red30TechNavigationRail(
                             launchSingleTop = true
                         }
                     } else {
-                        onAction(OnActiveDestinationClick)
+                        onActiveDestinationClick()
                     }
                 }
             )

@@ -3,7 +3,6 @@ package com.example.red30.compose.ui.component
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -16,7 +15,6 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.example.red30.compose.theme.Red30TechTheme
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun SessionTags(
     modifier: Modifier = Modifier,

@@ -14,8 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.example.red30.MainViewModel
 import com.example.red30.compose.ui.screen.FavoritesScreen
 import com.example.red30.compose.ui.screen.Screen
@@ -34,13 +36,7 @@ fun Red30TechNavHost(
         viewModelStoreOwner = LocalActivity.current as ComponentActivity
     )
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val navigateToSession by viewModel.navigateToSession.collectAsStateWithLifecycle(
-        initialValue = false
-    )
-
-    if (navigateToSession) {
-        navController.navigate(Screen.SessionDetail.route)
-    }
+    val selectedSession by viewModel.selectedSession.collectAsStateWithLifecycle()
 
     NavHost(
         navController = navController,
@@ -52,7 +48,15 @@ fun Red30TechNavHost(
         composable(route = Screen.Sessions.route) {
             SessionsScreen(
                 uiState = uiState,
-                onAction = viewModel::onMainAction
+                onDayClick = viewModel::setDay,
+                onScrollComplete = viewModel::onScrollComplete,
+                onFavoriteClick = viewModel::toggleFavorite,
+                navigateToSessionDetail = { sessionId ->
+                    viewModel.setSelectedSessionId(sessionId)
+                    navController.navigate(
+                        Screen.SessionDetail.getDestination(sessionId)
+                    )
+                }
             )
         }
         composable(route = Screen.Speakers.route) {
@@ -63,13 +67,29 @@ fun Red30TechNavHost(
         composable(route = Screen.Favorites.route) {
             FavoritesScreen(
                 uiState = uiState,
-                onAction = viewModel::onMainAction,
+                onScrollComplete = viewModel::onScrollComplete,
+                onFavoriteClick = viewModel::toggleFavorite,
+                navigateToSessionDetail = { sessionId ->
+                    viewModel.setSelectedSessionId(sessionId)
+                    navController.navigate(
+                        Screen.SessionDetail.getDestination(sessionId)
+                    )
+                }
             )
         }
-        composable(route = Screen.SessionDetail.route) {
-            SessionDetailScreen(
-                uiState = uiState
+        composable(
+            route = Screen.SessionDetail.getCompleteRoute(),
+            arguments = listOf(
+                navArgument(Screen.SessionDetail.SESSION_ID) {
+                    type = NavType.IntType
+                }
             )
+        ) {
+            selectedSession?.let { sessionInfo ->
+                SessionDetailScreen(
+                    sessionInfo = sessionInfo
+                )
+            }
         }
     }
 

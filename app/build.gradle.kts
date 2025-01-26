@@ -40,6 +40,12 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
+        freeCompilerArgs +=
+            listOf(
+                "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+                "-opt-in=androidx.compose.foundation.layout.ExperimentalLayoutApi",
+                "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+            )
     }
     buildFeatures {
         compose = true
@@ -48,6 +54,23 @@ android {
     testOptions {
         unitTests {
             isReturnDefaultValues = true // needed for handling Log.* calls in unit tests
+        }
+        emulatorControl {
+            enable = true
+        }
+        managedDevices {
+            localDevices {
+                create("pixel9api35") {
+                    device = "Pixel 9"
+                    apiLevel = 35
+                    systemImageSource = "aosp-atd"
+                }
+                create("mediumTabletapi35") {
+                    device = "Medium Tablet"
+                    apiLevel = 35
+                    systemImageSource = "aosp-atd"
+                }
+            }
         }
     }
     testFixtures {
@@ -81,8 +104,7 @@ dependencies {
     implementation(libs.androidx.compose.material.icons)
     implementation(libs.androidx.compose.material.adaptive)
     implementation(libs.androidx.ui.text.google.fonts)
-    implementation(libs.androidx.window)
-    implementation(libs.androidx.window.core)
+    implementation(libs.androidx.material3.window.size)
     implementation(libs.coil)
     implementation(libs.coil.network)
     implementation(libs.coil.compose)
@@ -107,12 +129,14 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.test.rules)
     androidTestImplementation(libs.androidx.test.espresso.core)
+    androidTestImplementation(libs.androidx.test.espresso.device)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     androidTestImplementation(libs.androidx.compose.ui.test)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 
     screenshotTestImplementation(libs.androidx.ui.tooling)
+    screenshotTestImplementation(libs.androidx.material3.window.size)
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)

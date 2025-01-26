@@ -36,9 +36,7 @@ fun Red30TechApp(modifier: Modifier = Modifier) {
                 viewModelStoreOwner = LocalActivity.current as ComponentActivity
             )
             val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-            var navigationType: NavigationType = rememberNavigationType(
-                windowSizeClass.windowWidthSizeClass
-            )
+            var navigationType: NavigationType = rememberNavigationType(windowSizeClass)
 
             Scaffold(
                 modifier = modifier.fillMaxSize(),
@@ -48,7 +46,7 @@ fun Red30TechApp(modifier: Modifier = Modifier) {
                         Red30TechBottomBar(
                             navController = navController,
                             currentDestination = currentDestination,
-                            onAction = viewModel::onMainAction
+                            onActiveDestinationClick = viewModel::activeDestinationClick
                         )
                     }
                 }
@@ -59,7 +57,7 @@ fun Red30TechApp(modifier: Modifier = Modifier) {
                     currentDestination = currentDestination,
                     paddingValues = innerPadding,
                     showNavigationRail = navigationType == NavigationType.RAIL,
-                    onAction = viewModel::onMainAction
+                    onActiveDestinationClick = viewModel::activeDestinationClick
                 )
             }
         }
