@@ -14,6 +14,7 @@ plugins {
 android {
     namespace = "com.example.red30"
     compileSdk = 35
+    compileSdkPreview = "Baklava"
 
     defaultConfig {
         applicationId = "com.example.red30"
@@ -65,10 +66,20 @@ android {
                     apiLevel = 35
                     systemImageSource = "aosp-atd"
                 }
-                create("mediumTabletapi35") {
+                create("mediumTabletapi30") {
                     device = "Medium Tablet"
-                    apiLevel = 35
+                    apiLevel = 30
                     systemImageSource = "aosp-atd"
+                }
+                create("pixel7api30") {
+                    device = "Pixel 7"
+                    apiLevel = 30
+                    systemImageSource = "aosp-atd"
+                }
+                create("pixelFoldapi34") {
+                    device = "Pixel Fold"
+                    apiLevel = 34
+                    systemImageSource = "aosp"
                 }
             }
         }

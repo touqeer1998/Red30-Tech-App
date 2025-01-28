@@ -11,9 +11,12 @@ import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.printToString
 import androidx.test.espresso.device.DeviceInteraction.Companion.setDisplaySize
 import androidx.test.espresso.device.EspressoDevice.Companion.onDevice
+import androidx.test.espresso.device.filter.RequiresDisplay
 import androidx.test.espresso.device.rules.DisplaySizeRule
 import androidx.test.espresso.device.sizeclass.HeightSizeClass
+import androidx.test.espresso.device.sizeclass.HeightSizeClass.Companion.HeightSizeClassEnum
 import androidx.test.espresso.device.sizeclass.WidthSizeClass
+import androidx.test.espresso.device.sizeclass.WidthSizeClass.Companion.WidthSizeClassEnum
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.red30.compose.theme.Red30TechTheme
 import com.example.red30.compose.ui.screen.SpeakersScreen
@@ -66,8 +69,7 @@ class SpeakersScreenTests {
         }
 
         composeRule
-            .onAllNodesWithTag("ui:speakerItem")
-            .assertCountEquals(2)
+            .onAllNodesWithTag("ui:speakerItem").assertCountEquals(3)
     }
 
     @Test
@@ -86,14 +88,17 @@ class SpeakersScreenTests {
 
         try {
             composeRule
-                .onAllNodesWithTag("ui:portrait-speakerItem")
-                .assertCountEquals(2)
+                .onAllNodesWithTag("ui:portrait-speakerItem").assertCountEquals(3)
         } catch (e: AssertionError) {
             println(composeRule.onRoot().printToString())
             throw e
         }
     }
 
+    @RequiresDisplay(
+        widthSizeClass = WidthSizeClassEnum.EXPANDED,
+        heightSizeClass = HeightSizeClassEnum.EXPANDED
+    )
     @Test
     fun should_display_portrait_item_when_expanded() {
         onDevice().setDisplaySize(
@@ -109,7 +114,6 @@ class SpeakersScreenTests {
         }
 
         composeRule
-            .onAllNodesWithTag("ui:portrait-speakerItem")
-            .assertCountEquals(2)
+            .onAllNodesWithTag("ui:portrait-speakerItem").assertCountEquals(3)
     }
 }

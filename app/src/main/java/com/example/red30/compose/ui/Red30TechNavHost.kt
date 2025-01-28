@@ -1,7 +1,5 @@
 package com.example.red30.compose.ui
 
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.systemBars
@@ -24,17 +22,14 @@ import com.example.red30.compose.ui.screen.Screen
 import com.example.red30.compose.ui.screen.SessionDetailScreen
 import com.example.red30.compose.ui.screen.SessionsScreen
 import com.example.red30.compose.ui.screen.SpeakersScreen
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun Red30TechNavHost(
+    modifier: Modifier = Modifier,
     navController: NavHostController,
     snackbarHostState: SnackbarHostState,
-    modifier: Modifier = Modifier
+    viewModel: MainViewModel
 ) {
-    val viewModel = koinViewModel<MainViewModel>(
-        viewModelStoreOwner = LocalActivity.current as ComponentActivity
-    )
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val selectedSession by viewModel.selectedSession.collectAsStateWithLifecycle()
 

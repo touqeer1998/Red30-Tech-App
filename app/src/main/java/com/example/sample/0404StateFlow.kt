@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
 private const val TAG = "MainViewModel"
 
 internal class MainViewModel2(
-    private val conferenceRepository: ConferenceRepository
+    private val conferenceRepository: ConferenceRepository = FakeConferenceRepository2()
 ): ViewModel() {
 
     private val _uiState = MutableStateFlow<ConferenceDataUiState>(
@@ -54,7 +54,7 @@ internal class MainViewModel2(
 @Composable
 private fun MainApp(modifier: Modifier = Modifier) {
     // This will use the koinViewModel function in practice
-    val viewModel = MainViewModel2(conferenceRepository = FakeConferenceRepository())
+    val viewModel = MainViewModel2(conferenceRepository = FakeConferenceRepository2())
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold { innerPadding ->
@@ -72,7 +72,7 @@ private fun MainApp(modifier: Modifier = Modifier) {
     }
 }
 
-internal class FakeConferenceRepository: ConferenceRepository {
+private class FakeConferenceRepository2: ConferenceRepository {
     override suspend fun loadConferenceInfo(): List<SessionInfo> {
         return listOf(SessionInfo.fake(), SessionInfo.fake2())
     }

@@ -17,7 +17,7 @@ import com.example.red30.data.SessionInfo
 import com.example.red30.data.Speaker
 import com.example.red30.data.fake
 import com.example.red30.data.fake2
-import com.example.sample.FakeConferenceRepository
+import com.example.red30.fakes.FakeConferenceRepository
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -49,12 +49,10 @@ class Red30TechAppTests {
             Red30TechApp()
         }
 
-        composeRule
-            .onNodeWithString(R.string.day_1_label)
-            .assertExists()
-        composeRule
-            .onNodeWithString(R.string.day_2_label)
-            .assertExists()
+        composeRule.apply {
+            onNodeWithString(R.string.day_1_label).assertExists()
+            onNodeWithString(R.string.day_2_label).assertExists()
+        }
     }
 
     @Test
@@ -63,16 +61,12 @@ class Red30TechAppTests {
             Red30TechApp()
         }
 
-        composeRule
-            .onNodeWithString(R.string.speakers_label)
-            .performClick()
+        composeRule.apply {
+            onNodeWithString(R.string.speakers_label).performClick()
 
-        composeRule
-            .onNodeWithText(Speaker.fake().name)
-            .assertExists()
-        composeRule
-            .onNodeWithText(Speaker.fake().organization)
-            .assertExists()
+            onNodeWithText(Speaker.fake().name).assertExists()
+            onNodeWithText(Speaker.fake().organization).assertExists()
+        }
     }
 
     @Test
@@ -82,31 +76,23 @@ class Red30TechAppTests {
             Red30TechApp()
         }
 
-        composeRule
-            .onNodeWithString(R.string.day_1_label)
-            .assertIsSelected()
+        composeRule.apply {
+            onNodeWithString(R.string.day_1_label).assertIsSelected()
 
-        composeRule
-            .onNodeWithString(R.string.day_2_label)
-            .performClick()
+            onNodeWithString(R.string.day_2_label).performClick()
 
-        // verify first day 2 session is displayed
-        try {
-            composeRule
-                .onNodeWithText(SessionInfo.fake2().session.name)
-                .assertIsDisplayed()
-        } catch (e: AssertionError) {
-            println(composeRule.onRoot().printToString())
-            throw e
+            // verify first day 2 session is displayed
+            try {
+                onNodeWithText(SessionInfo.fake2().session.name).assertIsDisplayed()
+            } catch (e: AssertionError) {
+                println(composeRule.onRoot().printToString())
+                throw e
+            }
+
+            stateRestorationTester.emulateSavedInstanceStateRestore()
+
+            onNodeWithString(R.string.day_2_label).assertIsSelected()
+            onNodeWithText(SessionInfo.fake2().session.name).assertIsDisplayed()
         }
-
-        stateRestorationTester.emulateSavedInstanceStateRestore()
-
-        composeRule
-            .onNodeWithString(R.string.day_2_label)
-            .assertIsSelected()
-        composeRule
-            .onNodeWithText(SessionInfo.fake2().session.name)
-            .assertIsDisplayed()
     }
 }

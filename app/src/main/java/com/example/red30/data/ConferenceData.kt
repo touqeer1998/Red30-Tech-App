@@ -62,7 +62,7 @@ val Session.duration: Long
 data class SessionInfo(
     val session: Session,
     val speaker: Speaker,
-    val day: Day,
+    val day: Day = Day.Day1,
     val isFavorite: Boolean = false
 )
 
@@ -153,8 +153,7 @@ fun Speaker.Companion.fake3() = Speaker(
 
 fun SessionInfo.Companion.fake() = SessionInfo(
     session = Session.fake(),
-    speaker = Speaker.fake(),
-    day = Day.Day1
+    speaker = Speaker.fake()
 )
 
 fun SessionInfo.Companion.fake2() = SessionInfo(
@@ -165,6 +164,20 @@ fun SessionInfo.Companion.fake2() = SessionInfo(
 
 fun SessionInfo.Companion.fake3() = SessionInfo(
     session = Session.fake3(),
-    speaker = Speaker.fake3(),
-    day = Day.Day1
+    speaker = Speaker.fake3()
+)
+
+fun SessionInfo.Companion.fake4() = SessionInfo(
+    session = Session.fake().copy(id = 4),
+    speaker = Speaker.fake3()
+)
+
+fun SessionInfo.Companion.fake5() = SessionInfo(
+    session = Session.fake2().copy(id = 5),
+    speaker = Speaker.fake()
+)
+
+fun SessionInfo.Companion.fake6() = SessionInfo(
+    session = Session.fake3().copy(id = 6),
+    speaker = Speaker.fake2()
 )

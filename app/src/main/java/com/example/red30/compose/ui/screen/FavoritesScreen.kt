@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -15,7 +16,6 @@ import androidx.compose.material.icons.filled.BookmarkAdd
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -23,15 +23,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
-import androidx.window.core.layout.WindowSizeClass
 import com.example.red30.R
 import com.example.red30.compose.theme.Red30TechTheme
 import com.example.red30.compose.ui.component.SessionItem
-import com.example.red30.compose.ui.rememberColumns
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.fake
+import com.example.red30.data.fake2
 import com.example.red30.data.fakes
 import com.example.red30.data.favorites
 
@@ -76,13 +76,12 @@ private fun FavoritesList(
     modifier: Modifier = Modifier,
     favorites: List<SessionInfo>,
     listState: LazyGridState = rememberLazyGridState(),
-    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
     onFavoriteClick: (sessionId: Int) -> Unit = {},
     navigateToSessionDetail: (sessionId: Int) -> Unit = {}
 ) {
     LazyVerticalGrid(
         modifier = modifier.fillMaxSize(),
-        columns = rememberColumns(windowSizeClass),
+        columns = GridCells.Adaptive(330.dp),
         state = listState
     ) {
         items(favorites, key = { it.session.id }) { sessionInfo ->
@@ -116,14 +115,15 @@ private fun EmptyFavorites(modifier: Modifier = Modifier) {
     }
 }
 
-@Preview(showBackground = true)
+@PreviewScreenSizes
 @Composable
 private fun FavoritesScreenPreview() {
     Red30TechTheme {
         FavoritesScreen(
             uiState = ConferenceDataUiState.fakes().copy(
                 sessionInfos = listOf(
-                    SessionInfo.fake().copy(isFavorite = true)
+                    SessionInfo.fake().copy(isFavorite = true),
+                    SessionInfo.fake2().copy(isFavorite = true)
                 )
             )
         )

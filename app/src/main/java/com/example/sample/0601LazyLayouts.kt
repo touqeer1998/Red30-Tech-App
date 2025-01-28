@@ -20,7 +20,7 @@ private class LazyLayouts0601 {
     @Composable
     fun MainApp(modifier: Modifier = Modifier) {
         // This will use the koinViewModel function in practice
-        val viewModel = MainViewModel2(conferenceRepository = FakeConferenceRepository())
+        val viewModel = MainViewModel2()
         val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
         Scaffold { innerPadding ->

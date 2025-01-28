@@ -54,12 +54,11 @@ class AppNavigationTests {
         }
 
         composeRule
-            .onNodeWithTag("ui:bottomBar")
-            .assertIsDisplayed()
+            .onNodeWithTag("ui:bottomBar").assertIsDisplayed()
     }
 
     @Test
-    fun should_display_rail_when_medium() {
+    fun should_display_bottom_bar_when_medium() {
         onDevice().setDisplaySize(
             widthSizeClass = WidthSizeClass.MEDIUM,
             heightSizeClass = HeightSizeClass.MEDIUM
@@ -70,7 +69,6 @@ class AppNavigationTests {
         }
 
         composeRule
-            .onNodeWithTag("ui:navigationRail")
-            .assertIsDisplayed()
+            .onNodeWithTag("ui:bottomBar").assertIsDisplayed()
     }
 }

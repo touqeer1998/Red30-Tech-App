@@ -17,6 +17,11 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.red30.R
 import com.example.red30.compose.theme.Red30TechTheme
+import com.example.red30.data.ConferenceRepository
+import com.example.red30.data.SessionInfo
+import com.example.red30.data.fake
+import com.example.red30.data.fake2
+import com.example.sample.FakeConferenceRepository
 
 private const val TAG = "MainViewModel"
 
@@ -55,5 +60,15 @@ private fun MainApp(modifier: Modifier = Modifier) {
 private fun AppPreview() {
     Red30TechTheme {
         MainApp()
+    }
+}
+
+private class FakeConferenceRepository: ConferenceRepository {
+    override suspend fun loadConferenceInfo(): List<SessionInfo> {
+        return listOf(SessionInfo.fake(), SessionInfo.fake2())
+    }
+
+    override suspend fun toggleFavorite(sessionId: Int): List<Int> {
+        TODO("Not yet implemented")
     }
 }
