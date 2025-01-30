@@ -145,10 +145,28 @@ fun Speaker.Companion.fake3() = Speaker(
     id = 3,
     name = "Bianca Adams",
     title = "Security Engineer",
+    imageUrl = "https://i.pravatar.cc/150?img=47",
     bio = """Bianca is a seasoned security engineer with a passion for protecting digital assets. 
-        |With extensive experience in cybersecurity, she has a proven track record of identifying 
-        |and mitigating vulnerabilities in complex systems.""".trimMargin(),
+        |With extensive experience in cybersecurity.""".trimMargin(),
     organization = "SecureSphere"
+)
+
+fun Speaker.Companion.fake4() = Speaker(
+    id = 4,
+    name = "Carlos Mendez",
+    title = "Frontend Engineer",
+    bio = """Carlos is a frontend engineer who excels at creating user-friendly interfaces. 
+        |He loves to work with the latest frameworks.""".trimMargin(),
+    organization = "FrontendMasters"
+)
+
+fun Speaker.Companion.fake5() = Speaker(
+    id = 5,
+    name = "Isabel Garcia",
+    title = "Data Scientist",
+    bio = """Isabel is a data scientist with a strong background in statistical modeling and 
+        |machine learning. She enjoys uncovering insights from complex data sets.""".trimMargin(),
+    organization = "Data Insights Co."
 )
 
 fun SessionInfo.Companion.fake() = SessionInfo(
@@ -169,12 +187,12 @@ fun SessionInfo.Companion.fake3() = SessionInfo(
 
 fun SessionInfo.Companion.fake4() = SessionInfo(
     session = Session.fake().copy(id = 4),
-    speaker = Speaker.fake3()
+    speaker = Speaker.fake4()
 )
 
 fun SessionInfo.Companion.fake5() = SessionInfo(
     session = Session.fake2().copy(id = 5),
-    speaker = Speaker.fake()
+    speaker = Speaker.fake5()
 )
 
 fun SessionInfo.Companion.fake6() = SessionInfo(

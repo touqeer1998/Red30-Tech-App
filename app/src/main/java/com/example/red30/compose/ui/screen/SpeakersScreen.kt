@@ -6,16 +6,18 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyGridState
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.lazy.staggeredgrid.LazyStaggeredGridState
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
+import androidx.compose.foundation.lazy.staggeredgrid.rememberLazyStaggeredGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -26,6 +28,8 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
+import androidx.window.core.layout.WindowSizeClass
+import androidx.window.core.layout.WindowWidthSizeClass
 import com.example.red30.compose.theme.Red30TechTheme
 import com.example.red30.compose.ui.component.SpeakerImage
 import com.example.red30.data.ConferenceDataUiState
@@ -34,6 +38,8 @@ import com.example.red30.data.Speaker
 import com.example.red30.data.fake
 import com.example.red30.data.fake2
 import com.example.red30.data.fake3
+import com.example.red30.data.fake4
+import com.example.red30.data.fake5
 import com.example.red30.data.speakers
 
 @Composable
@@ -42,7 +48,7 @@ fun SpeakersScreen(
     uiState: ConferenceDataUiState,
     onScrollComplete: () -> Unit = {}
 ) {
-    val listState = rememberLazyGridState()
+    val listState = rememberLazyStaggeredGridState()
 
     LaunchedEffect(uiState) {
         if (uiState.shouldAnimateScrollToTop) {
@@ -67,23 +73,34 @@ fun SpeakersScreen(
     }
 }
 
+@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @Composable
 private fun SpeakersList(
     modifier: Modifier = Modifier,
     speakers: List<Speaker>,
-    listState: LazyGridState = rememberLazyGridState(),
+    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
+    listState: LazyStaggeredGridState = rememberLazyStaggeredGridState(),
 ) {
-    LazyVerticalGrid(
-        modifier = modifier.fillMaxSize(),
-        columns = GridCells.Adaptive(330.dp),
-        state = listState
-    ) {
-        items(speakers, key = { it.id }) {
-            BoxWithConstraints {
-                if (this.maxWidth > 360.dp) {
-                    SpeakerItem(speaker = it)
-                } else {
+    BoxWithConstraints {
+        val maxWidth = this@BoxWithConstraints.maxWidth
+        val width = maxWidth / (maxWidth / 400.dp )
+        val isExpandedWidth = windowSizeClass.windowWidthSizeClass != WindowWidthSizeClass.EXPANDED
+        val columns = when (windowSizeClass.windowWidthSizeClass) {
+            WindowWidthSizeClass.COMPACT -> StaggeredGridCells.Fixed(1)
+            WindowWidthSizeClass.MEDIUM -> StaggeredGridCells.Fixed(2)
+            else -> StaggeredGridCells.Adaptive(width)
+        }
+
+        LazyVerticalStaggeredGrid(
+            modifier = modifier.fillMaxSize(),
+            columns = columns,
+            state = listState
+        ) {
+            items(speakers, key = { it.id }) {
+                if (width <= 400.dp && isExpandedWidth) {
                     PortraitSpeakerItem(speaker = it)
+                } else {
+                    SpeakerItem(speaker = it)
                 }
             }
         }
@@ -127,7 +144,6 @@ fun PortraitSpeakerItem(
     ElevatedCard(
         modifier = modifier
             .padding(16.dp)
-            .fillMaxWidth()
             .testTag("ui:portrait-speakerItem"),
         shape = RoundedCornerShape(0.dp),
     ) {
@@ -149,6 +165,7 @@ fun PortraitSpeakerItem(
                     .fillMaxWidth()
                     .padding(16.dp),
                 text = speaker.bio,
+                style = MaterialTheme.typography.bodyLarge
             )
         }
     }
@@ -195,7 +212,9 @@ private fun SpeakersScreenPreview() {
                 sessionInfos = listOf(
                     SessionInfo.fake(),
                     SessionInfo.fake2(),
-                    SessionInfo.fake3()
+                    SessionInfo.fake3(),
+                    SessionInfo.fake4(),
+                    SessionInfo.fake5()
                 )
             )
         )

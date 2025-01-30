@@ -15,10 +15,10 @@ import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.window.core.layout.WindowSizeClass
+import androidx.window.core.layout.WindowWidthSizeClass
 import com.example.red30.MainViewModel
 import com.example.red30.compose.theme.Red30TechTheme
-import com.example.red30.compose.ui.NavigationType
-import com.example.red30.compose.ui.NavigationType.Companion.rememberNavigationType
 import com.example.red30.compose.ui.Red30TechBottomBar
 import com.example.red30.compose.ui.Red30TechNavHost
 import com.example.red30.compose.ui.Red30TechNavigationRail
@@ -42,7 +42,7 @@ fun Red30TechApp(
         val currentDestination = navBackStackEntry?.destination
 
         val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-        var navigationType: NavigationType = rememberNavigationType(windowSizeClass)
+        var navigationType: NavigationType = windowSizeClass.navigationType
 
         Scaffold(
             modifier = modifier.fillMaxSize(),
@@ -76,6 +76,19 @@ fun Red30TechApp(
         }
     }
 }
+
+enum class NavigationType {
+    BOTTOM_NAVIGATION,
+    RAIL
+}
+
+val WindowSizeClass.navigationType
+    get() = when (windowWidthSizeClass) {
+        WindowWidthSizeClass.EXPANDED -> NavigationType.RAIL
+        else -> NavigationType.BOTTOM_NAVIGATION
+    }
+
+
 
 @PreviewScreenSizes
 @Composable

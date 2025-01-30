@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.example.red30.compose.theme.Red30TechTheme
@@ -51,6 +52,8 @@ fun SessionItem(
                             .fillMaxWidth()
                             .padding(vertical = 8.dp, horizontal = 16.dp),
                         text = session.name,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
                         style = MaterialTheme.typography.titleLarge
                     )
                     Row(

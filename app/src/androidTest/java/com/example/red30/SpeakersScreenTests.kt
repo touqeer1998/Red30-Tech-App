@@ -55,7 +55,7 @@ class SpeakersScreenTests {
     }
 
     @Test
-    fun should_display_default_item_when_compact() {
+    fun should_display_portrait_item_when_compact() {
         onDevice().setDisplaySize(
             widthSizeClass = WidthSizeClass.COMPACT,
             heightSizeClass = HeightSizeClass.MEDIUM
@@ -69,7 +69,7 @@ class SpeakersScreenTests {
         }
 
         composeRule
-            .onAllNodesWithTag("ui:speakerItem").assertCountEquals(3)
+            .onAllNodesWithTag("ui:portrait-speakerItem").assertCountEquals(2)
     }
 
     @Test
