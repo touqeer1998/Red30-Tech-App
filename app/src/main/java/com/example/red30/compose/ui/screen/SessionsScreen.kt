@@ -72,7 +72,9 @@ fun SessionsScreen(
         }
 
         when {
-            uiState.isLoading -> LoadingIndicator()
+            uiState.isLoading -> LoadingIndicator(
+                modifier = Modifier.testTag("ui:loadingIndicator")
+            )
             uiState.sessionInfos.isEmpty() -> EmptyConferenceData()
             else -> SessionsList(
                 sessionInfos = uiState.sessionInfosByDay,
@@ -97,7 +99,7 @@ fun SessionsList(
     var selectedChipIndex by rememberSaveable { mutableIntStateOf(0) }
 
     LazyVerticalGrid(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize().testTag("ui:sessionsList"),
         columns = GridCells.Adaptive(330.dp),
         state = listState
     ) {
@@ -124,7 +126,7 @@ fun SessionsList(
         items(sessionInfos, key = { it.session.id }) { sessionInfo ->
             SessionItem(
                 modifier = Modifier
-                    .testTag("ui:sessionItem"),
+                    .testTag("ui:sessionItem:${sessionInfo.session.id}"),
                 sessionInfo = sessionInfo,
                 onFavoriteClick = onFavoriteClick,
                 navigateToSessionDetail = navigateToSessionDetail

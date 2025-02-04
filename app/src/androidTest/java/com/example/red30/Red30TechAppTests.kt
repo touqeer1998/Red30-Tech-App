@@ -1,7 +1,10 @@
 package com.example.red30
 
 import androidx.activity.ComponentActivity
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.ExperimentalTestApi
+import androidx.compose.ui.test.SemanticsMatcher.Companion.expectValue
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.StateRestorationTester
@@ -10,6 +13,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.printToString
+import androidx.compose.ui.text.AnnotatedString
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.red30.compose.Red30TechApp
 import com.example.red30.data.ConferenceRepository
@@ -50,8 +54,28 @@ class Red30TechAppTests {
         }
 
         composeRule.apply {
+            val tabNode = onNode(
+                expectValue(SemanticsProperties.Role, Role.Tab)
+                    and expectValue(SemanticsProperties.Selected, true)
+                    and expectValue(SemanticsProperties.Text, listOf(AnnotatedString("Sessions")))
+            )
+            tabNode.assertExists()
+
             onNodeWithString(R.string.day_1_label).assertExists()
             onNodeWithString(R.string.day_2_label).assertExists()
+        }
+    }
+
+    @Test
+    fun day1_sessions_are_displayed_on_launch() {
+        composeRule.setContent {
+            Red30TechApp()
+        }
+
+        composeRule.apply {
+            onAllNodes(testTagStartsWith("ui:sessionItem"))
+                .fetchSemanticsNodes()
+                .isNotEmpty()
         }
     }
 
