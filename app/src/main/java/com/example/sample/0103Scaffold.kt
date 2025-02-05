@@ -47,13 +47,13 @@ private fun Scaffold0103(modifier: Modifier = Modifier) {
             Column(
                 modifier = Modifier
                     .padding(innerPadding)
-                    .then(Modifier.fillMaxSize()),
+                    .fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = "This is my primary content",
+                    text = "This is my primary content that is center aligned in the screen.",
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.headlineLarge
                 )
