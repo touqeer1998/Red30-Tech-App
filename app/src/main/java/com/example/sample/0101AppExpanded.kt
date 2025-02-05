@@ -1,9 +1,8 @@
 package com.example.sample
 
-import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -18,42 +17,37 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.red30.R
 import com.example.red30.compose.ui.theme.Red30TechTheme
-import androidx.compose.foundation.Image as createImage
 
 @Composable
 fun Red30TechAppExtended(modifier: Modifier = Modifier) {
-    Red30TechTheme(
-        darkTheme = isSystemInDarkTheme(),
-        dynamicColor = false,
-        content = {
-            Scaffold(
-                modifier = modifier.fillMaxSize()
-            ) { innerPadding: PaddingValues ->
-                Column(
-                    modifier = Modifier
-                        .padding(innerPadding)
-                        .fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    createImage(
-                        painter = painterResource(R.drawable.alternate_stacked_logo_color),
-                        contentDescription = "logo"
-                    )
+    Red30TechTheme {
+        Scaffold(
+            modifier = modifier.fillMaxSize()
+        ) { innerPadding ->
+            Column(
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.alternate_stacked_logo_color),
+                    contentDescription = "logo"
+                )
 
-                    ElevatedButton(
-                        onClick = { }
-                    ) {
-                        Text(
-                            modifier = Modifier.fillMaxWidth(fraction = 0.5f),
-                            text = "Let's go!",
-                            textAlign = TextAlign.Center
-                        )
-                    }
+                ElevatedButton(
+                    onClick = { }
+                ) {
+                    Text(
+                        modifier = Modifier.fillMaxWidth(fraction = 0.5f),
+                        text = "Let's go!",
+                        textAlign = TextAlign.Center
+                    )
                 }
             }
         }
-    )
+    }
 }
 
 @Preview(showBackground = true)
