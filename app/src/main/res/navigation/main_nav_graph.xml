@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/sessionsFragment">
+
+    <fragment
+        android:id="@+id/sessionsFragment"
+        android:name="com.example.red30.viewbased.sessions.SessionsFragment"
+        android:label="Sessions"
+        tools:layout="@layout/fragment_sessions">
+    </fragment>
+
+    <fragment
+        android:id="@+id/speakersFragment"
+        android:name="com.example.red30.viewbased.speakers.SpeakersFragment"
+        android:label="Speakers"
+        tools:layout="@layout/fragment_speakers">
+    </fragment>
+
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.red30.viewbased.sessions.FavoritesFragment"
+        android:label="Favorites"
+        tools:layout="@layout/fragment_favorites">
+    </fragment>
+
+    <fragment
+        android:id="@+id/sessionDetailFragment"
+        android:name="com.example.red30.viewbased.sessions.SessionDetailFragment"
+        android:label=""
+        tools:layout="@layout/fragment_session_detail" />
+
+    <action android:id="@+id/action_global_to_sessionDetailFragment"
+        app:destination="@id/sessionDetailFragment"/>
+</navigation>

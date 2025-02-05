@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="example_name" format="string" />
+
+    <declare-styleable name="CircleLetterView">
+        <attr name="example_name"/>
+    </declare-styleable>
+
+    <declare-styleable name="SpeakerImageView">
+        <attr name="example_name"/>
+    </declare-styleable>
+</resources>

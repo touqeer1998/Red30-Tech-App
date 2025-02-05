@@ -17,7 +17,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.red30.R
-import com.example.red30.ui.theme.Red30TechTheme
+import com.example.red30.compose.ui.theme.Red30TechTheme
 import androidx.compose.foundation.Image as createImage
 
 @Composable

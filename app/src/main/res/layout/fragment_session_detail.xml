@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        tools:context=".viewbased.sessions.SessionDetailFragment">
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/sessionTags"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="track,roomName"
+            app:flow_horizontalAlign="start"
+            app:flow_horizontalBias="0"
+            app:flow_horizontalGap="8dp"
+            app:flow_verticalGap="8dp"
+            app:flow_horizontalStyle="packed"
+            app:flow_wrapMode="chain"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/track"
+            style="?attr/textAppearanceBodyLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:background="@drawable/maroon_border"
+            tools:ignore="MissingConstraints"
+            tools:text="Artificial Intelligence" />
+
+        <TextView
+            android:id="@+id/roomName"
+            style="?attr/textAppearanceBodyLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:background="@drawable/turquoise_border"
+            tools:ignore="MissingConstraints"
+            tools:text="Room 201" />
+
+        <TextView
+            android:id="@+id/name"
+            style="?attr/textAppearanceHeadlineLarge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sessionTags"
+            tools:text="AI for Beginners" />
+
+        <com.example.red30.viewbased.views.SpeakerImageView
+            android:id="@+id/speakerImage"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="36dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
+
+        <TextView
+            android:id="@+id/speakerName"
+            style="?attr/textAppearanceTitleMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="16dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintStart_toEndOf="@id/speakerImage"
+            app:layout_constraintTop_toTopOf="@id/speakerImage"
+            tools:text="Alycia Jones" />
+
+        <TextView
+            android:id="@+id/speakerTitle"
+            style="?attr/textAppearanceBodyLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@id/speakerName"
+            app:layout_constraintTop_toBottomOf="@id/speakerName"
+            tools:text="Research Scientist" />
+
+        <LinearLayout
+            android:id="@+id/sessionTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:background="@drawable/dashed_turquoise_border"
+            app:layout_constraintStart_toStartOf="@id/speakerImage"
+            app:layout_constraintTop_toBottomOf="@id/speakerImage">
+
+            <com.example.red30.viewbased.views.TimeItemView
+                android:id="@+id/dayItem"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.example.red30.viewbased.views.TimeItemView
+                android:id="@+id/startTime"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.example.red30.viewbased.views.TimeItemView
+                android:id="@+id/endTime"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.example.red30.viewbased.views.TimeItemView
+                android:id="@+id/duration"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/description"
+            style="@style/TextAppearance.Red30.BodyLarge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/sessionTime"
+            app:layout_constraintTop_toBottomOf="@id/sessionTime"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@tools:sample/lorem/random" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
