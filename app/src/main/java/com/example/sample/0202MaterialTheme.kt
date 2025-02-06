@@ -108,3 +108,12 @@ private fun MaterialTheme0202Preview() {
         MaterialTheme0202()
     }
 }
+
+
+@Preview(showBackground = true)
+@Composable
+private fun SampleThemePreview() {
+    AppTheme0202 {
+        MaterialTheme0202()
+    }
+}
