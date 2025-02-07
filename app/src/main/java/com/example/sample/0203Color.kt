@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.FloatingActionButton
@@ -24,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.red30.compose.ui.theme.Red30TechTheme
@@ -50,6 +52,9 @@ fun Color0203(modifier: Modifier = Modifier) {
         Checkbox(
             checked = checked,
             onCheckedChange = { checked = !checked },
+            colors = CheckboxDefaults.colors(
+                checkedColor = MaterialTheme.colorScheme.tertiary
+            )
         )
 
         Slider(value = .6F, onValueChange = {})
@@ -62,8 +67,10 @@ fun Color0203(modifier: Modifier = Modifier) {
         }
 
         // TODO: update the color
+        val oneShotColor = Color(0xFFA23F16)
         CircularProgressIndicator(
             modifier = Modifier.width(64.dp),
+            color = oneShotColor
         )
 
         FilledTonalButton(
