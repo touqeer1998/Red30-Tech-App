@@ -8,6 +8,9 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,10 +30,11 @@ fun State0302(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         var checked = true
+        var checkedState: MutableState<Boolean> = remember { mutableStateOf(true) }
 
         Switch(
-            checked = checked,
-            onCheckedChange = { checked = !checked }
+            checked = checkedState.value,
+            onCheckedChange = { checkedState.value = !checkedState.value }
         )
 
         Checkbox(
