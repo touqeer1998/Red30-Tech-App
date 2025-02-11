@@ -34,11 +34,11 @@ private fun Remember0304(
             alignment = Alignment.CenterVertically
         )
     ) {
-        var numAttendees by remember { mutableIntStateOf(0) }
+        var numAttendees = mutableIntStateOf(0)
         Tag(
             tag = "Android Basics",
-            numAttendees = numAttendees,
-            onTagClick = { numAttendees++ }
+            numAttendees = numAttendees.intValue,
+            onTagClick = { numAttendees.intValue++ }
         )
 
         var numDoubleAttendees by remember { mutableIntStateOf(1) }
