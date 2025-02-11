@@ -27,9 +27,20 @@ private fun StateHoisting0303(modifier: Modifier = Modifier) {
             alignment = Alignment.CenterVertically
         )
     ) {
+        var numAttendees = remember { mutableIntStateOf(0) }
         Tag(
-            tag = "Android Basics"
+            tag = "Android Basics",
+            numAttendees = numAttendees.intValue,
+            onTagClick = { numAttendees.intValue++ }
         )
+
+        var numDoubleAttendees = remember { mutableIntStateOf(1) }
+        Tag(
+            tag = "AI for Beginners",
+            numAttendees = numDoubleAttendees.intValue,
+            onTagClick = { numDoubleAttendees.intValue = numDoubleAttendees.intValue * 2 }
+        )
+
     }
 }
 
@@ -37,14 +48,15 @@ private fun StateHoisting0303(modifier: Modifier = Modifier) {
 private fun Tag(
     modifier: Modifier = Modifier,
     tag: String,
+    numAttendees: Int,
+    onTagClick: () -> Unit
 ) {
-    var numAttendees = remember { mutableIntStateOf(0) }
     Text(
-        text = "$tag --> Attendees: ${numAttendees.intValue}",
+        text = "$tag --> Attendees: $numAttendees",
         style = MaterialTheme.typography.bodySmall,
         modifier = modifier
             .tag()
-            .clickable { numAttendees.intValue++ }
+            .clickable { onTagClick() }
     )
 }
 
