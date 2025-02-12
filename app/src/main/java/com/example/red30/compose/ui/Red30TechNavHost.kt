@@ -12,10 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
 import com.example.red30.MainViewModel
 import com.example.red30.compose.ui.screen.FavoritesScreen
 import com.example.red30.compose.ui.screen.Screen
@@ -48,9 +46,7 @@ fun Red30TechNavHost(
                 onFavoriteClick = viewModel::toggleFavorite,
                 navigateToSessionDetail = { sessionId ->
                     viewModel.setSelectedSessionId(sessionId)
-                    navController.navigate(
-                        Screen.SessionDetail.getDestination(sessionId)
-                    )
+                    navController.navigate(Screen.SessionDetail.route)
                 }
             )
         }
@@ -66,20 +62,11 @@ fun Red30TechNavHost(
                 onFavoriteClick = viewModel::toggleFavorite,
                 navigateToSessionDetail = { sessionId ->
                     viewModel.setSelectedSessionId(sessionId)
-                    navController.navigate(
-                        Screen.SessionDetail.getDestination(sessionId)
-                    )
+                    navController.navigate(Screen.SessionDetail.route)
                 }
             )
         }
-        composable(
-            route = Screen.SessionDetail.getCompleteRoute(),
-            arguments = listOf(
-                navArgument(Screen.SessionDetail.SESSION_ID) {
-                    type = NavType.IntType
-                }
-            )
-        ) {
+        composable(route = Screen.SessionDetail.route) {
             selectedSession?.let { sessionInfo ->
                 SessionDetailScreen(
                     sessionInfo = sessionInfo

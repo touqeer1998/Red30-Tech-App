@@ -18,11 +18,7 @@ sealed class Screen(
     data object Favorites: Screen("favorites", R.string.favorites_label, Icons.Outlined.FavoriteBorder)
 
     // this is a nested screen
-    data object SessionDetail: Screen("sessionDetail", 0, Icons.Filled.DateRange) {
-        fun getCompleteRoute() = "$route?$SESSION_ID={$SESSION_ID}"
-        fun getDestination(sessionId: Int) = "$route?$SESSION_ID=$sessionId"
-        const val SESSION_ID = "sessionId"
-    }
+    data object SessionDetail: Screen("sessionDetail", 0, Icons.Filled.DateRange)
 }
 
 val topLevelScreens = listOf(Screen.Sessions, Screen.Speakers, Screen.Favorites)
