@@ -20,7 +20,7 @@
             android:name=".compose.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Red30Tech"
-            android:taskAffinity="com.example.red30.MainActivity">
+            android:taskAffinity="com.example.red30.compose.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
