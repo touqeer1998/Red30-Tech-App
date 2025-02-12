@@ -18,6 +18,4 @@ class MainViewModel(
             Log.i(TAG, "initialized: $sessionsInfos")
         }
     }
-
-    fun doSomething() {}
 }

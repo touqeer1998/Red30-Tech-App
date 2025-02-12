@@ -1,23 +1,21 @@
 package com.example.red30.compose
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.red30.R
+import androidx.compose.ui.unit.dp
 import com.example.red30.compose.ui.theme.Red30TechTheme
+import com.example.red30.data.ConferenceRepository
+import com.example.red30.data.SessionInfo
+import com.example.red30.data.fake
+import com.example.red30.data.fake2
+import com.example.red30.data.fake3
+import com.example.red30.data.fake4
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -26,30 +24,15 @@ fun Red30TechApp(
     viewModel: MainViewModel = koinViewModel<MainViewModel>()
 ) {
     Red30TechTheme {
-        Scaffold(
-            modifier = modifier.fillMaxSize()
-        ) { innerPadding ->
+        Scaffold { innerPadding ->
             Column(
-                modifier = Modifier
+                modifier = modifier
+                    .fillMaxSize()
                     .padding(innerPadding)
-                    .fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .padding(24.dp),
+                verticalArrangement = Arrangement.spacedBy(24.dp),
             ) {
-                Image(
-                    painter = painterResource(R.drawable.alternate_stacked_logo_color),
-                    contentDescription = stringResource(R.string.logo)
-                )
 
-                ElevatedButton(
-                    onClick = { viewModel.doSomething() }
-                ) {
-                    Text(
-                        modifier = Modifier.fillMaxWidth(0.5f),
-                        text = "Let's go!",
-                        textAlign = TextAlign.Center
-                    )
-                }
             }
         }
     }
@@ -58,5 +41,23 @@ fun Red30TechApp(
 @Preview(showBackground = true)
 @Composable
 fun Red30TechAppPreview() {
-    Red30TechApp()
+    val viewModel = MainViewModel(
+        conferenceRepository = FakeConferenceRepository()
+    )
+    Red30TechApp(viewModel = viewModel)
+}
+
+private class FakeConferenceRepository: ConferenceRepository {
+    override suspend fun loadConferenceInfo(): List<SessionInfo> {
+        return listOf(
+            SessionInfo.fake(),
+            SessionInfo.fake2(),
+            SessionInfo.fake3(),
+            SessionInfo.fake4(),
+        )
+    }
+
+    override suspend fun toggleFavorite(sessionId: Int): List<Int> {
+        TODO("Not yet implemented")
+    }
 }
