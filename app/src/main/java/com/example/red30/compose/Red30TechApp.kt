@@ -18,9 +18,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.red30.R
 import com.example.red30.compose.ui.theme.Red30TechTheme
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun Red30TechApp(modifier: Modifier = Modifier) {
+fun Red30TechApp(
+    modifier: Modifier = Modifier,
+    viewModel: MainViewModel = koinViewModel<MainViewModel>()
+) {
     Red30TechTheme {
         Scaffold(
             modifier = modifier.fillMaxSize()
@@ -38,7 +42,7 @@ fun Red30TechApp(modifier: Modifier = Modifier) {
                 )
 
                 ElevatedButton(
-                    onClick = { }
+                    onClick = { viewModel.doSomething() }
                 ) {
                     Text(
                         modifier = Modifier.fillMaxWidth(0.5f),
