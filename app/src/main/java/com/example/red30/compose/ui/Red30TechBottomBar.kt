@@ -7,10 +7,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavHostController
 import com.example.red30.compose.ui.screen.topLevelScreens
 
 @Composable
-fun Red30TechBottomBar(modifier: Modifier = Modifier) {
+fun Red30TechBottomBar(
+    modifier: Modifier = Modifier,
+    navController: NavHostController,
+    currentDestination: NavDestination?
+) {
     NavigationBar(modifier = modifier) {
         topLevelScreens.forEach { screen ->
             val label = stringResource(screen.labelResourceId)
@@ -24,8 +31,15 @@ fun Red30TechBottomBar(modifier: Modifier = Modifier) {
                 label = {
                     Text(label)
                 },
-                selected = false,
-                onClick = {}
+                selected = currentDestination?.hierarchy?.any {
+                    it.route == screen.route
+                } == true,
+                onClick = {
+                    navController.navigate(screen.route) {
+                        popUpTo(navController.graph.startDestinationId)
+                        launchSingleTop = true
+                    }
+                }
             )
         }
     }
