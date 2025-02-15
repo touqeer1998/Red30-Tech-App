@@ -28,12 +28,7 @@ fun Red30TechNavHost(
         startDestination = "sessions"
     ) {
         composable(route = "sessions") {
-            SessionsScreen(
-                uiState = uiState,
-                onButtonClick = {
-                    navController.navigate("speakers")
-                }
-            )
+            SessionsScreen(uiState = uiState)
         }
         composable(route = "speakers") {
             SpeakersScreen(uiState = uiState)
