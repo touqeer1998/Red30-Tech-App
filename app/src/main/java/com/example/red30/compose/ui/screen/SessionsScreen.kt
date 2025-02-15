@@ -9,8 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.red30.R
 import com.example.red30.compose.ui.theme.Red30TechTheme
 import com.example.red30.data.ConferenceDataUiState
+import com.example.red30.data.Day
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.fake
 import com.example.red30.data.fake3
@@ -34,6 +36,16 @@ fun SessionsScreen(
         }
     }
 }
+
+data class DayChipItem(
+    val day: Day,
+    val labelResourceId: Int
+)
+
+val dayChipItems = listOf(
+    DayChipItem(Day.Day1, R.string.day_1_label),
+    DayChipItem(Day.Day2, R.string.day_2_label),
+)
 
 @Preview(showBackground = true)
 @Composable
