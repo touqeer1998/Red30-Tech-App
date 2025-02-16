@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.red30.R
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.ConferenceRepository
+import com.example.red30.data.Day
 import com.example.red30.data.getSelectedSession
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -90,5 +91,9 @@ class MainViewModel(
 
     fun shownSnackbar() = _uiState.update {
         it.copy(snackbarMessage = null)
+    }
+
+    fun setDay(day: Day) {
+
     }
 }

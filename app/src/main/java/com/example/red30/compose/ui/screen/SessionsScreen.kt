@@ -40,13 +40,15 @@ import com.example.red30.data.fake3
 import com.example.red30.data.fake4
 import com.example.red30.data.fake5
 import com.example.red30.data.fake6
+import com.example.red30.data.sessionInfosByDay
 
 @Composable
 fun SessionsScreen(
     modifier: Modifier = Modifier,
     uiState: ConferenceDataUiState,
     onSessionClick: (sessionId: Int) -> Unit = {},
-    onFavoriteClick: (sessionId: Int) -> Unit = {}
+    onFavoriteClick: (sessionId: Int) -> Unit = {},
+    onDayClick: (day: Day) -> Unit = {}
 ) {
     Column(
         modifier = modifier.fillMaxSize()
@@ -59,7 +61,8 @@ fun SessionsScreen(
                     modifier = modifier,
                     uiState = uiState,
                     onSessionClick = onSessionClick,
-                    onFavoriteClick = onFavoriteClick
+                    onFavoriteClick = onFavoriteClick,
+                    onDayClick = onDayClick
                 )
             }
         }
@@ -70,8 +73,9 @@ fun SessionsScreen(
 fun SessionsList(
     modifier: Modifier = Modifier,
     uiState: ConferenceDataUiState,
-    onSessionClick: (sessionId: Int) -> Unit,
-    onFavoriteClick: (sessionId: Int) -> Unit = {}
+    onSessionClick: (sessionId: Int) -> Unit = {},
+    onFavoriteClick: (sessionId: Int) -> Unit = {},
+    onDayClick: (day: Day) -> Unit = {}
 ) {
     var selectedChipIndex by remember { mutableIntStateOf(0) }
 
@@ -89,6 +93,7 @@ fun SessionsList(
                         selected = selectedChipIndex == index,
                         onClick = {
                             selectedChipIndex = index
+                            onDayClick(chipItem.day)
                         },
                         label = {
                             Text(stringResource(chipItem.labelResourceId))
@@ -98,7 +103,7 @@ fun SessionsList(
             }
         }
 
-        items(uiState.sessionInfos) {
+        items(uiState.sessionInfosByDay) {
             SessionItem(
                 sessionInfo = it,
                 onSessionClick = onSessionClick,

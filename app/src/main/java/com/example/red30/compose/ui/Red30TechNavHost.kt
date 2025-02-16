@@ -53,6 +53,9 @@ fun Red30TechNavHost(
                 },
                 onFavoriteClick = { sessionId ->
                     viewModel.toggleFavorite(sessionId)
+                },
+                onDayClick = { day ->
+
                 }
             )
         }
