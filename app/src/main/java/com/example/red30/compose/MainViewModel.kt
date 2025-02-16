@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.red30.R
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.ConferenceRepository
 import com.example.red30.data.getSelectedSession
@@ -39,14 +40,23 @@ class MainViewModel(
 
     init {
         viewModelScope.launch {
-            val sessionsInfos = conferenceRepository.loadConferenceInfo()
-            _uiState.update {
-                it.copy(
-                    isLoading = false,
-                    sessionInfos = sessionsInfos
-                )
+            try {
+                val sessionsInfos = conferenceRepository.loadConferenceInfo()
+                _uiState.update {
+                    it.copy(
+                        isLoading = false,
+                        sessionInfos = sessionsInfos
+                    )
+                }
+                Log.i(TAG, "initialized: $sessionsInfos")
+            } catch (_: Exception) {
+                _uiState.update {
+                    it.copy(
+                        isLoading = false,
+                        errorMessage = R.string.unable_to_load_conference_data_error
+                    )
+                }
             }
-            Log.i(TAG, "initialized: $sessionsInfos")
         }
     }
 
