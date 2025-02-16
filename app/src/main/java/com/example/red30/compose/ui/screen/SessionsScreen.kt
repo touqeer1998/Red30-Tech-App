@@ -34,6 +34,7 @@ import com.example.red30.data.fake6
 fun SessionsScreen(
     modifier: Modifier = Modifier,
     uiState: ConferenceDataUiState,
+    onSessionClick: (sessionId: Int) -> Unit
 ) {
     var selectedChipIndex by remember { mutableIntStateOf(0) }
 
@@ -63,7 +64,8 @@ fun SessionsScreen(
 
         items(uiState.sessionInfos) {
             SessionItem(
-                sessionInfo = it
+                sessionInfo = it,
+                onSessionClick = onSessionClick
             )
         }
     }
@@ -93,6 +95,7 @@ private fun SessionScreenPreview() {
                     SessionInfo.fake6(),
                 ),
             ),
+            onSessionClick = {}
         )
     }
 }

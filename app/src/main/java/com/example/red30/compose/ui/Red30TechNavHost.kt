@@ -22,6 +22,7 @@ fun Red30TechNavHost(
     viewModel: MainViewModel
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val selectedSession by viewModel.selectedSession.collectAsStateWithLifecycle()
 
     NavHost(
         modifier = modifier.fillMaxSize(),
@@ -29,7 +30,13 @@ fun Red30TechNavHost(
         startDestination = Screen.Sessions.route
     ) {
         composable(route = Screen.Sessions.route) {
-            SessionsScreen(uiState = uiState)
+            SessionsScreen(
+                uiState = uiState,
+                onSessionClick = { sessionId ->
+                    viewModel.setSelectedSessionId(sessionId)
+                    navController.navigate(Screen.SessionDetail.route)
+                }
+            )
         }
         composable(route = Screen.Speakers.route) {
             SpeakersScreen(uiState = uiState)
@@ -38,7 +45,7 @@ fun Red30TechNavHost(
             FavoritesScreen(uiState = uiState)
         }
         composable(route = Screen.SessionDetail.route) {
-            uiState.selectedSession?.let { sessionInfo ->
+            selectedSession?.let { sessionInfo ->
                 SessionDetailScreen(sessionInfo = sessionInfo)
             }
         }
