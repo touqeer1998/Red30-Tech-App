@@ -13,9 +13,11 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ErrorOutline
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -48,11 +50,17 @@ fun SessionsScreen(
     Column(
         modifier = modifier.fillMaxSize()
     ) {
-        SessionsList(
-            modifier = modifier,
-            uiState = uiState,
-            onSessionClick = onSessionClick
-        )
+        when {
+            uiState.isLoading -> LoadingIndicator()
+            uiState.sessionInfos.isEmpty() -> EmptyConferenceData()
+            else -> {
+                SessionsList(
+                    modifier = modifier,
+                    uiState = uiState,
+                    onSessionClick = onSessionClick
+                )
+            }
+        }
     }
 }
 
@@ -93,6 +101,21 @@ fun SessionsList(
                 onSessionClick = onSessionClick
             )
         }
+    }
+}
+
+@Composable
+fun LoadingIndicator(modifier: Modifier = Modifier) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CircularProgressIndicator(
+            modifier = Modifier.size(64.dp)
+        )
+        Spacer(Modifier.height(24.dp))
+        Text(stringResource(R.string.loading))
     }
 }
 
@@ -143,5 +166,34 @@ private fun SessionScreenPreview() {
             ),
             onSessionClick = {}
         )
+    }
+}
+
+@Preview
+@Composable
+private fun SessionScreenLoadingPreview() {
+    Red30TechTheme {
+        Surface {
+            SessionsScreen(
+                uiState = ConferenceDataUiState(isLoading = true),
+                onSessionClick = {}
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun SessionScreenEmptyDataPreview() {
+    Red30TechTheme {
+        Surface {
+            SessionsScreen(
+                uiState = ConferenceDataUiState(
+                    isLoading = false,
+                    errorMessage = R.string.unable_to_load_conference_data_error
+                ),
+                onSessionClick = {}
+            )
+        }
     }
 }
