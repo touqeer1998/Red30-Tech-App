@@ -1,6 +1,5 @@
 package com.example.red30.compose
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -42,14 +41,16 @@ class MainViewModel(
     init {
         viewModelScope.launch {
             try {
-                val sessionsInfos = conferenceRepository.loadConferenceInfo()
-                _uiState.update {
-                    it.copy(
-                        isLoading = false,
-                        sessionInfos = sessionsInfos
-                    )
-                }
-                Log.i(TAG, "initialized: $sessionsInfos")
+                savedStateHandle.getStateFlow<Day>("day", initialValue = Day.Day1)
+                    .collect { day ->
+                        _uiState.update {
+                            it.copy(
+                                isLoading = false,
+                                sessionInfos = conferenceRepository.loadConferenceInfo(),
+                                day = day
+                            )
+                        }
+                    }
             } catch (_: Exception) {
                 _uiState.update {
                     it.copy(
@@ -94,6 +95,7 @@ class MainViewModel(
     }
 
     fun setDay(day: Day) {
-
+        savedStateHandle["day"] = day
+        _uiState.update { it.copy(day = day) }
     }
 }
