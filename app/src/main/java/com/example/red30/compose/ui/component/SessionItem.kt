@@ -29,7 +29,8 @@ import com.example.red30.data.fake
 fun SessionItem(
     modifier: Modifier = Modifier,
     sessionInfo: SessionInfo,
-    onSessionClick: (sessionId: Int) -> Unit = {}
+    onSessionClick: (sessionId: Int) -> Unit = {},
+    onFavoriteClick: (sessionId: Int) -> Unit = {}
 ) {
     ElevatedCard(
         modifier = modifier
@@ -71,7 +72,7 @@ fun SessionItem(
 
                 IconToggleButton(
                     checked = sessionInfo.isFavorite,
-                    onCheckedChange = {}
+                    onCheckedChange = { onFavoriteClick(sessionInfo.session.id) }
                 ) {
                     if (sessionInfo.isFavorite) {
                         Icon(Icons.Filled.Favorite, contentDescription = "un-favorite session")

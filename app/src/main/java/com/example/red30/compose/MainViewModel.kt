@@ -63,4 +63,32 @@ class MainViewModel(
     fun setSelectedSessionId(sessionId: Int) {
         savedStateHandle["sessionId"] = sessionId
     }
+
+    fun toggleFavorite(sessionId: Int) {
+        viewModelScope.launch {
+            try {
+                val favoriteIds = conferenceRepository.toggleFavorite(sessionId)
+
+                _uiState.update {
+                    val updatedSessionInfos = it.sessionInfos.map {
+                        it.copy(isFavorite = favoriteIds.contains(it.session.id))
+                    }
+                    it.copy(
+                        sessionInfos = updatedSessionInfos,
+                        snackbarMessage = R.string.save_remove_favorites_success
+                    )
+                }
+            } catch (_: Exception) {
+                _uiState.update {
+                    it.copy(
+                        snackbarMessage = R.string.save_remove_favorites_error,
+                    )
+                }
+            }
+        }
+    }
+
+    fun shownSnackbar() = _uiState.update {
+        it.copy(snackbarMessage = null)
+    }
 }

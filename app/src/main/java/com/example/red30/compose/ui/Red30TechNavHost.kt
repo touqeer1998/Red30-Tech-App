@@ -35,6 +35,9 @@ fun Red30TechNavHost(
                 onSessionClick = { sessionId ->
                     viewModel.setSelectedSessionId(sessionId)
                     navController.navigate(Screen.SessionDetail.route)
+                },
+                onFavoriteClick = { sessionId ->
+                    viewModel.toggleFavorite(sessionId)
                 }
             )
         }

@@ -45,7 +45,8 @@ import com.example.red30.data.fake6
 fun SessionsScreen(
     modifier: Modifier = Modifier,
     uiState: ConferenceDataUiState,
-    onSessionClick: (sessionId: Int) -> Unit
+    onSessionClick: (sessionId: Int) -> Unit = {},
+    onFavoriteClick: (sessionId: Int) -> Unit = {}
 ) {
     Column(
         modifier = modifier.fillMaxSize()
@@ -57,7 +58,8 @@ fun SessionsScreen(
                 SessionsList(
                     modifier = modifier,
                     uiState = uiState,
-                    onSessionClick = onSessionClick
+                    onSessionClick = onSessionClick,
+                    onFavoriteClick = onFavoriteClick
                 )
             }
         }
@@ -68,7 +70,8 @@ fun SessionsScreen(
 fun SessionsList(
     modifier: Modifier = Modifier,
     uiState: ConferenceDataUiState,
-    onSessionClick: (sessionId: Int) -> Unit
+    onSessionClick: (sessionId: Int) -> Unit,
+    onFavoriteClick: (sessionId: Int) -> Unit = {}
 ) {
     var selectedChipIndex by remember { mutableIntStateOf(0) }
 
@@ -98,7 +101,8 @@ fun SessionsList(
         items(uiState.sessionInfos) {
             SessionItem(
                 sessionInfo = it,
-                onSessionClick = onSessionClick
+                onSessionClick = onSessionClick,
+                onFavoriteClick = onFavoriteClick
             )
         }
     }
@@ -107,7 +111,7 @@ fun SessionsList(
 @Composable
 fun LoadingIndicator(modifier: Modifier = Modifier) {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
