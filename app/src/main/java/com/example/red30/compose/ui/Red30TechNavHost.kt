@@ -1,9 +1,13 @@
 package com.example.red30.compose.ui
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -19,10 +23,21 @@ import com.example.red30.compose.ui.screen.SpeakersScreen
 fun Red30TechNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController,
+    snackbarHostState: SnackbarHostState,
     viewModel: MainViewModel
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val selectedSession by viewModel.selectedSession.collectAsStateWithLifecycle()
+
+    uiState.snackbarMessage?.let { snackbarMessage ->
+        val message = stringResource(snackbarMessage)
+        LaunchedEffect(snackbarHostState, snackbarMessage) {
+            val result = snackbarHostState.showSnackbar(message)
+            if (result == SnackbarResult.Dismissed) {
+                viewModel.shownSnackbar()
+            }
+        }
+    }
 
     NavHost(
         modifier = modifier.fillMaxSize(),

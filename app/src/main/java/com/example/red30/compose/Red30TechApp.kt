@@ -2,8 +2,11 @@ package com.example.red30.compose
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.SavedStateHandle
@@ -29,6 +32,7 @@ fun Red30TechApp(
         val navController = rememberNavController()
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination
+        val snackbarHostState = remember { SnackbarHostState() }
 
         Scaffold(
             bottomBar = {
@@ -36,11 +40,15 @@ fun Red30TechApp(
                     navController = navController,
                     currentDestination = currentDestination
                 )
+            },
+            snackbarHost = {
+                SnackbarHost(hostState = snackbarHostState)
             }
         ) { innerPadding ->
             Red30TechNavHost(
                 modifier = modifier.padding(innerPadding),
                 navController = navController,
+                snackbarHostState = snackbarHostState,
                 viewModel = viewModel
             )
         }
