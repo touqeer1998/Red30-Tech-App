@@ -16,6 +16,9 @@ sealed class Screen(
     data object Sessions: Screen("sessions", R.string.sessions_label, Icons.Filled.DateRange)
     data object Speakers: Screen("speakers", R.string.speakers_label, Icons.Filled.Person)
     data object Favorites: Screen("favorites", R.string.favorites_label, Icons.Filled.FavoriteBorder)
+
+    // nested screen
+    data object SessionDetail: Screen("sessionDetail", 0, Icons.Filled.FavoriteBorder)
 }
 
 val topLevelScreens = listOf(Screen.Sessions, Screen.Speakers, Screen.Favorites)

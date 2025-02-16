@@ -65,7 +65,8 @@ private class LazyLayouts0601 {
                     Box(modifier = Modifier.width(360.dp)) {
                         SessionItem(
                             modifier = Modifier.fillMaxWidth(),
-                            sessionInfo = uiState.sessionInfos.last()
+                            sessionInfo = uiState.sessionInfos.last(),
+                            onSessionClick = {}
                         )
                     }
                 }

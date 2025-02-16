@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.red30.compose.ui.Red30TechBottomBar
@@ -50,6 +51,7 @@ fun Red30TechApp(
 @Composable
 fun Red30TechAppPreview() {
     val viewModel = MainViewModel(
+        savedStateHandle = SavedStateHandle(),
         conferenceRepository = FakeConferenceRepository()
     )
     Red30TechApp(viewModel = viewModel)

@@ -1,5 +1,6 @@
 package com.example.red30.compose.ui.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,9 +29,14 @@ import com.example.red30.data.fake
 fun SessionItem(
     modifier: Modifier = Modifier,
     sessionInfo: SessionInfo,
+    onSessionClick: (sessionId: Int) -> Unit = {}
 ) {
     ElevatedCard(
-        modifier = modifier.padding(16.dp),
+        modifier = modifier
+            .padding(16.dp)
+            .clickable {
+                onSessionClick(sessionInfo.session.id)
+            },
         shape = RoundedCornerShape(0.dp)
     ) {
         with(sessionInfo) {
@@ -83,7 +89,8 @@ fun SessionItem(
 private fun SessionItemPreview() {
     Red30TechTheme {
         SessionItem(
-            sessionInfo = SessionInfo.fake()
+            sessionInfo = SessionInfo.fake(),
+            onSessionClick = {}
         )
     }
 }

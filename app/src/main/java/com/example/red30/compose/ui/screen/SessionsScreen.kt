@@ -58,7 +58,6 @@ fun SessionsScreen(
                         }
                     )
                 }
-
             }
         }
 
@@ -92,8 +91,8 @@ private fun SessionScreenPreview() {
                     SessionInfo.fake4(),
                     SessionInfo.fake5(),
                     SessionInfo.fake6(),
-                )
-            )
+                ),
+            ),
         )
     }
 }
