@@ -1,11 +1,13 @@
 package com.example.red30.compose.ui.screen
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.LocalTextStyle
@@ -19,6 +21,8 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.red30.R
+import com.example.red30.compose.ui.component.EmptyConferenceData
 import com.example.red30.compose.ui.component.SpeakerImage
 import com.example.red30.compose.ui.theme.Red30TechTheme
 import com.example.red30.data.ConferenceDataUiState
@@ -36,14 +40,26 @@ fun SpeakersScreen(
     modifier: Modifier = Modifier,
     uiState: ConferenceDataUiState,
 ) {
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.SpaceEvenly
+    if (!uiState.isLoading && uiState.speakers.isEmpty())
+        EmptyConferenceData(modifier = modifier)
+    else
+        SpeakersList(
+            modifier = modifier,
+            speakers = uiState.speakers
+        )
+}
+
+@Composable
+private fun SpeakersList(
+    modifier: Modifier = Modifier,
+    speakers: List<Speaker>
+) {
+    LazyVerticalGrid(
+        modifier = modifier.fillMaxSize(),
+        columns = GridCells.Fixed(1)
     ) {
-        uiState.speakers.forEach {
-            Text(it.name)
+        items(speakers) {
+            SpeakerItem(speaker = it)
         }
     }
 }
@@ -123,6 +139,21 @@ private fun SpeakersScreenPreview() {
                 )
             )
         )
+    }
+}
+
+@Preview
+@Composable
+private fun SpeakersScreenEmptyDataPreview() {
+    Red30TechTheme {
+        Surface {
+            SpeakersScreen(
+                uiState = ConferenceDataUiState(
+                    isLoading = false,
+                    errorMessage = R.string.unable_to_load_conference_data_error
+                )
+            )
+        }
     }
 }
 

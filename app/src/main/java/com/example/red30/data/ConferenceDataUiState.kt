@@ -3,7 +3,6 @@ package com.example.red30.data
 data class ConferenceDataUiState(
     val day: Day = Day.Day1,
     val sessionInfos: List<SessionInfo> = emptyList(),
-    val selectedSession: SessionInfo? = null,
     val isLoading: Boolean = false,
     val errorMessage: Int? = null,
     val snackbarMessage: Int? = null,

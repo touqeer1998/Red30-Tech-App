@@ -63,7 +63,16 @@ fun Red30TechNavHost(
             SpeakersScreen(uiState = uiState)
         }
         composable(route = Screen.Favorites.route) {
-            FavoritesScreen(uiState = uiState)
+            FavoritesScreen(
+                uiState = uiState,
+                onSessionClick = { sessionId ->
+                    viewModel.setSelectedSessionId(sessionId)
+                    navController.navigate(Screen.SessionDetail.route)
+                },
+                onFavoriteClick = { sessionId ->
+                    viewModel.toggleFavorite(sessionId)
+                }
+            )
         }
         composable(route = Screen.SessionDetail.route) {
             selectedSession?.let { sessionInfo ->
