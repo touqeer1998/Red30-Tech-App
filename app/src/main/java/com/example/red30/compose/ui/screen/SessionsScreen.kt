@@ -19,6 +19,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import com.example.red30.R
 import com.example.red30.compose.ui.component.EmptyConferenceData
@@ -116,22 +117,23 @@ val dayChipItems = listOf(
     DayChipItem(Day.Day2, R.string.day_2_label),
 )
 
-@Preview(showBackground = true)
+@PreviewScreenSizes
 @Composable
 private fun SessionScreenPreview() {
     Red30TechTheme {
-        SessionsScreen(
-            uiState = ConferenceDataUiState(
-                sessionInfos = listOf(
-                    SessionInfo.fake(),
-                    SessionInfo.fake3(),
-                    SessionInfo.fake4(),
-                    SessionInfo.fake5(),
-                    SessionInfo.fake6(),
-                ),
-            ),
-            onSessionClick = {}
-        )
+        Surface {
+            SessionsScreen(
+                uiState = ConferenceDataUiState(
+                    sessionInfos = listOf(
+                        SessionInfo.fake(),
+                        SessionInfo.fake3(),
+                        SessionInfo.fake4(),
+                        SessionInfo.fake5(),
+                        SessionInfo.fake6(),
+                    )
+                )
+            )
+        }
     }
 }
 
