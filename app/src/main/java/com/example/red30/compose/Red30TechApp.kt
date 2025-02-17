@@ -1,5 +1,6 @@
 package com.example.red30.compose
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -35,6 +36,7 @@ fun Red30TechApp(
         val snackbarHostState = remember { SnackbarHostState() }
 
         Scaffold(
+            modifier = modifier.fillMaxSize(),
             bottomBar = {
                 Red30TechBottomBar(
                     navController = navController,
@@ -46,13 +48,18 @@ fun Red30TechApp(
             }
         ) { innerPadding ->
             Red30TechNavHost(
-                modifier = modifier.padding(innerPadding),
+                modifier = Modifier.padding(innerPadding),
                 navController = navController,
                 snackbarHostState = snackbarHostState,
                 viewModel = viewModel
             )
         }
     }
+}
+
+enum class NavigationType {
+    BOTTOM_NAVIGATION,
+    RAIL
 }
 
 @Preview(showBackground = true)

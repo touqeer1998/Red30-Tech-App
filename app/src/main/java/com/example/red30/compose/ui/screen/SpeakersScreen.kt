@@ -5,9 +5,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.LocalTextStyle
@@ -54,9 +54,9 @@ private fun SpeakersList(
     modifier: Modifier = Modifier,
     speakers: List<Speaker>
 ) {
-    LazyVerticalGrid(
+    LazyVerticalStaggeredGrid(
         modifier = modifier.fillMaxSize(),
-        columns = GridCells.Fixed(1)
+        columns = StaggeredGridCells.Fixed(1)
     ) {
         items(speakers) {
             SpeakerItem(speaker = it)

@@ -1,6 +1,8 @@
 package com.example.red30.compose.ui
 
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.runtime.Composable
@@ -40,7 +42,7 @@ fun Red30TechNavHost(
     }
 
     NavHost(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier.consumeWindowInsets(WindowInsets.systemBars),
         navController = navController,
         startDestination = Screen.Sessions.route
     ) {
