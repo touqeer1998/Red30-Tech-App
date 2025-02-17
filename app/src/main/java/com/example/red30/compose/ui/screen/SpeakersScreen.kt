@@ -1,5 +1,6 @@
 package com.example.red30.compose.ui.screen
 
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -60,19 +61,28 @@ private fun SpeakersList(
     windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
     speakers: List<Speaker>
 ) {
-    val desiredItemSize = 400.dp
-    val columns = when (windowSizeClass.windowWidthSizeClass) {
-        WindowWidthSizeClass.COMPACT -> StaggeredGridCells.Fixed(1)
-        WindowWidthSizeClass.MEDIUM -> StaggeredGridCells.Fixed(2)
-        else -> StaggeredGridCells.Adaptive(desiredItemSize)
-    }
+    BoxWithConstraints {
+        val maxWidth = this@BoxWithConstraints.maxWidth
+        val desiredItemSize = 400.dp
+        val width = maxWidth / (maxWidth/desiredItemSize)
+        val isNotExpandedWidth = windowSizeClass.windowWidthSizeClass != WindowWidthSizeClass.EXPANDED
 
-    LazyVerticalStaggeredGrid(
-        modifier = modifier.fillMaxSize(),
-        columns = columns
-    ) {
-        items(speakers) {
-            SpeakerItem(speaker = it)
+        val columns = when (windowSizeClass.windowWidthSizeClass) {
+            WindowWidthSizeClass.COMPACT -> StaggeredGridCells.Fixed(1)
+            WindowWidthSizeClass.MEDIUM -> StaggeredGridCells.Fixed(2)
+            else -> StaggeredGridCells.Adaptive(width)
+        }
+
+        LazyVerticalStaggeredGrid(
+            modifier = modifier.fillMaxSize(),
+            columns = columns
+        ) {
+            items(speakers) {
+                if (width <= desiredItemSize && isNotExpandedWidth)
+                    PortraitSpeakerItem(speaker = it)
+                else
+                    SpeakerItem(speaker = it)
+            }
         }
     }
 }
