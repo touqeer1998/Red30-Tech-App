@@ -1,10 +1,12 @@
 package com.example.red30.compose
 
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -13,8 +15,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.window.core.layout.WindowSizeClass
+import androidx.window.core.layout.WindowWidthSizeClass
 import com.example.red30.compose.ui.Red30TechBottomBar
 import com.example.red30.compose.ui.Red30TechNavHost
+import com.example.red30.compose.ui.Red30TechNavigationRail
 import com.example.red30.compose.ui.theme.Red30TechTheme
 import com.example.red30.data.ConferenceRepository
 import com.example.red30.data.SessionInfo
@@ -35,24 +40,37 @@ fun Red30TechApp(
         val currentDestination = navBackStackEntry?.destination
         val snackbarHostState = remember { SnackbarHostState() }
 
+        val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+        val navigationType = windowSizeClass.navigationType
+
         Scaffold(
             modifier = modifier.fillMaxSize(),
             bottomBar = {
-                Red30TechBottomBar(
-                    navController = navController,
-                    currentDestination = currentDestination
-                )
+                if (navigationType == NavigationType.BOTTOM_NAVIGATION) {
+                    Red30TechBottomBar(
+                        navController = navController,
+                        currentDestination = currentDestination
+                    )
+                }
             },
             snackbarHost = {
                 SnackbarHost(hostState = snackbarHostState)
             }
         ) { innerPadding ->
-            Red30TechNavHost(
-                modifier = Modifier.padding(innerPadding),
-                navController = navController,
-                snackbarHostState = snackbarHostState,
-                viewModel = viewModel
-            )
+            Row {
+                if (navigationType == NavigationType.RAIL) {
+                    Red30TechNavigationRail(
+                        navController = navController,
+                        currentDestination = currentDestination
+                    )
+                }
+                Red30TechNavHost(
+                    modifier = Modifier.padding(innerPadding),
+                    navController = navController,
+                    snackbarHostState = snackbarHostState,
+                    viewModel = viewModel
+                )
+            }
         }
     }
 }
@@ -61,6 +79,12 @@ enum class NavigationType {
     BOTTOM_NAVIGATION,
     RAIL
 }
+
+val WindowSizeClass.navigationType: NavigationType
+    get() = when (windowWidthSizeClass) {
+        WindowWidthSizeClass.EXPANDED -> NavigationType.RAIL
+        else -> NavigationType.BOTTOM_NAVIGATION
+    }
 
 @Preview(showBackground = true)
 @Composable
