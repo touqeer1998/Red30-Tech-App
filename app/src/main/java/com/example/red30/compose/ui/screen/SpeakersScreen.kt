@@ -60,10 +60,11 @@ private fun SpeakersList(
     windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
     speakers: List<Speaker>
 ) {
+    val desiredItemSize = 400.dp
     val columns = when (windowSizeClass.windowWidthSizeClass) {
         WindowWidthSizeClass.COMPACT -> StaggeredGridCells.Fixed(1)
         WindowWidthSizeClass.MEDIUM -> StaggeredGridCells.Fixed(2)
-        else -> StaggeredGridCells.Adaptive(400.dp)
+        else -> StaggeredGridCells.Adaptive(desiredItemSize)
     }
 
     LazyVerticalStaggeredGrid(
