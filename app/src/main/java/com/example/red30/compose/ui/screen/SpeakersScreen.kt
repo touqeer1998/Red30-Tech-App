@@ -14,13 +14,18 @@ import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
+import androidx.window.core.layout.WindowSizeClass
+import androidx.window.core.layout.WindowWidthSizeClass
 import com.example.red30.R
 import com.example.red30.compose.ui.component.EmptyConferenceData
 import com.example.red30.compose.ui.component.SpeakerImage
@@ -52,11 +57,18 @@ fun SpeakersScreen(
 @Composable
 private fun SpeakersList(
     modifier: Modifier = Modifier,
+    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass,
     speakers: List<Speaker>
 ) {
+    val columns = when (windowSizeClass.windowWidthSizeClass) {
+        WindowWidthSizeClass.COMPACT -> StaggeredGridCells.Fixed(1)
+        WindowWidthSizeClass.MEDIUM -> StaggeredGridCells.Fixed(2)
+        else -> StaggeredGridCells.Adaptive(400.dp)
+    }
+
     LazyVerticalStaggeredGrid(
         modifier = modifier.fillMaxSize(),
-        columns = StaggeredGridCells.Fixed(1)
+        columns = columns
     ) {
         items(speakers) {
             SpeakerItem(speaker = it)
@@ -87,6 +99,41 @@ fun SpeakerItem(
                     .fillMaxWidth()
                     .padding(16.dp),
                 text = speaker.bio,
+            )
+        }
+    }
+}
+
+@Composable
+fun PortraitSpeakerItem(
+    modifier: Modifier = Modifier,
+    speaker: Speaker
+) {
+    ElevatedCard(
+        modifier = modifier
+            .padding(16.dp)
+            .testTag("ui:portrait-speakerItem"),
+        shape = RoundedCornerShape(0.dp),
+    ) {
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            SpeakerImage(
+                speaker = speaker,
+                imageSize = 88.dp
+            )
+            SpeakerDetails(
+                modifier = Modifier.fillMaxWidth(),
+                shouldCenter = true,
+                speaker = speaker
+            )
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                text = speaker.bio,
+                style = MaterialTheme.typography.bodyLarge
             )
         }
     }
@@ -124,21 +171,23 @@ fun SpeakerDetails(
     }
 }
 
-@Preview(showBackground = true)
+@PreviewScreenSizes
 @Composable
 private fun SpeakersScreenPreview() {
     Red30TechTheme {
-        SpeakersScreen(
-            uiState = ConferenceDataUiState(
-                sessionInfos = listOf(
-                    SessionInfo.fake(),
-                    SessionInfo.fake2(),
-                    SessionInfo.fake3(),
-                    SessionInfo.fake4(),
-                    SessionInfo.fake5()
+        Surface {
+            SpeakersScreen(
+                uiState = ConferenceDataUiState(
+                    sessionInfos = listOf(
+                        SessionInfo.fake(),
+                        SessionInfo.fake2(),
+                        SessionInfo.fake3(),
+                        SessionInfo.fake4(),
+                        SessionInfo.fake5()
+                    )
                 )
             )
-        )
+        }
     }
 }
 
@@ -152,18 +201,6 @@ private fun SpeakersScreenEmptyDataPreview() {
                     isLoading = false,
                     errorMessage = R.string.unable_to_load_conference_data_error
                 )
-            )
-        }
-    }
-}
-
-@Preview
-@Composable
-private fun SpeakerItemPreview() {
-    Red30TechTheme {
-        Surface {
-            SpeakerItem(
-                speaker = Speaker.fake2()
             )
         }
     }
