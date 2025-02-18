@@ -12,6 +12,7 @@ import androidx.compose.ui.test.hasClickAction
 import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.hasProgressBarRangeInfo
 import androidx.compose.ui.test.hasTestTag
+import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.isOn
 import androidx.compose.ui.test.junit4.StateRestorationTester
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
@@ -21,6 +22,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollToNode
 import androidx.compose.ui.test.printToString
 import androidx.lifecycle.SavedStateHandle
 import androidx.test.espresso.device.DeviceInteraction.Companion.setDisplaySize
@@ -187,15 +189,18 @@ class Red30TechAppTests {
         }
 
         composeRule.apply {
-            // TODO: scroll to the last session
-            // SessionInfo.fake5()
-            // TODO: assert it’s displayed
+            onNodeWithTag("ui:sessionsList")
+                .performScrollToNode(
+                    hasText(SessionInfo.fake5().session.name)
+                )
+                .assertIsDisplayed()
 
-            // TODO: click on the sessions tab
-            // TODO: assert it’s selected
+            onNodeWithText(activity.getString(R.string.sessions_label))
+                .performClick()
+                .assertIsSelected()
 
-            // TODO: assert first session is displayed
-            // SessionInfo.fake()
+            onNodeWithText(SessionInfo.fake().session.name)
+                .assertIsDisplayed()
         }
     }
 }
