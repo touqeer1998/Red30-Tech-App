@@ -177,7 +177,7 @@ class Red30TechAppTests {
     }
 
     @Test
-    fun should_scroll_to_top_when_day_is_changed() {
+    fun should_scroll_to_top_when_tab_clicked() {
         val viewModel = MainViewModel(
             savedStateHandle = SavedStateHandle(),
             conferenceRepository = FakeConferenceRepository()
