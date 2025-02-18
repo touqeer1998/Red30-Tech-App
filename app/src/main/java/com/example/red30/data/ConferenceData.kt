@@ -115,12 +115,31 @@ fun Session.Companion.fake3() = Session(
     description = """
         #Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
         #incididunt ut labore et dolore magna aliqua. 
-            
+
         #Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
         #ex ea commodo consequat.
         """.trimMargin("#"),
     track = "Hacks",
     roomName = "Room 104"
+)
+
+fun Session.Companion.fake4() = Session(
+    id = 4,
+    speakerId = 4,
+    name = "Mastering Kotlin Coroutines",
+    startTime = "03:00 PM",
+    endTime = "04:30 PM",
+    description = """
+        #Dive deep into the world of Kotlin coroutines and learn how to leverage them for 
+        #efficient asynchronous programming. This session covers the fundamentals, advanced concepts, 
+        #and best practices for building responsive and scalable applications.
+        
+        #Explore structured concurrency, error handling, and flow control, along with real-world 
+        #examples to solidify your understanding. By the end of this talk, you'll be ready to 
+        #tackle complex concurrency challenges with confidence.
+    """.trimMargin("#"),
+    track = "Kotlin",
+    roomName = "Room 201"
 )
 
 fun Speaker.Companion.fake() = Speaker(
@@ -186,7 +205,7 @@ fun SessionInfo.Companion.fake3() = SessionInfo(
 )
 
 fun SessionInfo.Companion.fake4() = SessionInfo(
-    session = Session.fake().copy(id = 4),
+    session = Session.fake4(),
     speaker = Speaker.fake4()
 )
 

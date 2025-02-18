@@ -22,16 +22,25 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.printToString
+import androidx.lifecycle.SavedStateHandle
 import androidx.test.espresso.device.DeviceInteraction.Companion.setDisplaySize
 import androidx.test.espresso.device.EspressoDevice.Companion.onDevice
 import androidx.test.espresso.device.rules.DisplaySizeRule
 import androidx.test.espresso.device.sizeclass.HeightSizeClass
 import androidx.test.espresso.device.sizeclass.WidthSizeClass
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.example.red30.compose.MainViewModel
 import com.example.red30.compose.Red30TechApp
 import com.example.red30.compose.ui.screen.SessionsScreen
 import com.example.red30.compose.ui.theme.Red30TechTheme
 import com.example.red30.data.ConferenceDataUiState
+import com.example.red30.data.ConferenceRepository
+import com.example.red30.data.SessionInfo
+import com.example.red30.data.fake
+import com.example.red30.data.fake2
+import com.example.red30.data.fake3
+import com.example.red30.data.fake4
+import com.example.red30.data.fake5
 import com.example.red30.data.fakes
 import org.junit.Rule
 import org.junit.Test
@@ -165,5 +174,44 @@ class Red30TechAppTests {
         composeRule
             .onNodeWithText(composeRule.activity.getString(R.string.day_2_label))
             .assertIsSelected()
+    }
+
+    @Test
+    fun should_scroll_to_top_when_day_is_changed() {
+        val viewModel = MainViewModel(
+            savedStateHandle = SavedStateHandle(),
+            conferenceRepository = FakeConferenceRepository()
+        )
+        composeRule.setContent {
+            Red30TechApp(viewModel = viewModel)
+        }
+
+        composeRule.apply {
+            // TODO: scroll to the last session
+            // SessionInfo.fake5()
+            // TODO: assert it’s displayed
+
+            // TODO: click on the sessions tab
+            // TODO: assert it’s selected
+
+            // TODO: assert first session is displayed
+            // SessionInfo.fake()
+        }
+    }
+}
+
+private class FakeConferenceRepository: ConferenceRepository {
+    override suspend fun loadConferenceInfo(): List<SessionInfo> {
+        return listOf(
+            SessionInfo.fake(),
+            SessionInfo.fake2(),
+            SessionInfo.fake3(),
+            SessionInfo.fake4(),
+            SessionInfo.fake5(),
+        )
+    }
+
+    override suspend fun toggleFavorite(sessionId: Int): List<Int> {
+        TODO("Not yet implemented")
     }
 }

@@ -7,14 +7,18 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BookmarkAdd
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -35,16 +39,32 @@ fun FavoritesScreen(
     modifier: Modifier = Modifier,
     uiState: ConferenceDataUiState,
     onSessionClick: (sessionId: Int) -> Unit = {},
-    onFavoriteClick: (sessionId: Int) -> Unit = {}
+    onFavoriteClick: (sessionId: Int) -> Unit = {},
+    onScrollComplete: () -> Unit = {}
 ) {
     Column(modifier = modifier.fillMaxSize()) {
-         when {
+        val listState = rememberLazyGridState()
+
+        LaunchedEffect(uiState) {
+            if (uiState.shouldAnimateScrollToTop) {
+                listState.animateScrollToItem(0)
+            }
+        }
+
+        if (listState.isScrollInProgress) {
+            DisposableEffect(Unit) {
+                onDispose { onScrollComplete() }
+            }
+        }
+
+        when {
             uiState.isLoading -> LoadingIndicator()
             uiState.favorites.isEmpty() -> EmptyFavorites()
             else -> FavoritesList(
+                listState = listState,
                 favorites = uiState.favorites,
                 onSessionClick = onSessionClick,
-                onFavoriteClick = onFavoriteClick
+                onFavoriteClick = onFavoriteClick,
             )
         }
     }
@@ -53,6 +73,7 @@ fun FavoritesScreen(
 @Composable
 private fun FavoritesList(
     modifier: Modifier = Modifier,
+    listState: LazyGridState,
     favorites: List<SessionInfo>,
     onSessionClick: (sessionId: Int) -> Unit = {},
     onFavoriteClick: (sessionId: Int) -> Unit = {}
@@ -60,6 +81,7 @@ private fun FavoritesList(
     LazyVerticalGrid(
         modifier = modifier.fillMaxSize(),
         columns = GridCells.Fixed(1),
+        state = listState
     ) {
         items(favorites) { sessionInfo ->
             SessionItem(

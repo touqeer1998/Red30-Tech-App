@@ -27,7 +27,8 @@ import com.example.red30.compose.ui.theme.Red30TechTheme
 fun Red30TechNavigationRail(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    currentDestination: NavDestination? = null
+    currentDestination: NavDestination? = null,
+    onActiveDestinationClick: () -> Unit = {}
 ) {
     NavigationRail(
         modifier = modifier
@@ -57,6 +58,8 @@ fun Red30TechNavigationRail(
                             popUpTo(navController.graph.startDestinationId)
                             launchSingleTop = true
                         }
+                    } else {
+                        onActiveDestinationClick()
                     }
                 }
             )

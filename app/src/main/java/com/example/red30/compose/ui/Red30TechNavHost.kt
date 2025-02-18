@@ -58,11 +58,15 @@ fun Red30TechNavHost(
                 },
                 onDayClick = { day ->
                     viewModel.setDay(day)
-                }
+                },
+                onScrollComplete = viewModel::onScrollComplete
             )
         }
         composable(route = Screen.Speakers.route) {
-            SpeakersScreen(uiState = uiState)
+            SpeakersScreen(
+                uiState = uiState,
+                onScrollComplete = viewModel::onScrollComplete
+            )
         }
         composable(route = Screen.Favorites.route) {
             FavoritesScreen(
@@ -73,7 +77,8 @@ fun Red30TechNavHost(
                 },
                 onFavoriteClick = { sessionId ->
                     viewModel.toggleFavorite(sessionId)
-                }
+                },
+                onScrollComplete = viewModel::onScrollComplete
             )
         }
         composable(route = Screen.SessionDetail.route) {

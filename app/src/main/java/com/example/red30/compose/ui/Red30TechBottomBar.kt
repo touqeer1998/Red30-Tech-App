@@ -18,7 +18,8 @@ import com.example.red30.compose.ui.screen.topLevelScreens
 fun Red30TechBottomBar(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    currentDestination: NavDestination? = null
+    currentDestination: NavDestination? = null,
+    onActiveDestinationClick: () -> Unit = {}
 ) {
     NavigationBar(modifier = modifier.testTag("ui:bottomBar")) {
         topLevelScreens.forEach { screen ->
@@ -42,6 +43,8 @@ fun Red30TechBottomBar(
                             popUpTo(navController.graph.startDestinationId)
                             launchSingleTop = true
                         }
+                    } else {
+                        onActiveDestinationClick()
                     }
                 }
             )

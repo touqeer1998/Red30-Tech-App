@@ -7,12 +7,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -44,17 +48,33 @@ fun SessionsScreen(
     uiState: ConferenceDataUiState,
     onSessionClick: (sessionId: Int) -> Unit = {},
     onFavoriteClick: (sessionId: Int) -> Unit = {},
-    onDayClick: (day: Day) -> Unit = {}
+    onDayClick: (day: Day) -> Unit = {},
+    onScrollComplete: () -> Unit = {}
 ) {
     Column(
         modifier = modifier.fillMaxSize()
     ) {
+        val listState = rememberLazyGridState()
+
+        LaunchedEffect(uiState) {
+            if (uiState.shouldAnimateScrollToTop) {
+                listState.animateScrollToItem(0)
+            }
+        }
+
+        if (listState.isScrollInProgress) {
+            DisposableEffect(Unit) {
+                onDispose { onScrollComplete() }
+            }
+        }
+
         when {
             uiState.isLoading -> LoadingIndicator()
             uiState.sessionInfos.isEmpty() -> EmptyConferenceData()
             else -> {
                 SessionsList(
                     modifier = modifier,
+                    listState = listState,
                     uiState = uiState,
                     onSessionClick = onSessionClick,
                     onFavoriteClick = onFavoriteClick,
@@ -68,6 +88,7 @@ fun SessionsScreen(
 @Composable
 fun SessionsList(
     modifier: Modifier = Modifier,
+    listState: LazyGridState,
     uiState: ConferenceDataUiState,
     onSessionClick: (sessionId: Int) -> Unit = {},
     onFavoriteClick: (sessionId: Int) -> Unit = {},
@@ -79,7 +100,8 @@ fun SessionsList(
         modifier = modifier
             .fillMaxSize()
             .testTag("ui:sessionsList"),
-        columns = GridCells.Adaptive(330.dp)
+        columns = GridCells.Adaptive(330.dp),
+        state = listState
     ) {
         item(span = { GridItemSpan(maxLineSpan) } ) {
             Row(

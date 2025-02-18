@@ -90,6 +90,14 @@ class MainViewModel(
         }
     }
 
+    fun activeDestinationClick() = _uiState.update {
+        it.copy(shouldAnimateScrollToTop = true)
+    }
+
+    fun onScrollComplete() = _uiState.update {
+        it.copy(shouldAnimateScrollToTop = false)
+    }
+
     fun shownSnackbar() = _uiState.update {
         it.copy(snackbarMessage = null)
     }

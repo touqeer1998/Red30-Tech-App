@@ -49,7 +49,8 @@ fun Red30TechApp(
                 if (navigationType == NavigationType.BOTTOM_NAVIGATION) {
                     Red30TechBottomBar(
                         navController = navController,
-                        currentDestination = currentDestination
+                        currentDestination = currentDestination,
+                        onActiveDestinationClick = viewModel::activeDestinationClick
                     )
                 }
             },
@@ -61,7 +62,8 @@ fun Red30TechApp(
                 if (navigationType == NavigationType.RAIL) {
                     Red30TechNavigationRail(
                         navController = navController,
-                        currentDestination = currentDestination
+                        currentDestination = currentDestination,
+                        onActiveDestinationClick = viewModel::activeDestinationClick
                     )
                 }
                 Red30TechNavHost(
