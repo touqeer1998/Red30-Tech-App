@@ -18,6 +18,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
@@ -75,7 +76,9 @@ fun SessionsList(
     var selectedChipIndex by remember { mutableIntStateOf(0) }
 
     LazyVerticalGrid(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier
+            .fillMaxSize()
+            .testTag("ui:sessionsList"),
         columns = GridCells.Adaptive(330.dp)
     ) {
         item(span = { GridItemSpan(maxLineSpan) } ) {

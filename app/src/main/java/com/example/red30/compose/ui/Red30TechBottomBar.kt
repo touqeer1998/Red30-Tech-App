@@ -6,6 +6,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -19,7 +20,7 @@ fun Red30TechBottomBar(
     navController: NavHostController = rememberNavController(),
     currentDestination: NavDestination? = null
 ) {
-    NavigationBar(modifier = modifier) {
+    NavigationBar(modifier = modifier.testTag("ui:bottomBar")) {
         topLevelScreens.forEach { screen ->
             val label = stringResource(screen.labelResourceId)
             NavigationBarItem(
