@@ -1,6 +1,12 @@
 # Android Compose with Kotlin
 This is the repository for the LinkedIn Learning course `Android Compose with Kotlin`. The full course is available from [LinkedIn Learning][lil-course-url].
 
+![lil-thumbnail-url]
+
+## Course Description
+
+Get a comprehensive understanding of how Kotlin programming and its idioms facilitate writing efficient code in Compose. In this course, instructor Annyce Davis shows you how to identify the key similarities and differences between UI architecture in Android applications when using the traditional View system compared to the Compose system. Explore the essentials of using the Material Design system within Compose to create visually appealing user interfaces that align with your app's style and brand. Additionally, find out how to design Android applications with multiple screens and implement smooth navigation between them. By the end of this course, you’ll be prepared to develop Android applications that follow declarative programming best practices, including effective use of unit and integration testing.
+
 _See the readme file in the main branch for updated instructions and information._
 ## Instructions
 This repository has branches for each of the videos in the course. You can use the branch pop up menu in github to switch to a specific branch and take a look at the course at that stage, or you can add `/tree/BRANCH_NAME` to the URL to go to the branch you want to access.
@@ -20,15 +26,18 @@ To resolve this issue:
     Add changes to git using this command: git add .
 	Commit changes using this command: git commit -m "some message"
 
-## Installing
-1. To use these exercise files, you must have the following installed:
-	- [list of requirements for course]
-2. Clone this repository into your local machine using the terminal (Mac), CMD (Windows), or a GUI tool like SourceTree.
-3. [Course-specific instructions]
+ ### Instructor
+
+Annyce Davis
+
+Engineering Leader, International Conference Speaker, and Author
+             
+
+Check out my other courses on [LinkedIn Learning](https://www.linkedin.com/learning/instructors/annyce-davis?u=104).
 
 
 [0]: # (Replace these placeholder URLs with actual course URLs)
 
-[lil-course-url]: https://www.linkedin.com/learning/
-[lil-thumbnail-url]: http://
+[lil-course-url]: https://www.linkedin.com/learning/android-compose-with-kotlin
+[lil-thumbnail-url]: https://media.licdn.com/dms/image/v2/D4D0DAQFDLE9uEm4YFQ/learning-public-crop_675_1200/B4DZWw3pcxHYAY-/0/1742429132858?e=2147483647&v=beta&t=ZiYCIbiru9C6-sP9OwG1lS2dGX27kxkKh15ZwzE59OQ
 
